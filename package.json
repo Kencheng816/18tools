@@ -1,0 +1,26 @@
+{
+  "name": "18jie-tool-integrated",
+  "version": "1.0.0",
+  "private": true,
+  "description": "18節生成工具（整合版）— 13 個產圖工具合為單一入口；純靜態網頁，無建置步驟。package.json 只用於回歸測試相依。",
+  "scripts": {
+    "check": "node tests/check-tools.js",
+    "test:core-golden": "node tests/run-golden/run-core-golden.js",
+    "test:all": "npm run check && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip",
+    "test:click-export": "node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs",
+    "test:roundtrip": "node tests/run-golden/run-roundtrip.js",
+    "test:launcher": "node tests/run-golden/run-launcher.js"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "152.0.0",
+    "jszip": "3.10.1",
+    "puppeteer-core": "^25.10.0",
+    "xlsx": "0.18.5",
+    "jpeg-js": "^0.4.4",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

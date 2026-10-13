@@ -1,0 +1,40 @@
+# 18節生成工具（整合版）CI
+#   check   ：不開瀏覽器的靜態檢查（每次 push 都跑，幾秒鐘）
+#   golden  ：19 案例（14 工具）黃金樣本回歸（整合核心 app.html）（需 headless Chromium；main 分支自動、其他分支手動）
+stages: [check, golden]
+
+default:
+  image: node:20-bookworm
+  cache:
+    key: npm-$CI_COMMIT_REF_SLUG
+    paths: [node_modules/]
+
+variables:
+  GIT_LFS_SKIP_SMUDGE: "0"          # 黃金樣本圖走 LFS，回歸需要真檔
+  GOLDEN_WORK_DIR: /tmp/golden-work # 純 ASCII 路徑（CDP 檔案上傳對 # 與中文路徑失效）
+
+check:
+  stage: check
+  script:
+    - node tests/check-tools.js
+
+golden:
+  stage: golden
+  timeout: 2h
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libcairo2 fonts-noto-cjk > /dev/null
+    - npm ci
+    - export NODE_PATH=$CI_PROJECT_DIR/node_modules
+  script:
+    - node tests/run-golden/run-launcher.js
+    - node tests/run-golden/run-core-golden.js
+    - node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs
+    - node tests/run-golden/run-roundtrip.js
+  artifacts:
+    when: on_failure
+    expire_in: 1 week
+    paths: [tests/regression-out/]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - when: manual
+      allow_failure: true
