@@ -65,6 +65,7 @@ npm run test:core-golden        # 已折入整合核心的案例（有意改輸�
 比對規則：images/ 每個檔 sha256 相同、檔案清單相同（診斷報告去時間戳後比）；session.json 逐鍵比對，忽略 `role`／`smartAssetId`／`specDriven`／`loadedRuleFiles`／`elapsedMs`。
 重做黃金樣本：`tests/golden-capture/README.md`。
 
-## GitLab
-- 二進位（圖、xlsx、字型）走 Git LFS（`.gitattributes`）；建專案時請開 LFS。若不開，刪掉 `.gitattributes` 的 LFS 行即可。
+## 上傳到 GitHub／GitLab
+- **不用 Git LFS**（2026-10-14 起）：字型／素材一旦變成 LFS 指標檔，程式會悄悄用替代字型，輸出就錯了。步驟與「已推過 LFS 怎麼換回來」見 `docs/上傳步驟.md`。
+- 防呆：`npm run check` 會掃出任何 LFS 指標檔；工具頁字型載不到時會跳紅色攔截視窗，不會默默用替代字型產圖。
 - `.gitlab-ci.yml`：每次 push 跑 `check`；main 分支自動跑 `golden`（其他分支手動）。

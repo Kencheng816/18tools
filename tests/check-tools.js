@@ -6,6 +6,7 @@
  *   1. config/tools.js 登錄的每個工具都有 config/profiles/<id>.profile.js、rules/<ns>/rules.manifest.js，且 profile 的 coreScripts／templatesDir／assetsDir 都存在。
  *   2. 共用字型檔存在。
  *   3. tests/run-golden/cases-core.json 每個案例的 profile、黃金資料夾、工單都存在。
+ *   4. 專案裡沒有 Git LFS 指標檔（2026-10-14：字型／素材若變成指標檔，程式會悄悄用替代字型，輸出會變）。
  * 有任何一項不符就以非 0 結束，讓 CI 擋下來。
  */
 
@@ -45,6 +46,32 @@ function checkFonts() {
   }
 }
 
+/** Git LFS 指標檔開頭固定是這一行；真檔（png／ttf／xlsx…）不可能以它開頭。 */
+const LFS_POINTER_HEAD = 'version https://git-lfs.github.com/spec/v1';
+const SKIP_DIRS = new Set(['node_modules', '.git', 'tests/golden-diff', 'tests/regression-out', 'work']);
+
+function checkLfsPointers() {
+  const pointers = [];
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+      const rel = dir ? `${dir}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) { if (!SKIP_DIRS.has(rel) && !SKIP_DIRS.has(entry.name)) walk(rel); continue; }
+      if (!entry.isFile()) continue;
+      const stat = fs.statSync(path.join(ROOT, rel));
+      if (stat.size > 512) continue; // 指標檔只有一百多 byte
+      const head = fs.readFileSync(path.join(ROOT, rel), { encoding: 'utf8', flag: 'r' }).slice(0, LFS_POINTER_HEAD.length);
+      if (head === LFS_POINTER_HEAD) pointers.push(rel);
+    }
+  };
+  walk('');
+  if (pointers.length) {
+    problems.push(`發現 ${pointers.length} 個 Git LFS 指標檔（不是真檔；請照 docs/上傳步驟.md「從 LFS 換回一般檔」處理）：`);
+    pointers.slice(0, 10).forEach((rel) => problems.push(`    ${rel}`));
+    if (pointers.length > 10) problems.push(`    …另有 ${pointers.length - 10} 個`);
+  }
+  return pointers.length;
+}
+
 function checkGoldenCases() {
   const cases = JSON.parse(fs.readFileSync(path.join(ROOT, 'tests/run-golden/cases-core.json'), 'utf8')).cases;
   for (const testCase of cases) {
@@ -58,10 +85,11 @@ function checkGoldenCases() {
 const toolCount = checkTools();
 checkFonts();
 const caseCount = checkGoldenCases();
+checkLfsPointers();
 
 if (problems.length) {
   console.error(`check-tools：${problems.length} 個問題`);
   problems.forEach((problem) => console.error(`  - ${problem}`));
   process.exit(1);
 }
-console.log(`check-tools：${toolCount} 工具 profile、共用字型、${caseCount} 黃金案例設定都齊全`);
+console.log(`check-tools：${toolCount} 工具 profile、共用字型、${caseCount} 黃金案例設定都齊全，沒有 Git LFS 指標檔`);

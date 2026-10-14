@@ -32,8 +32,36 @@
           document.fonts.add(loaded);
           return loaded;
         }));
+        const failed = sources.filter((_, index) => results[index].status !== 'fulfilled').map((source) => source.url);
+        if (failed.length) showFontGuard(failed);
         return results.some((result) => result.status === 'fulfilled');
       })();
+
+      // 2026-10-14：字型載不到（檔案遺失、或 Git LFS 指標檔取代了真檔）時，瀏覽器會悄悄改用系統字型，產出的圖會變。
+      // 這裡直接攔下來、把原因講清楚，不讓它默默往下跑（零誤差）。
+      function showFontGuard(failed) {
+        const guard = document.createElement('div');
+        guard.id = 'fontGuard';
+        guard.setAttribute('role', 'alertdialog');
+        guard.innerHTML = `
+          <div class="font-guard-card">
+            <h2>字型沒有載入，先別產圖</h2>
+            <p>以下字型檔讀不到或不是有效的字型檔，產出的圖會用錯字型：</p>
+            <ul>${failed.map((url) => `<li><code>${url}</code></li>`).join('')}</ul>
+            <p>常見原因：</p>
+            <ul>
+              <li>專案是從 GitHub／GitLab 的「Download ZIP」拿的，或 clone 時電腦沒裝 git-lfs → 字型變成 130 byte 的 Git LFS 指標檔。請改用 <code>git clone</code>，或照 <code>docs/上傳步驟.md</code> 的「從 LFS 換回一般檔」處理。</li>
+              <li><code>fonts/</code> 資料夾被移走或改名。</li>
+            </ul>
+            <p>修好後重新整理頁面即可。</p>
+            <button type="button" id="fontGuardContinue">我知道輸出會不正確，仍要繼續</button>
+          </div>`;
+        const mount = () => {
+          document.body.appendChild(guard);
+          guard.querySelector('#fontGuardContinue').addEventListener('click', () => guard.remove());
+        };
+        if (document.body) mount(); else window.addEventListener('DOMContentLoaded', mount, { once: true });
+      }
 
       return { ready };
     })();
@@ -73,6 +101,16 @@
     .brand-title {
       white-space: nowrap;
     }
+
+    /* 字型載入失敗的攔截畫面（見上方 FontPreloader.showFontGuard） */
+    #fontGuard { position: fixed; inset: 0; z-index: 999999; display: grid; place-items: center; padding: 16px; background: rgba(3, 7, 18, .86); backdrop-filter: blur(8px); }
+    .font-guard-card { width: min(560px, 100%); padding: 24px; border: 1px solid #ef4444; border-radius: 16px; background: #151b28; color: #f8fafc; font: 13px/1.6 -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif; box-shadow: 0 30px 90px rgba(0, 0, 0, .55); }
+    .font-guard-card h2 { margin: 0 0 8px; font-size: 16px; color: #fca5a5; }
+    .font-guard-card p { margin: 8px 0; color: #cbd5e1; }
+    .font-guard-card ul { margin: 0 0 8px; padding-left: 20px; }
+    .font-guard-card code { padding: 1px 5px; border-radius: 4px; background: rgba(255, 255, 255, .08); font-size: 12px; }
+    .font-guard-card button { margin-top: 8px; height: 36px; padding: 0 14px; border: 1px solid #334155; border-radius: 8px; color: #cbd5e1; background: rgba(255, 255, 255, .06); cursor: pointer; }
+    .font-guard-card button:hover { color: #fff; border-color: #ef4444; }
   </style>
 </head>
 <body>
