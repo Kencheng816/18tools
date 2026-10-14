@@ -1,0 +1,117 @@
+{
+  "tool": "鏡面",
+  "sheetName": "418_鏡面",
+  "project": "",
+  "capturedAt": "2026-09-16T08:39:21.134Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "loadedRuleFiles": [],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 5,
+    "assetCount": 22,
+    "sheetNames": [
+      "111跨夜_線上宣傳圖",
+      "111_鏡面",
+      "118跨夜_線上宣傳圖",
+      "118_鏡面",
+      "22跨夜_線上宣傳圖",
+      "22_鏡面",
+      "225跨夜_線上宣傳圖",
+      "225_鏡面",
+      "33跨夜_線上宣傳圖",
+      "33_鏡面",
+      "318跨夜_線上宣傳圖",
+      "318_鏡面",
+      "418跨夜_線上宣傳圖",
+      "418_鏡面",
+      "425跨夜_線上宣傳圖",
+      "425_鏡面",
+      "5.5跨夜_線上宣傳圖",
+      "5.5_鏡面",
+      "5.18跨夜_線上宣傳圖",
+      "5.18_鏡面",
+      "66跨夜_線上宣傳圖",
+      "66_鏡面",
+      "77跨夜_線上宣傳圖",
+      "77_鏡面",
+      "718跨夜_線上宣傳圖",
+      "718_鏡面",
+      "88跨夜_線上宣傳圖鏡面",
+      "517吃貨節直播字卡",
+      "2026.618跨夜_線上宣傳圖",
+      "2026.618_跨夜鏡面"
+    ]
+  },
+  "generated": 8,
+  "exported": 9,
+  "unmatched": [],
+  "alerts": [],
+  "hostReviewAutoConfirmed": 0,
+  "diagnostics": {
+    "sheetName": "418_鏡面",
+    "workflow": "mirror-418",
+    "anchorCount": 1,
+    "parsedBlockCount": 8,
+    "recordCount": 8,
+    "sourceTemplateNames": [
+      "人名標",
+      "天空Bar",
+      "底Bar",
+      "循環動畫底圖",
+      "開框留底字卡"
+    ],
+    "warnings": [],
+    "skippedRows": [],
+    "generatedCount": 8,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99/%E4%BA%BA%E5%90%8D%E6%A8%99_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99/%E4%BA%BA%E5%90%8D%E6%A8%99%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99/%E4%BA%BA%E5%90%8D%E6%A8%99_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99/%E4%BA%BA%E5%90%8D%E6%A8%99%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:42771/assets/%E4%BA%BA%E5%90%8D%E6%A8%99%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "跨夜直播美術工單_Ken.xlsx",
+      "sha256": "599fa13de05c984ec9820d0dcc8e0a504bf5bf058916ce8392c8034316c7fbca"
+    },
+    "templates": {
+      "人名標.json": "d62dfe59ae5eaa695e09ce90de2110ca860c52eb2e57d61558df557273fccd0b",
+      "天空Bar.json": "90082d87a195bdc07dfc4eaaa596fd2bef1ffde8b32151d9abb840612c7ef99a",
+      "底Bar.json": "2ed04854e3fd1a4519512f811b08249edcca311f5988385b7f18751813b463c4",
+      "循環動畫底圖.json": "b39180c47a2e3ab6ac256272faf49431d296832ddd8c9e4b8a1821568271d748",
+      "開框留底字卡.json": "f24efc71bf94934c019876e37de416c033d4f0d3c867d53d3cc97000659b22d5"
+    },
+    "assets": {
+      "README.md": "43a0cbaf271a3859685005e1d4b3ac7758f88ed4497e8cb030dfcb3ed87e529e",
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "人名標/人名標_KV_BG.png": "535d23e9f983339a6589c9e075b0fd18560e705ec8059a4866fb2ff5ed347e7c",
+      "天空Bar/天空Bar_KV_BG.png": "46009cb3f87931012bc01f3448ed0a9d3d586ac50d1ba8a67255c6e310143268",
+      "底Bar/底Bar_KV_BG.png": "ada6537df3457c2885ee803e43aad87ddbd5c11cdd536d8b2d70619b24a2155a",
+      "循環動畫底圖/循環動畫底圖_KV_BG.png": "2a92699bb749abc077f5060df4efbd46e69437f311719f847686645dd6a2ec6b",
+      "橫式_USP.svg": "4b089b35ef4070ea0eb1ad9ffcc13f0831230353ffef0703947ae890b57dbdab",
+      "直式_蝦皮購物_LOGO_白.svg": "5cd19a1427d18e84e598b6448a80c535a08372cbd455069633512a40a3953eff",
+      "蝦皮直播_LOGO_白.svg": "3b39854c348457b06ed33227824e6996413a5485ab8d50da74f8fc0153f86b91",
+      "蝦皮購物18號會員日_LOGO_白.svg": "3a11d17e16efb9fe7527c2ee50e2b8f1fd4a7a806f6eabcf66c6b9d82c40baa0",
+      "跨夜直播派對_LOGO.png": "6413aa39579cc9129cb0fbe3fbc0dccb7cbd5323b800de088fcc5bb1e48993ea",
+      "開框留底字卡/開框留底字卡_KV_BG.png": "94aa37c4b808687c255026c8ad82e1802918e8aa0dc7d6e52fa79149652d748b"
+    }
+  }
+}

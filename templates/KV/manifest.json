@@ -1,0 +1,9 @@
+{
+  "templates": [
+    { "file": "暖身_攻略頁.json", "name": "暖身_攻略頁" },
+    { "file": "暖身_銀行版.json", "name": "暖身_銀行版" },
+    { "file": "正式(內).json", "name": "正式(內)" },
+    { "file": "正式(外).json", "name": "正式(外)" },
+    { "file": "正式(16x9外).json", "name": "正式(16x9外)" }
+  ]
+}

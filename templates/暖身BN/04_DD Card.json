@@ -1,0 +1,220 @@
+{
+  "templateId": "DD card",
+  "version": "2.6.0-layer-selector",
+  "source": {
+    "type": "photoshop",
+    "psdName": "DD card.psd"
+  },
+  "canvas": {
+    "width": 531,
+    "height": 792,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "示意/DD Banner Card_16",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "DD card"
+  },
+  "layers": {
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 146,
+      "y": 675,
+      "width": 240,
+      "height": 44,
+      "centerX": 266,
+      "centerY": 697,
+      "assetFilename": "DD card_CTA.png"
+    },
+    "product_1": {
+      "type": "image",
+      "psdName": "P1",
+      "x": 73,
+      "y": 339,
+      "width": 410,
+      "height": 314,
+      "centerX": 278,
+      "centerY": 496,
+      "assetFilename": "DD card_P1.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 410
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 41,
+      "y": 136,
+      "width": 449,
+      "height": 58,
+      "centerX": 265.5,
+      "centerY": 165,
+      "text": "3/18灑全站95折",
+      "fontSizePt": 60.45,
+      "fontSizePx": 60.45,
+      "fontSizePtRaw": 65.1656494140625,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 72.54,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.9276359250613642,
+        "scaleY": 0.9276359463834911
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 11,
+          "fontSizePx": 60.45,
+          "fontSizePtRaw": 65.1656494140625,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 72.54,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 82,
+      "y": 219,
+      "width": 367,
+      "height": 42,
+      "centerX": 265.5,
+      "centerY": 240,
+      "text": "灑全站$399折$40",
+      "fontSizePt": 44.62,
+      "fontSizePx": 44.62,
+      "fontSizePtRaw": 67.68495178222656,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFF3C",
+      "lineHeight": 53.54,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.6592306954884252,
+        "scaleY": 0.6592307059820497
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 12,
+          "fontSizePx": 44.62,
+          "fontSizePtRaw": 67.68495178222656,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 53.54,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "legal": {
+      "type": "text",
+      "psdName": "法務小字",
+      "x": 110,
+      "y": 285,
+      "width": 310,
+      "height": 23,
+      "centerX": 265,
+      "centerY": 296.5,
+      "text": "優惠券詳細規則請見活動說明",
+      "fontSizePt": 24,
+      "fontSizePx": 24,
+      "fontSizePtRaw": 31.389549255371094,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#113366",
+      "lineHeight": 28.8,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7645855999511919,
+        "scaleY": 0.7645855999511904
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 14,
+          "fontSizePx": 24,
+          "fontSizePtRaw": 31.389549255371094,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#113366",
+          "lineHeight": 28.8,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 531,
+      "height": 792,
+      "centerX": 265.5,
+      "centerY": 396,
+      "assetFilename": "DD card_KV_BG.png"
+    },
+    "bg_color": {
+      "type": "shape",
+      "psdName": "BG_color",
+      "x": 0,
+      "y": 0,
+      "width": 531,
+      "height": 792,
+      "centerX": 265.5,
+      "centerY": 396,
+      "fill": "#FFA200"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.title.x",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "layers.title.width",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2"
+      }
+    }
+  },
+  "renderOrder": [
+    "bg_color",
+    "kv_bg",
+    "product_1",
+    "subtitle_frame",
+    "title",
+    "subtitle",
+    "legal",
+    "cta"
+  ]
+}

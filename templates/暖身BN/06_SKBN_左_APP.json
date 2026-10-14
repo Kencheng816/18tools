@@ -1,0 +1,145 @@
+{
+  "templateId": "SKBN_左_APP",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "SKBN_左_APP.psd"
+  },
+  "canvas": {
+    "width": 358,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "SKBN_左_APP",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "SKBN_左_APP"
+  },
+  "layers": {
+    "18號會員日_LOGO": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 75,
+      "y": 38,
+      "width": 208,
+      "height": 43,
+      "centerX": 179,
+      "centerY": 59.5,
+      "assetFilename": "SKBN_左_APP_18號會員日_LOGO.png"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 67,
+      "y": 89,
+      "width": 224,
+      "height": 38,
+      "centerX": 179,
+      "centerY": 108,
+      "text": "直播折$500",
+      "fontSizePt": 40,
+      "fontSizePx": 40,
+      "fontSizePtRaw": 73.21234893798828,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFF3C",
+      "lineHeight": 48,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5471713468015139,
+        "scaleY": 0.5463559325303677
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 40,
+          "fontSizePtRaw": 73.21234893798828,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFF3C",
+          "lineHeight": 48,
+          "letterSpacing": 0
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "fontSizePx": 40,
+          "fontSizePtRaw": 73.21234893798828,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFF3C",
+          "lineHeight": 48,
+          "letterSpacing": 0
+        },
+        {
+          "from": 4,
+          "to": 8,
+          "fontSizePx": 40,
+          "fontSizePtRaw": 73.21234893798828,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFF3C",
+          "lineHeight": 48,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 252,
+      "y": 141,
+      "width": 80,
+      "height": 79,
+      "centerX": 292,
+      "centerY": 180.5,
+      "assetFilename": "SKBN_左_APP_CTA.png"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 27,
+      "y": 143,
+      "width": 246,
+      "height": 177,
+      "centerX": 150,
+      "centerY": 231.5,
+      "assetFilename": "SKBN_左_APP_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 246
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 358,
+      "height": 360,
+      "centerX": 179,
+      "centerY": 180,
+      "assetFilename": "SKBN_左_APP_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "cta",
+    "subtitle",
+    "18號會員日_LOGO"
+  ]
+}

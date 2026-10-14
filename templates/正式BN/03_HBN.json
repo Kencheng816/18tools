@@ -1,0 +1,375 @@
+{
+  "templateId": "HBN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "HBN.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "HBN",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "HBN"
+  },
+  "layers": {
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 938,
+      "y": 290,
+      "width": 240,
+      "height": 44,
+      "centerX": 1058,
+      "centerY": 312,
+      "assetFilename": "HBN_CTA.png"
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 24,
+      "y": 105,
+      "width": 628,
+      "height": 76,
+      "centerX": 338,
+      "centerY": 143,
+      "text": "全站大免運$99起",
+      "fontSizePt": 80,
+      "fontSizePx": 80,
+      "fontSizePtRaw": 80,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 96,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 10,
+          "fontSizePx": 80,
+          "fontSizePtRaw": 80,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 96,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "主標題_蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "主標題_蝦皮VIP_LOGO",
+      "x": 29,
+      "y": 70,
+      "width": 316,
+      "height": 109,
+      "centerX": 187,
+      "centerY": 124.5,
+      "assetFilename": "HBN_主標題_蝦皮VIP_LOGO.png"
+    },
+    "主標題_文字": {
+      "type": "text",
+      "psdName": "主標題_文字",
+      "x": 349,
+      "y": 108,
+      "width": 300,
+      "height": 72,
+      "centerX": 499,
+      "centerY": 144,
+      "text": "今日限定",
+      "fontSizePt": 75.78,
+      "fontSizePx": 75.78,
+      "fontSizePtRaw": 72.0663070678711,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 90.94,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.0545535848437608,
+        "scaleY": 1.051548989783635
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 5,
+          "fontSizePx": 75.78,
+          "fontSizePtRaw": 72.0663070678711,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 90.94,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 117,
+      "y": 207,
+      "width": 441,
+      "height": 53,
+      "centerX": 337.5,
+      "centerY": 233.5,
+      "text": "全站大免運$99起",
+      "fontSizePt": 57,
+      "fontSizePx": 57,
+      "fontSizePtRaw": 72.61261749267578,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFF3C",
+      "lineHeight": 68.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7849875604632408,
+        "scaleY": 0.7849875729586611
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 5,
+          "fontSizePx": 57,
+          "fontSizePtRaw": 72.61261749267578,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 68.4,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "fontSizePx": 57,
+          "fontSizePtRaw": 72.61261749267578,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 68.4,
+          "letterSpacing": 0
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "fontSizePx": 57,
+          "fontSizePtRaw": 72.61261749267578,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 68.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "副標題_蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "副標題_蝦皮VIP_LOGO",
+      "x": 111,
+      "y": 198,
+      "width": 182,
+      "height": 63,
+      "centerX": 202,
+      "centerY": 229.5,
+      "assetFilename": "HBN_副標題_蝦皮VIP_LOGO.png"
+    },
+    "副標題_文字": {
+      "type": "text",
+      "psdName": "副標題_文字",
+      "x": 299,
+      "y": 218,
+      "width": 268,
+      "height": 43,
+      "centerX": 433,
+      "centerY": 239.5,
+      "text": "獨享18%蝦幣",
+      "fontSizePt": 46,
+      "fontSizePx": 46,
+      "fontSizePtRaw": 73.09945678710938,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFF3C",
+      "lineHeight": 55.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.6292795874447363,
+        "scaleY": 0.6292795974615993
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 4,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 73.09945678710938,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 73.09945678710938,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 8,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 73.09945678710938,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "legal": {
+      "type": "text",
+      "psdName": "法務小字",
+      "x": 195,
+      "y": 284,
+      "width": 287,
+      "height": 23,
+      "centerX": 338.5,
+      "centerY": 295.5,
+      "text": "優惠券數量有限，用完為止",
+      "fontSizePt": 24,
+      "fontSizePx": 24,
+      "fontSizePtRaw": 24,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#113366",
+      "lineHeight": 34.9999885559082,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 13,
+          "fontSizePx": 24,
+          "fontSizePtRaw": 24,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#113366",
+          "lineHeight": 34.9999885559082,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 743,
+      "y": 35,
+      "width": 354,
+      "height": 255,
+      "centerX": 920,
+      "centerY": 162.5,
+      "assetFilename": "HBN_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 354
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 360,
+      "centerX": 600,
+      "centerY": 180,
+      "assetFilename": "HBN_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "legal",
+    "副標題_文字",
+    "副標題_蝦皮VIP_LOGO",
+    "subtitle_frame",
+    "subtitle",
+    "主標題_文字",
+    "主標題_蝦皮VIP_LOGO",
+    "title",
+    "cta"
+  ]
+}

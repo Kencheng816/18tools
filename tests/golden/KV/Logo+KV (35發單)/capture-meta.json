@@ -1,0 +1,112 @@
+{
+  "tool": "KV",
+  "sheetName": "Logo+KV (35發單)",
+  "project": "",
+  "capturedAt": "2026-10-01T07:34:12.836Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "loadedRuleFiles": [
+      "rules/shared.rules.js",
+      "rules/shared/template-rule-utils.js",
+      "rules/shared/title-logo.parser.js",
+      "rules/暖身_攻略頁.rules.js",
+      "rules/暖身_銀行版.rules.js"
+    ],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 5,
+    "assetCount": 26,
+    "sheetNames": [
+      "timeline final",
+      "Logo+KV (35發單)",
+      "暖正L1 MS(35發單)",
+      "暖身BN(311發單)",
+      "正式BN(319發單)",
+      "新增製作物_暖正L1 MS(327發單)",
+      "新增製作物_正式BN(330發單)",
+      "新增製作物_OSP BN(42發單)",
+      "停用-SPX印刷BN(XXXX發單)",
+      "停用-SPX電子BN(XXXX發單)",
+      "版配>>",
+      "L1 暖+正",
+      "L1 正式主會場 (418)  (施工中)"
+    ]
+  },
+  "generated": 5,
+  "exported": 5,
+  "unmatched": [],
+  "alerts": [],
+  "hostReviewAutoConfirmed": 0,
+  "diagnostics": {
+    "sheetName": "Logo+KV (35發單)",
+    "anchorCount": 1,
+    "parsedBlockCount": 5,
+    "recordCount": 5,
+    "sourceTemplateNames": [
+      "暖身_攻略頁",
+      "暖身_銀行版",
+      "正式(16x9外)",
+      "正式(內)",
+      "正式(外)"
+    ],
+    "warnings": [
+      "第 6 列找到「製作內容」，但同列沒有主標/副標/警語/商品圖/CTA/票券欄位",
+      "有找到「製作內容」，但沒有任何同列欄位可解析。"
+    ],
+    "skippedRows": [],
+    "generatedCount": 5,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:44439/assets/%E6%9A%96%E8%BA%AB_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44439/assets/%E6%9A%96%E8%BA%AB%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44439/assets/%E6%9A%96%E8%BA%AB_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44439/assets/%E6%9A%96%E8%BA%AB%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44439/assets/%E6%AD%A3%E5%BC%8F(%E5%85%A7)_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44439/assets/%E6%AD%A3%E5%BC%8F(%E5%85%A7)%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "2026.4_18號會員日_美術需求_V6.xlsx",
+      "sha256": "db3df4d986e92ef5c31e08d180c809507b3cf4f7f462df567d1c86a9e9b2c237"
+    },
+    "templates": {
+      "manifest.json": "639817946a6f74d13e3d01413f153032685fac79a00b3a58bdac7b7caa1bb399",
+      "暖身_攻略頁.json": "d7e7a42e5bb27fc0d98b299bea0f9a68a77b8b1ee62a198b385b48041337b84e",
+      "暖身_銀行版.json": "c441745b014a6f1a10712e6972f032f9180076a1472d1482148cf61ce32537d2",
+      "正式(16x9外).json": "ea6e1d6c0b0f2581be00824ff75acd509d3cbeefb092e40c5da07d57d2e98842",
+      "正式(內).json": "dfe5256634a106931262583e53cc33f7ddd34b9de2dadba6371e3a0d2cb080e7",
+      "正式(外).json": "03fcf358bf23ab3495468f0b57d8bf53fdea4bae803141815a0040285becc440"
+    },
+    "assets": {
+      "USP.svg": "945ebac5c11a00d475573268ea28559749fc3a2daf7796ebe7fc33c16875be10",
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "國泰世華.svg": "bc1b21ca9f1aec233ba8366fec176dd168ea469924c271bd3e0720cd55e3c1e3",
+      "星展銀行.svg": "8a09e01565f3716f4818bc4d89c74837d30431a726f7ac9e953a93e38521d951",
+      "暖身_攻略頁_KV_BG.png": "488852815d057b75de7c538e349e98f2aa377c445d6d39b4226318049e6fdb92",
+      "暖身_銀行版_KV_BG.png": "3d8f768aebc32ecb306594b3fcb1be885f8f5d505b06edfdca0c7d68f450fb92",
+      "暖身_銀行版_影子.png": "95f4a077adbe47ccd23ef37580194bfcb5952608e9a789e3c862a01f3df5ab45",
+      "正式(16x9外)_KV_BG.png": "51dacbd2719c603163cc0ae945fa99d638b0f07251394161ae2d524a19bd3de8",
+      "正式(內)_KV_BG.png": "a3b97e5bb8d10a20a9c2e8cb218efe71e75794ba4ca2d55af0250409f2f744e2",
+      "正式(外)_KV_BG.png": "dc328dabf20b944828ff8aeac1fd0898da09f6b3cb789fe2f7a93eee132cc8e7",
+      "永豐銀行.svg": "c5b31b6397cc14cf01f31e9a207806504c7713f1424593c6547522e947631c5a",
+      "玉山銀行.svg": "b32cdcfcbb7949159a3e56d89da6ba3fe810dcc6e90a6f323c0ae74a2b60b0c8",
+      "聯邦銀行.svg": "2555b831f64371aac739c581631be7b649e78eeee00e12e04aa9e3444800dbf3"
+    }
+  },
+  "rebaselined": {
+    "at": "2026-10-07T02:58:03.736Z",
+    "by": "run-core-golden --update-golden",
+    "reason": "2026-10-07 小字連串緊貼（$ 貼右、%折蝦幣起 貼左、逗號置中）",
+    "images": 5
+  }
+}

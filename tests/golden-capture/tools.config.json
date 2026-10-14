@@ -1,0 +1,311 @@
+{
+  "_comment": "18節 黃金樣本擷取設定。sourceDir 相對於 #整合版本 資料夾；uploads 對應各工具 index.html 的 <input> id；exportFormat：有「依規格表」按鈕的工具用 auto，只有 PNG／JPG 的舊工具用 png（等同使用者按 PNG）。KOL代播圖/ 是 KOL 第一單／第二單；KV/ 是 18節_KV_V1.2（2026-10-01 新增）。",
+  "外廣OM_wave1": {
+    "sourceDir": "外廣OM/18節Tool_外廣OM Wave 1_V3.8",
+    "workbook": "2026.4.18 會員日_Timeline&入稿表.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "外廣OM_wave2": {
+    "sourceDir": "外廣OM/18節Tool_外廣OM Wave 2_V0.5",
+    "workbook": "2026.4.18 會員日_Timeline&入稿表.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "暖正MS": {
+    "sourceDir": "暖正MS/18節Tool_暖正MS_V0.5",
+    "workbook": "2026.4_18號會員日_MS設定_暖正L1_V2.xlsx",
+    "exportFormat": "png",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "LineOA": {
+    "sourceDir": "LineOA/18節Tool_LineOA_V0.4",
+    "workbook": "2026.4.18 會員日_Timeline&入稿表.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "Affiliate_network": {
+    "sourceDir": "Affiliate/18節Tool_network_V0.5",
+    "workbook": "[internal] LINE購物入稿表_2026.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "Affiliate_AMS": {
+    "sourceDir": "Affiliate/18節Tool_Line 購物AMS_V0.5",
+    "workbook": "[internal] LINE購物入稿表_2026.xlsx",
+    "exportFormat": "png",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "鏡面": {
+    "sourceDir": "鏡面/18節Tool_鏡面_V0.1",
+    "workbook": "跨夜直播美術工單_Ken.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "跨夜直播": {
+    "sourceDir": "跨夜直播宣傳圖/18節Tool_跨夜直播宣傳圖_V0.9",
+    "workbook": "跨夜直播美術工單_Ken.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "KOL_第一單": {
+    "sourceDir": "KOL代播圖/18節Tool_KOL代播圖_第一單_V0.9",
+    "workbook": "2026【美術需求】直播賣版封面圖-4.18 KOL代播版型.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "KOL_第二單": {
+    "sourceDir": "KOL代播圖/18節Tool_KOL代播圖_第二單_V0.9",
+    "workbook": "2026【美術需求】直播賣版封面圖-4.18 KOL代播版型.xlsx",
+    "exportFormat": "auto",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "暖身BN": {
+    "sourceDir": "暖身BN/18節_暖身BN_Tool_V5.11",
+    "workbook": "2026.4_18號會員日_美術需求_V5.xlsx",
+    "exportFormat": "png",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "正式BN": {
+    "sourceDir": "正式BN/18節_正式BN_Tool_V7.4",
+    "workbook": "2026.4_18號會員日_美術需求_V6.xlsx",
+    "exportFormat": "png",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "ENG": {
+    "sourceDir": "ENG/18節_ENG_Tool_V0.9",
+    "workbook": "4月美術工單+MS工單.xlsx",
+    "exportFormat": "png",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "KV": {
+    "sourceDir": "KV/18節_KV_V1.2",
+    "workbook": "2026.4_18號會員日_美術需求_V6.xlsx",
+    "exportFormat": "png",
+    "uploads": {
+      "templates": {
+        "inputId": "templateFolderInput",
+        "dir": "templates"
+      },
+      "assets": {
+        "inputId": "assetInput",
+        "dir": "assets"
+      },
+      "workbook": {
+        "inputId": "excelInput"
+      }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  }
+}

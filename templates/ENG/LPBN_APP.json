@@ -1,0 +1,170 @@
+{
+  "templateId": "LPBN_APP",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "LPBN_APP.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 550,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "LPBN_APP",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "LPBN_APP"
+  },
+  "layers": {
+    "LOGO": {
+      "type": "image",
+      "psdName": "LOGO",
+      "x": 62,
+      "y": 185,
+      "width": 244,
+      "height": 47,
+      "centerX": 184,
+      "centerY": 208.5,
+      "assetFilename": "LPBN_APP_LOGO.png"
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 60,
+      "y": 248,
+      "width": 357,
+      "height": 49,
+      "centerX": 238.5,
+      "centerY": 272.5,
+      "text": "17號倒數搶購中",
+      "fontSizePt": 52,
+      "fontSizePx": 52,
+      "fontSizePtRaw": 51.104339599609375,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "left",
+      "color": "#FEFF91",
+      "lineHeight": 62.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.016969241046729,
+        "scaleY": 1.01752605654768
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 52,
+          "fontSizePtRaw": 51.104339599609375,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FEFF91",
+          "lineHeight": 62.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 58,
+      "y": 309,
+      "width": 494,
+      "height": 62,
+      "centerX": 305,
+      "centerY": 340,
+      "text": "神券快搶折$500",
+      "fontSizePt": 65,
+      "fontSizePx": 65,
+      "fontSizePtRaw": 81.59944915771484,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#F8EC22",
+      "lineHeight": 78,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7961381097153563,
+        "scaleY": 0.7965740147776676
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 10,
+          "fontSizePx": 65,
+          "fontSizePtRaw": 81.59944915771484,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#F8EC22",
+          "lineHeight": 78,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 562,
+      "y": 114,
+      "width": 609,
+      "height": 346,
+      "centerX": 866.5,
+      "centerY": 287,
+      "assetFilename": "LPBN_APP_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 609
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 550,
+      "centerX": 600,
+      "centerY": 275,
+      "assetFilename": "LPBN_APP_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "subtitle_frame",
+    "subtitle",
+    "title",
+    "LOGO"
+  ]
+}

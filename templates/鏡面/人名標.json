@@ -1,0 +1,121 @@
+{
+  "templateId": "人名標",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "人名標.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "人名標",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "人名標"
+  },
+  "layers": {
+    "主持人": {
+      "type": "text",
+      "psdName": "主持人",
+      "x": 466,
+      "y": 825,
+      "width": 148,
+      "height": 48,
+      "centerX": 540,
+      "centerY": 849,
+      "text": "主持人",
+      "fontSizePt": 50,
+      "fontSizePx": 50,
+      "fontSizePtRaw": 78.44959259033203,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 60,
+      "letterSpacing": 10,
+      "textTransform": {
+        "scaleX": 0.6373519272365008,
+        "scaleY": 0.6373519272364985
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 4,
+          "fontSizePx": 50,
+          "fontSizePtRaw": 78.44959259033203,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 60,
+          "letterSpacing": 10
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "主持人名稱": {
+      "type": "text",
+      "psdName": "主持人名稱",
+      "x": 449,
+      "y": 906,
+      "width": 174,
+      "height": 58,
+      "centerX": 536,
+      "centerY": 935,
+      "text": "Sunny",
+      "fontSizePt": 50,
+      "fontSizePx": 50,
+      "fontSizePtRaw": 50,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 57,
+      "letterSpacing": 1.5,
+      "textTransform": {
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 6,
+          "fontSizePx": 50,
+          "fontSizePtRaw": 50,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 57,
+          "letterSpacing": 1.5
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 336,
+      "y": 810,
+      "width": 408,
+      "height": 168,
+      "centerX": 540,
+      "centerY": 894,
+      "assetFilename": "人名標_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "主持人名稱",
+    "主持人"
+  ]
+}

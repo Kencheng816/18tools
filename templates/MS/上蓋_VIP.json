@@ -1,0 +1,244 @@
+{
+  "templateId": "上蓋_VIP",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "上蓋_VIP.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 558,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "上蓋_VIP",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "上蓋_VIP"
+  },
+  "layers": {
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 401,
+      "y": 112,
+      "width": 270,
+      "height": 95,
+      "centerX": 536,
+      "centerY": 159.5,
+      "assetFilename": "上蓋_VIP_蝦皮VIP_LOGO.png"
+    },
+    "LOGO_案型": {
+      "type": "text",
+      "psdName": "LOGO_案型",
+      "x": 677,
+      "y": 144.5,
+      "width": 122,
+      "height": 61,
+      "centerX": 738,
+      "centerY": 176.5,
+      "text": "專屬",
+      "fontSizePt": 64,
+      "fontSizePx": 64,
+      "fontSizePtRaw": 63.61219787597656,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 76.8,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.009545134896988,
+        "scaleY": 1.0060963215843843
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 64,
+          "fontSizePtRaw": 63.61219787597656,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 76.8,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 252,
+      "y": 227,
+      "width": 696,
+      "height": 71,
+      "centerX": 600,
+      "centerY": 264.5,
+      "text": "訂閱享月月送60蝦幣",
+      "fontSizePt": 75,
+      "fontSizePx": 75,
+      "fontSizePtRaw": 60.78302001953125,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 90,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.2381269374814932,
+        "scaleY": 1.2338972418323566
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 11,
+          "fontSizePx": 75,
+          "fontSizePtRaw": 60.78302001953125,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 90,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 214,
+      "y": 327,
+      "width": 772,
+      "height": 85,
+      "centerX": 600.0,
+      "centerY": 369.5,
+      "text": "購物節全站再送8折",
+      "fontSizePt": 90,
+      "fontSizePx": 90,
+      "fontSizePtRaw": 90,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 108,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 10,
+          "fontSizePx": 90,
+          "fontSizePtRaw": 90,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 108,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "legal": {
+      "type": "text",
+      "psdName": "法務小字",
+      "x": 242,
+      "y": 446.6,
+      "width": 717,
+      "height": 27,
+      "centerX": 600.5,
+      "centerY": 460.5,
+      "text": "請使用 APP 開啟訂閱，VIP優惠券詳細規則請見活動說明",
+      "fontSizePt": 28,
+      "fontSizePx": 28,
+      "fontSizePtRaw": 16.942819595336914,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 33.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.6531980441191045,
+        "scaleY": 1.6526176937217225
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 30,
+          "fontSizePx": 28,
+          "fontSizePtRaw": 16.942819595336914,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFFFF",
+          "lineHeight": 33.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 558,
+      "centerX": 600,
+      "centerY": 279,
+      "assetFilename": "上蓋_VIP_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": 25,
+      "useDynamicBounds": true,
+      "shape": {
+        "kind": "roundedRectangle",
+        "cornerRadius": 25
+      },
+      "rules": {
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 50,
+        "fixedHeight": 117,
+        "radius": 25,
+        "alignTo": "layers.subtitle.centerX",
+        "centerYTo": "layers.subtitle.y + layers.subtitle.height / 2",
+        "centerYOffset": 0,
+        "compareTitleWidth": true,
+        "titleWiderThresholdPx": 50
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "legal",
+    "subtitle_frame",
+    "subtitle",
+    "title",
+    "LOGO_案型",
+    "蝦皮VIP_LOGO"
+  ]
+}

@@ -1,0 +1,526 @@
+{
+  "tool": "正式BN",
+  "sheetName": "正式BN(319發單)",
+  "project": "",
+  "capturedAt": "2026-09-16T08:43:05.639Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "loadedRuleFiles": [
+      "rules/shared.rules.js",
+      "rules/shared/template-rule-utils.js",
+      "rules/themes/ar.theme.js",
+      "rules/ddcard.rules.js",
+      "rules/hbn.rules.js",
+      "rules/ig.rules.js",
+      "rules/game_bn.rules.js",
+      "rules/live_lobby_bn.rules.js",
+      "rules/ms_carousel_bn.rules.js",
+      "rules/large_bn.rules.js",
+      "rules/popup.rules.js",
+      "rules/headband_VIP.rules.js",
+      "rules/headband_shopee.rules.js",
+      "rules/scbn.rules.js",
+      "rules/c2c_skbn_app.rules.js",
+      "rules/c2c_skbn_pc.rules.js",
+      "rules/mall_skbn.rules.js",
+      "rules/c2c_skbn_nuz_app.rules.js",
+      "rules/c2c_skbn_nuz_pc.rules.js",
+      "rules/ar.rules.js",
+      "rules/ar_large_bn.rules.js"
+    ],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 17,
+    "assetCount": 173,
+    "sheetNames": [
+      "timeline final",
+      "Logo+KV (35發單)",
+      "暖正L1 MS(35發單)",
+      "暖身BN(311發單)",
+      "正式BN(319發單)",
+      "新增製作物_暖正L1 MS(327發單)",
+      "新增製作物_正式BN(330發單)",
+      "新增製作物_OSP BN(42發單)",
+      "停用-SPX印刷BN(XXXX發單)",
+      "停用-SPX電子BN(XXXX發單)",
+      "版配>>",
+      "L1 暖+正",
+      "L1 正式主會場 (418)  (施工中)"
+    ]
+  },
+  "generated": 69,
+  "exported": 69,
+  "unmatched": [
+    "POPUP",
+    "(需切圖)",
+    "(需切圖)",
+    "(需切圖)",
+    "(需切圖)",
+    "(需切圖)",
+    "(需切圖)",
+    "(需切圖)",
+    "(需切圖)"
+  ],
+  "alerts": [],
+  "hostReviewAutoConfirmed": 0,
+  "diagnostics": {
+    "sheetName": "正式BN(319發單)",
+    "anchorCount": 16,
+    "parsedBlockCount": 16,
+    "recordCount": 72,
+    "sourceTemplateNames": [
+      "頭巾_VIP",
+      "頭巾_蝦皮購物",
+      "DD card",
+      "HBN",
+      "POPUP",
+      "C2C SKBN APP",
+      "C2C SKBN PC",
+      "MALL_SKBN",
+      "SCBN",
+      "AR_LOGO+案型",
+      "AR_LOGO",
+      "AR_案型",
+      "AR Large BN",
+      "Game BN",
+      "直播大廳BN",
+      "C2C_SKBN(NUZ)_APP",
+      "C2C_SKBN(NUZ)_PC"
+    ],
+    "warnings": [
+      "第 6 列找到「製作內容」，但同列沒有主標/副標/警語/商品圖/CTA/票券欄位",
+      "第 81 列製作物「SKIN (有視覺)」沒有讀到主標/副標/警語/商品圖/CTA 資料",
+      "第 82 列製作物「SKIN (純底色)」沒有讀到主標/副標/警語/商品圖/CTA 資料"
+    ],
+    "skippedRows": [
+      {
+        "row": 18,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 41,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 42,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 43,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 44,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 45,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 46,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 47,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 48,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 49,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 50,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 51,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 61,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 62,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 63,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 64,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 65,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 66,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 67,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 68,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 69,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 70,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 71,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 102,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 103,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 104,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 105,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 106,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 107,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 108,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 109,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 118,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 122,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 123,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 128,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 132,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 133,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 138,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 141,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 142,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 151,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 162,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 163,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 164,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 165,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 172,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 173,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 174,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 175,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 207,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 208,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 220,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 221,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      }
+    ],
+    "generatedCount": 69,
+    "unmatchedCount": 7,
+    "emptyBlockCount": 2
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_VIP_icon.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E5%85%8C%E6%8F%9B%E5%AE%8C%E7%95%A2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E5%B9%A3.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E5%88%B8%E9%9D%A2%E5%BA%95%E5%9C%96.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E5%85%8C%E6%8F%9B%E5%AE%8C%E7%95%A2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_VIP_icon.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E5%B9%A3.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E5%88%B8%E9%9D%A2%E5%BA%95%E5%9C%96.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E5%85%8C%E6%8F%9B%E5%AE%8C%E7%95%A2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_VIP_icon.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E5%B9%A3.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_%E5%88%B8%E9%9D%A2%E5%BA%95%E5%9C%96.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_VIP_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E5%85%8C%E6%8F%9B%E5%AE%8C%E7%95%A2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_VIP_icon.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E8%9D%A6%E5%B9%A3.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_%E5%88%B8%E9%9D%A2%E5%BA%95%E5%9C%96.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/%E9%A0%AD%E5%B7%BE_VIP_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E4%B8%89%E8%A7%92%E5%BD%A2.svg",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E6%A8%99%E7%B1%A4_%E5%BA%95%E8%89%B2.svg",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E8%9D%A6%E7%9A%AEVIP_LOGO.svg",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/%E9%A0%AD%E5%B7%BE%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/templates/05_POPUP_SCS.json",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/05_POPUP_SCS.json",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/assets/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:46599/C2C%20SKBN%20PC_VIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "2026.4_18號會員日_美術需求_V6.xlsx",
+      "sha256": "db3df4d986e92ef5c31e08d180c809507b3cf4f7f462df567d1c86a9e9b2c237"
+    },
+    "templates": {
+      "01_頭巾_VIP.json": "fdc3985c3f41863766db3452cee54c396db0836da46fe8ee5b59ca66357f25d3",
+      "01_頭巾_蝦皮購物.json": "cf44b980d0daed7b361fcab0227ac27d82b4216159f5957f4d6551f15d2d3fd5",
+      "02_DD Card.json": "7324bb3a4f3ee274b7d086df0506cade7c80a8c65acaab3edbcf466e499fd66b",
+      "03_HBN.json": "8cb8531cf4544b675fca90047ec31e3a35b2267202909f8a091d85ff4b38e92b",
+      "04_POPUP.json": "7d0b3e549f984fbc45c848b990e2b362f47daf819d989d9ed8bd1242c4350413",
+      "05_C2C SKBN APP.json": "3428debd30a8af78690d20f657f6ebeeba2061e9ab41845e19455537e17ff5f7",
+      "05_C2C SKBN PC.json": "a6155f6f35a04da2a964efb8e72b0e3bf030677033e880ce0cc3615c7c07c179",
+      "06_MALL_SKBN.json": "41e95e9a6d57181369fc5834815fd6eff8b16a233f76d47f7bdebff0394a1e54",
+      "07_SCBN.json": "b21b40bbc2631b9950a4524a91f3903e5f7d0a86edb1475cba1c59121f302c6f",
+      "08_AR_LOGO+案型.json": "7ee835f150afb67a8f6cadc2b656d66988ee93ea006c32195000c4b2192f6e12",
+      "08_AR_LOGO.json": "ebcfeeec568bc33d8dd2640a62163a8d060fde31f19fd60e2f6dc5524ff14f23",
+      "08_AR_案型.json": "573e2da2be7b9c65edd223cf1956ad5bb0b1b7f737c76438e3a91f79c5cc75d7",
+      "09_AR Large BN.json": "8272a2f758d25b757bfb035baeb83ea546a5dc1997f77fe7956335df1c66687a",
+      "10_Game BN.json": "119dcf1f0caf000e66c8ed792f1bc2fad7fe48e8038011f127c7c8e14a2e9890",
+      "11_直播大廳BN.json": "1a55477a11ca30b2856055a58e48f6124be21aded7bd54f22471f6bab6fb1a61",
+      "12_C2C_SKBN(NUZ)_APP.json": "3d8ef0aa1fa06911a99ec7eb53c05c428881854bce7ab75a21b8316d8cba0d2f",
+      "12_C2C_SKBN(NUZ)_PC.json": "2afa7aa12726c2171abfe0b04d843c60a1f0b08449d69d4e5f25833cb66ca13b",
+      "manifest.json": "e2625895db443d1d1f63267311179f9511b6ceba6d7fc90d3d0b49429efdab6d"
+    },
+    "assets": {
+      "01_頭巾/18號會員日_LOGO.png": "3557cc6881eb293a5c484e041052277f42e2aaa090e17e1dd1e702021d179151",
+      "01_頭巾/18號會員日_LOGO.svg": "d824814510d589183f4df25eb6779cb55e3601905a0cbc6f84fa7c9e9b3a3f3f",
+      "01_頭巾/KV_BG.png": "5c38372311779c0ad70b970c393c55a7070e2db1aeb4817f8bb358caed58b1d3",
+      "01_頭巾/VIP_icon.svg": "930d79690dbd687090e65fbe7fb0267102092ad5c78a5faa2de280acb5c71e99",
+      "01_頭巾/兌換完畢.png": "6e74109117d5b1d8f47c9d03a4cd5b872ab17707b2e9c839ad7a8da935b1f315",
+      "01_頭巾/券面底圖.png": "1cfa31b407d797f22febb0855ca31d2a3cb202408e116a7ab3fefd7898568ad6",
+      "01_頭巾/蝦幣.png": "0be1770e6913dbd5007f6cc85c2cb7df726f7383a089b79c13b57af047b99495",
+      "01_頭巾/蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "01_頭巾/蝦皮購物_LOGO.png": "768babf048ee0301ccc2cf232ec3914ee68b85333f5bdc4ac1a540b00b01c0e3",
+      "02_DD Card/DD card_CTA.png": "35189e27d0fb8c2ab119aa533f5b7fd6e167308593d3e13f71d1bc5a716496c8",
+      "02_DD Card/DD card_KV_BG.png": "8d2e874f7f5447819554438012bc7d24c63ba42f46933b3d51f4acaffebb8588",
+      "02_DD Card/DD card_P.png": "13654b4ebf92deba9b96492014a2c187b97ff1fa8ddd98145a9364a17300e97c",
+      "02_DD Card/DD card_P1.png": "13654b4ebf92deba9b96492014a2c187b97ff1fa8ddd98145a9364a17300e97c",
+      "02_DD Card/DD card_規範.png": "44e5f65b928883ddb9bec967573cbda96deeb64de784c98fca13a815cfc205e0",
+      "02_DD Card/蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "03_HBN/HBN_CTA.png": "35189e27d0fb8c2ab119aa533f5b7fd6e167308593d3e13f71d1bc5a716496c8",
+      "03_HBN/HBN_KV_BG.jpg": "b3c0237d4e581853b2e19e8601a55ff90d13eaa5918012cac47d0284ffe2934b",
+      "03_HBN/HBN_KV_BG.png": "767919965546e1ad64a844278ed9b96575a379fa73c1ec89bd964302d2e4bdd1",
+      "03_HBN/HBN_P.png": "13654b4ebf92deba9b96492014a2c187b97ff1fa8ddd98145a9364a17300e97c",
+      "03_HBN/HBN_放心買安心退.png": "35189e27d0fb8c2ab119aa533f5b7fd6e167308593d3e13f71d1bc5a716496c8",
+      "03_HBN/HBN_規範.png": "78a1325e22723abe6fa3a32029148d3412559879d86f646fe4936308b051642e",
+      "04_POPUP/POPUP_CTA.png": "7b8fe302391358004ad6067411df9e1135ce974dd5954a095ccde75f5dea60ed",
+      "04_POPUP/POPUP_KV_BG.png": "4726f57fde91de5277c51da8dea16e0086c10056cf37a49d2ac5764c216987ff",
+      "04_POPUP/直式_18號會員日_LOGO.svg": "232329e350909faa34d116ae5344175891dc8e840dde51a60ccccb4da1f07338",
+      "04_POPUP/蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "04_POPUP/蝦皮直營_LOGO.svg": "eaff266247fb75c0647ba241562de6226922f8a2a04d33c15dfce11f206dfcee",
+      "05_C2C SKBN APP/C2C SKBN APP_KV_BG.png": "24b17b8a149a0e402c0e5ffa18c3cde9108d40bb737937d0ea22f1fb93c9ad32",
+      "05_C2C SKBN APP/C2C SKBN APP_免運車.png": "9ea95c3811e1653231f597390124c0c7a607c9b393d5312548c00584d35440d7",
+      "05_C2C SKBN APP/VIP_單券_短版.png": "c9a4b2475757742e0cdc2ac9a9016719195f863a7127e85b8f996c1f2630e28a",
+      "05_C2C SKBN APP/全站_單券_右.png": "db96622c14da32e43eda2ce8383cc851ee3942f82a40786335c820c678e1f304",
+      "05_C2C SKBN APP/全站_單券_左.png": "78735a1dc7142013a562a541f72e4a4af325235635376c24684c5617d2cb3824",
+      "05_C2C SKBN APP/商城_單券.png": "d7602e25b7b972beb71bf3e419ba85ef41ad1ef75da0a93001e3b9d5a3728481",
+      "05_C2C SKBN APP/商城_單券_右.png": "66fca2f8619ce306ad160fbaa9964523f773ed9255aeafa0997ce51262eff405",
+      "05_C2C SKBN PC/C2C SKBN PC_KV_BG.png": "4de2523885ea2d53cd5d08593f3fa15cae0b663b2caddba490b46af378aadceb",
+      "05_C2C SKBN PC/VIP_單券_短版.png": "dff808098aa65597ba5c1007a4cc012b955792ad34ff5912a81d6ab21bdd105f",
+      "05_C2C SKBN PC/免運車.png": "7fece2b62841e5f522f9ccd9adb8ad3def306b5dc3b372b4512d74efd4b1c076",
+      "05_C2C SKBN PC/全站_單券_左.png": "78735a1dc7142013a562a541f72e4a4af325235635376c24684c5617d2cb3824",
+      "06_Mall SKBN/Mall SKBN_KV_BG.png": "84983723b030e0d0f68abdce0919cbc27bf8831b30bb88a982cba80b00f17018",
+      "06_Mall SKBN/Mall SKBN_免運車.png": "9ea95c3811e1653231f597390124c0c7a607c9b393d5312548c00584d35440d7",
+      "07_SCBN/18號會員日_LOGO.svg": "d824814510d589183f4df25eb6779cb55e3601905a0cbc6f84fa7c9e9b3a3f3f",
+      "07_SCBN/SCBN_CTA.png": "f6772857e27c0cc56210330d17600d7f5e13c922d42fde8120415f6a8be9e917",
+      "07_SCBN/SCBN_KV_BG.png": "34f54d727c80c221c027074f6685297c8e4ea93caebe0a67521d6f25389d0bcd",
+      "07_SCBN/SCBN_免運車.png": "9ea95c3811e1653231f597390124c0c7a607c9b393d5312548c00584d35440d7",
+      "07_SCBN/SCBN_商城券_雙券.png": "aee9ab41b7911ebc2f1151d5740017bb8d6ec40aa8dc9d9360e7040e11c5d500",
+      "07_SCBN/SCBN_規範.png": "0ef1082f9bc8b318e5465946d9b4d23d451e1f77c7fe29afc9c7e7a3cbe76244",
+      "08_AR/AR_規範.png": "e34388fb3665c8dbb5e16b4760ee128e8c211be45f819dce9c4760ef3bfe94ec",
+      "08_AR/直式_18號會員日_LOGO.svg": "7e5665b23d9d3a039d38a78a1a90b9248c6a317ae8cd189c4a9fc2ee2b15b309",
+      "09_AR Large BN/18號_LOGO.svg": "84f680ebc1082993053a01a1fda762617e668a62af6b39ec90c40cd41976e641",
+      "09_AR Large BN/AR Large BN_KV_BG_VIP.png": "05453aacd548f16a173b096e116e10e7ecdc3fefe03784ddd4f672c3f7a38b7b",
+      "09_AR Large BN/AR Large BN_KV_BG_全站.png": "8b97117c9a74d5429d4e9718d12de6a58d69da8869ea70799dcb94d52ed1ec68",
+      "09_AR Large BN/AR Large BN_KV_BG_商城.png": "4d74847852213d15610207cdae12c0d895b844b3e11cd7431ff8834388244704",
+      "09_AR Large BN/直式_蝦皮VIP_LOGO.svg": "d6000a9720b1bd18215768359b050a6d8a9043a4c21e940fd182f0a91d388106",
+      "09_AR Large BN/蝦皮VIP_LOGO_橘色.svg": "be02439db82200a5e6c19efc69941e5f51e383a619153472e19958c94e710dd0",
+      "09_AR Large BN/蝦皮商城_LOGO.png": "529ce4c8baa67a7f35d68e2a1a0578172b1a86ceb45edd741dd17c365c72e2a7",
+      "09_AR Large BN/蝦皮購物_LOGO.svg": "5cd19a1427d18e84e598b6448a80c535a08372cbd455069633512a40a3953eff",
+      "10_GAME BN/GAME BN_CTA.png": "69cbb05bfebc3cbd0cd662a2f09eb06ddfcffe2bb2ebd9866f85b212b8ef55a5",
+      "10_GAME BN/GAME BN_KV_BG.png": "6b27992da9cde8931a32735b14a8dc6b3d389f09c2ac9d557826f0de9dcf4dd3",
+      "10_GAME BN/VIP_單券_蝦幣_有價格.png": "fa46303f4a81aefba3fd1bc09b2ab0a772a3628358f86eeffa8d46207bfbbc24",
+      "11_直播大廳BN/直播大廳BN_CTA.png": "2dc207feaca26e59deae193d7936532c1df8a0e69f9de8fd2a95de299510dcae",
+      "11_直播大廳BN/直播大廳BN_KV_BG.png": "7783f7d71b205161df8b0db57cea9a332f7cc382bf51e1952e01102c15f19a6c",
+      "12_C2C_SKBN(NUZ)_APP/18號會員日_LOGO.svg": "d824814510d589183f4df25eb6779cb55e3601905a0cbc6f84fa7c9e9b3a3f3f",
+      "12_C2C_SKBN(NUZ)_APP/C2C_SKBN(NUZ)_APP_CTA.png": "69cbb05bfebc3cbd0cd662a2f09eb06ddfcffe2bb2ebd9866f85b212b8ef55a5",
+      "12_C2C_SKBN(NUZ)_APP/C2C_SKBN(NUZ)_APP_KV_BG.png": "f940078c03f417399f53eb7c9159e2cc5f2eabc84058490b7fa6c62fe60f6568",
+      "12_C2C_SKBN(NUZ)_APP/VIP_icon.svg": "930d79690dbd687090e65fbe7fb0267102092ad5c78a5faa2de280acb5c71e99",
+      "12_C2C_SKBN(NUZ)_PC/18號_icon.svg": "cd2180fef9cc958abf91c656757f1bb090e566f4ec65e4a5c563bcfdf49b26fa",
+      "12_C2C_SKBN(NUZ)_PC/C2C_SKBN(NUZ)_PC_CTA.png": "88517560ea6893e43197f06ab7ed971cac58ba60a1286c12febcf43095d84934",
+      "12_C2C_SKBN(NUZ)_PC/C2C_SKBN(NUZ)_PC_KV_BG.png": "06b09b0c469eacc411e55381e83ace2e81092c39a6fa77aa3edf7ce4536857dc",
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "素材/SCS_雙券.png": "bccdfa6af92a96237b3c874188c0c609583cb3e3b08290e7a10e96d753cad0b7",
+      "素材/VIP_單券_折扣.png": "3ca07181d5231e51dfc24ecdecc3751021a6666f1375dd1175d3e53ff3fb9972",
+      "素材/VIP_單券_蝦幣.png": "aaa7840dfc6f9916df7d83cb7f51efcd69513db7f50625d73632625dfbc85147",
+      "素材/VIP_單券_蝦幣_有價格.png": "a46911ccf427487e2c16f208f10666e427de6cba22ea4a7673418ba19d3c0f85",
+      "素材/三角形.svg": "259e9a0c8420ed1f8d6a446f23770f04420c90c122457b5c236e9db94e320af8",
+      "素材/信用卡加全站券.png": "6321160b572db4604616a25d8b571127df53553a3c804a79ad98fa529f12f4fa",
+      "素材/信用卡加全站券_有價格.png": "31d238d67d4a3d573feecee34167c4ebae6676eb7c26d88e47a1c64f266b8e4f",
+      "素材/免運車加全站券.png": "35cf92fe66ea5179bb3952a7f4c27830581c8c3380e75c4a8b0fd5f6180bb88b",
+      "素材/免運車加商城券.png": "48769052e2b451e0959b9c2bf7663fec712c165c06dd2b2f98a7eeebab611a97",
+      "素材/免運車加蝦幣.png": "dd9543c6a8236e8ea5cf64b31d8c305a65c099e0f86c8e0d6a1c5d29ac1d79c6",
+      "素材/全站券_雙券.png": "b1addc67fdcc6e0bb89665e8029d8bba79d8d957f1080884b7a5e10b7c3c768e",
+      "素材/全站券加短影音_雙券.png": "ad82949a2d777cc6b4a689bb4ffb17c44c66d89b7b27173e642e9809dbc1e376",
+      "素材/全站券加蝦幣.png": "6c260e7c98bc443f3889c49af0917e4f7cf7abaf4c940516f594fcdeed0a1803",
+      "素材/商城券_雙券.png": "95e3563f7e0f54d7794c141179f230e8496967adc95c6e998a85da9d57b7a414",
+      "素材/商城券加蝦幣.png": "fb0fb140dc5fce950af046c16af2ec72fe84a4021f22a3a9571b4de159dda0b2",
+      "素材/國泰銀行.png": "e68a4fb16ebe9f563cee01acb43536cb4fb63846990cbf5be53a0a2239482a08",
+      "素材/星展銀行.png": "97b09e49eeaa0537742e6c2ae41cfac37e429948a134febca5dd6a6cb14b1911",
+      "素材/標籤_底色.svg": "56dcee567d7942a78d89da61856fd0b78fc1e34d6ba113666f076c5fb595b714",
+      "素材/永豐銀行.png": "ec850a36cc7d247980c79e5d740e861b7a1a4a49b17b8ca043dc17147f6a2b9f",
+      "素材/玉山銀行.png": "9756c992d84d47bf0092261fa145a7715aba2ba0f5a4955bfeb4310d585163f8",
+      "素材/聯邦銀行.png": "81c4bdfe590c939a68b0488be9b6e238016f7d2c2a8852bbbe8c5f2935f874bc",
+      "素材/鬧鐘加全站券.png": "d9b4c5ec1c1c7b270fe828a50dabcc64fffc6d62f9e4fd6127db72af7c2a06b8",
+      "素材/鬧鐘加蝦幣.png": "82fbe4ab10cecef17096906def88a659f71a32dd6711e1b6a9fc03dc2c7a541d"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "templates": [
+    {
+      "name": "頭巾_VIP",
+      "file": "01_頭巾_VIP.json"
+    },
+    {
+      "name": "頭巾_蝦皮購物",
+      "file": "01_頭巾_蝦皮購物.json"
+    },
+    {
+      "name": "DD card",
+      "file": "02_DD Card.json"
+    },
+    {
+      "name": "HBN",
+      "file": "03_HBN.json"
+    },
+    {
+      "name": "POPUP",
+      "file": "04_POPUP.json"
+    },
+    {
+      "name": "C2C SKBN APP",
+      "file": "05_C2C SKBN APP.json"
+    },
+    {
+      "name": "C2C SKBN PC",
+      "file": "05_C2C SKBN PC.json"
+    },
+    {
+      "name": "MALL_SKBN",
+      "file": "06_MALL_SKBN.json"
+    },
+    {
+      "name": "SCBN",
+      "file": "07_SCBN.json"
+    },
+    {
+      "name": "AR_LOGO+案型",
+      "file": "08_AR_LOGO+案型.json"
+    },
+    {
+      "name": "AR_LOGO",
+      "file": "08_AR_LOGO.json"
+    },
+    {
+      "name": "AR_案型",
+      "file": "08_AR_案型.json"
+    },
+    {
+      "name": "AR Large BN",
+      "file": "09_AR Large BN.json"
+    },
+    {
+      "name": "Game BN",
+      "file": "10_Game BN.json"
+    },
+    {
+      "name": "直播大廳BN",
+      "file": "11_直播大廳BN.json"
+    },
+    {
+      "name": "C2C_SKBN(NUZ)_APP",
+      "file": "12_C2C_SKBN(NUZ)_APP.json"
+    },
+    {
+      "name": "C2C_SKBN(NUZ)_PC",
+      "file": "12_C2C_SKBN(NUZ)_PC.json"
+    }
+  ]
+}

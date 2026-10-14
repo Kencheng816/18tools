@@ -1,0 +1,140 @@
+{
+  "templateId": "Skinny_PC(左右)",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "Skinny_PC(左右).psd"
+  },
+  "canvas": {
+    "width": 400,
+    "height": 110,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "Skinny_PC(左右)",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "Skinny_PC(左右)"
+  },
+  "layers": {
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 326,
+      "y": 30,
+      "width": 50,
+      "height": 50,
+      "centerX": 351,
+      "centerY": 55,
+      "assetFilename": "Skinny_PC(左右)_CTA.png"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 17,
+      "y": 56,
+      "width": 168,
+      "height": 29,
+      "centerX": 101,
+      "centerY": 70.5,
+      "text": "點我領$500",
+      "fontSizePt": 30,
+      "fontSizePx": 30,
+      "fontSizePtRaw": 59.76015853881836,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFF600",
+      "lineHeight": 36,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.501731978225912,
+        "scaleY": 0.502006708687736
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 30,
+          "fontSizePtRaw": 59.76015853881836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFF600",
+          "lineHeight": 36,
+          "letterSpacing": 0
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "fontSizePx": 30,
+          "fontSizePtRaw": 59.76015853881836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFF600",
+          "lineHeight": 36,
+          "letterSpacing": 0
+        },
+        {
+          "from": 4,
+          "to": 8,
+          "fontSizePx": 30,
+          "fontSizePtRaw": 59.76015853881836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFF600",
+          "lineHeight": 36,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "全站_單券": {
+      "type": "image",
+      "psdName": "全站_單券",
+      "x": 192,
+      "y": 18,
+      "width": 128,
+      "height": 79,
+      "centerX": 256,
+      "centerY": 57.5,
+      "assetFilename": "Skinny_PC(左右)_全站_單券.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 400,
+      "height": 110,
+      "centerX": 200,
+      "centerY": 55,
+      "assetFilename": "Skinny_PC(左右)_KV_BG.png"
+    },
+    "LOGO": {
+      "type": "image",
+      "psdName": "LOGO",
+      "x": 17,
+      "y": 26,
+      "width": 103,
+      "height": 20,
+      "centerX": 68.5,
+      "centerY": 36,
+      "assetFilename": "直播日_LOGO.svg"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "全站_單券",
+    "subtitle",
+    "LOGO",
+    "cta"
+  ]
+}

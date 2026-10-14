@@ -1,0 +1,47 @@
+{
+  "templateId": "line point_512x512",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "line point_512x512.psd"
+  },
+  "canvas": {
+    "width": 512,
+    "height": 512,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "line point_512x512",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "line point_512x512"
+  },
+  "layers": {
+    "AD": {
+      "type": "image",
+      "psdName": "AD",
+      "x": 31,
+      "y": 24,
+      "width": 128,
+      "height": 88,
+      "centerX": 95,
+      "centerY": 68,
+      "assetFilename": "line point_512x512_AD.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 512,
+      "height": 512,
+      "centerX": 256,
+      "centerY": 256,
+      "assetFilename": "line point_512x512_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "AD"
+  ]
+}

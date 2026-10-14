@@ -1,0 +1,59 @@
+{
+  "templateId": "循環動畫底圖",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "循環動畫底圖.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "循環動畫底圖",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "循環動畫底圖"
+  },
+  "layers": {
+    "蝦皮購物18號會員日_LOGO_白": {
+      "type": "image",
+      "psdName": "蝦皮購物18號會員日_LOGO_白",
+      "x": 121,
+      "y": 643,
+      "width": 838,
+      "height": 149,
+      "centerX": 540,
+      "centerY": 717.5,
+      "assetFilename": "蝦皮購物18號會員日_LOGO_白.svg"
+    },
+    "橫式_USP": {
+      "type": "image",
+      "psdName": "橫式_USP",
+      "x": 122,
+      "y": 810,
+      "width": 838,
+      "height": 93,
+      "centerX": 541,
+      "centerY": 856.5,
+      "assetFilename": "橫式_USP.svg"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1080,
+      "height": 1920,
+      "centerX": 540,
+      "centerY": 960,
+      "assetFilename": "循環動畫底圖_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "橫式_USP",
+    "蝦皮購物18號會員日_LOGO_白"
+  ]
+}

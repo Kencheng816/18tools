@@ -1,0 +1,131 @@
+{
+  "templateId": "SKBN_中_APP_VIP",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "SKBN_中_APP_VIP.psd"
+  },
+  "canvas": {
+    "width": 484,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "SKBN_中_APP_VIP",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "SKBN_中_APP_VIP"
+  },
+  "layers": {
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 379,
+      "y": 141,
+      "width": 80,
+      "height": 80,
+      "centerX": 419,
+      "centerY": 181,
+      "assetFilename": "SKBN_中_APP_VIP_CTA.png"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 30,
+      "y": 140,
+      "width": 344,
+      "height": 192,
+      "centerX": 202,
+      "centerY": 236,
+      "assetFilename": "SKBN_中_APP_VIP_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 344
+    },
+    "18號會員日_LOGO": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 122,
+      "y": 23,
+      "width": 240,
+      "height": 50,
+      "centerX": 242,
+      "centerY": 48,
+      "assetFilename": "SKBN_中_APP_VIP_18號會員日_LOGO.png"
+    },
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 71,
+      "y": 72,
+      "width": 151,
+      "height": 54,
+      "centerX": 146.5,
+      "centerY": 99,
+      "assetFilename": "SKBN_中_APP_VIP_蝦皮VIP_LOGO.png"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 226,
+      "y": 90,
+      "width": 187,
+      "height": 36,
+      "centerX": 319.5,
+      "centerY": 108,
+      "text": "享蝦幣18%",
+      "fontSizePt": 37,
+      "fontSizePx": 37,
+      "fontSizePtRaw": 73.43736267089844,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFF3C",
+      "lineHeight": 44.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5045827013440927,
+        "scaleY": 0.5038307541925204
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 7,
+          "fontSizePx": 37,
+          "fontSizePtRaw": 73.43736267089844,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFF3C",
+          "lineHeight": 44.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 484,
+      "height": 360,
+      "centerX": 242,
+      "centerY": 180,
+      "assetFilename": "SKBN_中_APP_VIP_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "subtitle",
+    "蝦皮VIP_LOGO",
+    "18號會員日_LOGO",
+    "product",
+    "cta"
+  ]
+}

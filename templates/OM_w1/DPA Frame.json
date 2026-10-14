@@ -1,0 +1,102 @@
+{
+  "templateId": "DPA Frame",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "DPA Frame.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1080,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "DPA Frame",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "DPA Frame"
+  },
+  "layers": {
+    "直式_蝦皮購物_LOGO_白": {
+      "type": "image",
+      "psdName": "直式_蝦皮購物_LOGO_白",
+      "x": 31,
+      "y": 948,
+      "width": 86,
+      "height": 117,
+      "centerX": 74,
+      "centerY": 1006.5,
+      "assetFilename": "DPA Frame_直式_蝦皮購物_LOGO_白.png"
+    },
+    "18號會員日_LOGO_白": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO_白",
+      "x": 207,
+      "y": 948,
+      "width": 246,
+      "height": 53,
+      "centerX": 330,
+      "centerY": 974.5,
+      "assetFilename": "DPA Frame_18號會員日_LOGO_白.png"
+    },
+    "文案": {
+      "type": "text",
+      "psdName": "文案",
+      "x": 207,
+      "y": 1013,
+      "width": 403,
+      "height": 52,
+      "centerX": 408.5,
+      "centerY": 1039,
+      "text": "全站最高折$100",
+      "fontSizePt": 54.8,
+      "fontSizePx": 54.8,
+      "fontSizePtRaw": 150.01318359375,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFE70F",
+      "lineHeight": 65.76,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.3653012069697526,
+        "scaleY": 0.3653012115536788
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 10,
+          "fontSizePx": 54.8,
+          "fontSizePtRaw": 150.01318359375,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE70F",
+          "lineHeight": 65.76,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 911,
+      "width": 1080,
+      "height": 169,
+      "centerX": 540,
+      "centerY": 995.5,
+      "assetFilename": "DPA Frame_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "文案",
+    "18號會員日_LOGO_白",
+    "直式_蝦皮購物_LOGO_白"
+  ]
+}

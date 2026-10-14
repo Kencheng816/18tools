@@ -1,0 +1,64 @@
+{
+  "templates": [
+    {
+      "name": "上蓋_VIP",
+      "file": "上蓋_VIP.json"
+    },
+    {
+      "name": "上蓋_常態",
+      "file": "上蓋_常態.json"
+    },
+    {
+      "name": "上蓋_底橘",
+      "file": "上蓋_底橘.json"
+    },
+    {
+      "name": "上蓋_全橘",
+      "file": "上蓋_全橘.json"
+    },
+    {
+      "name": "上蓋_銀行",
+      "file": "上蓋_銀行.json"
+    },
+    {
+      "name": "上蓋_獨享",
+      "file": "上蓋_獨享.json"
+    },
+    {
+      "name": "上蓋_免運",
+      "file": "上蓋_免運.json"
+    },
+    {
+      "name": "上蓋_蝦皮直營",
+      "file": "上蓋_蝦皮直營.json"
+    },
+    {
+      "name": "票券_VIP",
+      "file": "票券_VIP.json"
+    },
+    {
+      "name": "下蓋_VIP",
+      "file": "下蓋_VIP.json"
+    },
+    {
+      "name": "下蓋_免運",
+      "file": "下蓋_免運.json"
+    },
+    {
+      "name": "下蓋_蝦皮直營",
+      "file": "下蓋_蝦皮直營.json"
+    },
+    {
+      "name": "表格_免運",
+      "file": "表格_免運.json"
+    },
+    {
+      "name": "下蓋_銀行",
+      "file": "下蓋_銀行.json"
+    },
+    {
+      "name": "中標_全橘",
+      "file": "中標_全橘.json"
+    }
+  ]
+}

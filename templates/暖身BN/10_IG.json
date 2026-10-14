@@ -1,0 +1,213 @@
+{
+  "templateId": "IG",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "IG.psd"
+  },
+  "canvas": {
+    "width": 900,
+    "height": 1600,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "IG",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "IG"
+  },
+  "layers": {
+    "直式_18號會員日_LOGO": {
+      "type": "image",
+      "psdName": "直式_18號會員日_LOGO",
+      "x": 247,
+      "y": 272,
+      "width": 408,
+      "height": 301,
+      "centerX": 451,
+      "centerY": 422.5,
+      "assetFilename": "IG_直式_18號會員日_LOGO.png"
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 169,
+      "y": 716,
+      "width": 561,
+      "height": 61,
+      "centerX": 449.5,
+      "centerY": 746.5,
+      "text": "4/17 20點夜貓限定",
+      "fontSizePt": 64,
+      "fontSizePx": 64,
+      "fontSizePtRaw": 29.409189224243164,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 76.8,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 2.269991624854645,
+        "scaleY": 2.1761906929593318
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 13,
+          "fontSizePx": 64,
+          "fontSizePtRaw": 29.409189224243164,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFFFF",
+          "lineHeight": 76.8,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 219,
+      "y": 617,
+      "width": 464,
+      "height": 63,
+      "centerX": 451,
+      "centerY": 648.5,
+      "text": "搶先用全站18%",
+      "fontSizePt": 66,
+      "fontSizePx": 66,
+      "fontSizePtRaw": 47.92137908935547,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFF3C",
+      "lineHeight": 79.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.3716313327339573,
+        "scaleY": 1.377255780206868
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 66,
+          "fontSizePtRaw": 47.92137908935547,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFF3C",
+          "lineHeight": 79.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "legal": {
+      "type": "text",
+      "psdName": "法務小字",
+      "x": 192,
+      "y": 794,
+      "width": 516,
+      "height": 38,
+      "centerX": 450,
+      "centerY": 813,
+      "text": "優惠券詳細規則請見活動說明",
+      "fontSizePt": 40,
+      "fontSizePx": 40,
+      "fontSizePtRaw": 73.07438659667969,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Regular",
+      "fontWeight": "400",
+      "italic": false,
+      "align": "center",
+      "color": "#113366",
+      "lineHeight": 48,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5470878139230051,
+        "scaleY": 0.547387369729126
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 14,
+          "fontSizePx": 40,
+          "fontSizePtRaw": 73.07438659667969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "400",
+          "fontStyleName": "Regular",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Regular",
+          "color": "#113366",
+          "lineHeight": 48,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 87,
+      "y": 867,
+      "width": 726,
+      "height": 605,
+      "centerX": 450,
+      "centerY": 1169.5,
+      "assetFilename": "IG_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 726
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 900,
+      "height": 1600,
+      "centerX": 450,
+      "centerY": 800,
+      "assetFilename": "IG_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.subtitle.y - 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "legal",
+    "subtitle_frame",
+    "subtitle",
+    "title",
+    "直式_18號會員日_LOGO"
+  ]
+}

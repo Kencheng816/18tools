@@ -1,0 +1,237 @@
+{
+  "templateId": "直播大廳BN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "直播大廳BN.psd"
+  },
+  "canvas": {
+    "width": 1125,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "直播大廳BN",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "直播大廳BN"
+  },
+  "layers": {
+    "18號會員日_LOGO": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 97,
+      "y": 103,
+      "width": 204,
+      "height": 42,
+      "centerX": 199,
+      "centerY": 124,
+      "assetFilename": "直播大廳BN_18號會員日_LOGO.png"
+    },
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 100,
+      "y": 148,
+      "width": 121,
+      "height": 43,
+      "centerX": 160.5,
+      "centerY": 169.5,
+      "assetFilename": "直播大廳BN_蝦皮VIP_LOGO.png"
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 227,
+      "y": 165,
+      "width": 155,
+      "height": 26,
+      "centerX": 304.5,
+      "centerY": 178,
+      "text": "獨享18%蝦幣",
+      "fontSizePt": 26.67,
+      "fontSizePx": 26.67,
+      "fontSizePtRaw": 41.53464889526367,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 32,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.6417631662988235,
+        "scaleY": 0.6421145473087007
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 8,
+          "fontSizePx": 26.67,
+          "fontSizePtRaw": 41.53464889526367,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFFFF",
+          "lineHeight": 32,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 97,
+      "y": 200,
+      "width": 357,
+      "height": 58,
+      "centerX": 275.5,
+      "centerY": 229,
+      "text": "優惠券一鍵領",
+      "fontSizePt": 60.01,
+      "fontSizePx": 60.01,
+      "fontSizePtRaw": 75.67401885986328,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFF100",
+      "lineHeight": 72.01,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7925396324539131,
+        "scaleY": 0.7929735672620223
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 7,
+          "fontSizePx": 60.01,
+          "fontSizePtRaw": 75.67401885986328,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFF100",
+          "lineHeight": 72.01,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "legal": {
+      "type": "text",
+      "psdName": "法務小字",
+      "x": 96,
+      "y": 272,
+      "width": 310,
+      "height": 23,
+      "centerX": 251,
+      "centerY": 283.5,
+      "text": "優惠券詳細規則請見活動說明",
+      "fontSizePt": 24,
+      "fontSizePx": 24,
+      "fontSizePtRaw": 28.684879302978516,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 28.8,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.836219963709853,
+        "scaleY": 0.8366778145663037
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 14,
+          "fontSizePx": 24,
+          "fontSizePtRaw": 28.684879302978516,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFFFF",
+          "lineHeight": 28.8,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 968,
+      "y": 290,
+      "width": 142,
+      "height": 44,
+      "centerX": 1039,
+      "centerY": 312,
+      "assetFilename": "直播大廳BN_CTA.png"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 501,
+      "y": 54,
+      "width": 464,
+      "height": 259,
+      "centerX": 733,
+      "centerY": 183.5,
+      "assetFilename": "直播大廳BN_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 464
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1125,
+      "height": 360,
+      "centerX": 562.5,
+      "centerY": 180,
+      "assetFilename": "直播大廳BN_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "cta",
+    "legal",
+    "subtitle_frame",
+    "subtitle",
+    "title",
+    "蝦皮VIP_LOGO",
+    "18號會員日_LOGO"
+  ]
+}

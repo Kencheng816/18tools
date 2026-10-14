@@ -1,0 +1,78 @@
+{
+  "templateId": "暖身_攻略頁",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "暖身_攻略頁.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 630,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "暖身_攻略頁",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "暖身_攻略頁"
+  },
+  "layers": {
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 355,
+      "y": 431,
+      "width": 491,
+      "height": 68,
+      "centerX": 600.5,
+      "centerY": 465,
+      "text": "優惠攻略搶先看",
+      "fontSizePt": 71,
+      "fontSizePx": 71,
+      "fontSizePtRaw": 44.221107482910156,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFF100",
+      "lineHeight": 85.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.6020728485358193,
+        "scaleY": 1.6055680120541262
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 8,
+          "fontSizePx": 71,
+          "fontSizePtRaw": 44.221107482910156,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFF100",
+          "lineHeight": 85.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 630,
+      "centerX": 600,
+      "centerY": 315,
+      "assetFilename": "暖身_攻略頁_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "subtitle"
+  ]
+}

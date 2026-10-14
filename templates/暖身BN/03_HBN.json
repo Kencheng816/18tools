@@ -1,0 +1,224 @@
+{
+  "templateId": "HBN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "HBN.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 360,
+    "unit": "px",
+    "source": "document",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "HBN"
+  },
+  "layers": {
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 938,
+      "y": 290,
+      "width": 240,
+      "height": 44,
+      "centerX": 1058,
+      "centerY": 312,
+      "assetFilename": "HBN_CTA.png"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 720,
+      "y": 21,
+      "width": 417,
+      "height": 265,
+      "centerX": 928.5,
+      "centerY": 153.5,
+      "assetFilename": "HBN_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 417
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 50,
+      "y": 104,
+      "width": 568,
+      "height": 76,
+      "centerX": 334,
+      "centerY": 142,
+      "text": "4/18領早鳥$40",
+      "fontSizePt": 80,
+      "fontSizePx": 80,
+      "fontSizePtRaw": 72.42475891113281,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 96,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.1045945930543632,
+        "scaleY": 1.1045946184439643
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 11,
+          "fontSizePx": 80,
+          "fontSizePtRaw": 72.42475891113281,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 96,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 154,
+      "y": 206,
+      "width": 358,
+      "height": 54,
+      "centerX": 333,
+      "centerY": 233,
+      "text": "滿$399立即用",
+      "fontSizePt": 57,
+      "fontSizePx": 57,
+      "fontSizePtRaw": 72.61261749267578,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFF3C",
+      "lineHeight": 68.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7849875604632408,
+        "scaleY": 0.7849875729586611
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 57,
+          "fontSizePtRaw": 72.61261749267578,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFF3C",
+          "lineHeight": 68.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "legal": {
+      "type": "text",
+      "psdName": "法務小字",
+      "x": 179,
+      "y": 284,
+      "width": 310,
+      "height": 23,
+      "centerX": 334,
+      "centerY": 295.5,
+      "text": "優惠券詳細規則請見活動說明",
+      "fontSizePt": 24,
+      "fontSizePx": 24,
+      "fontSizePtRaw": 24,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#113366",
+      "lineHeight": 28.8,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 14,
+          "fontSizePx": 24,
+          "fontSizePtRaw": 24,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#113366",
+          "lineHeight": 28.8,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 360,
+      "centerX": 600,
+      "centerY": 180,
+      "assetFilename": "HBN_KV_BG.png"
+    },
+    "bg_color": {
+      "type": "shape",
+      "psdName": "BG_color",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 360,
+      "centerX": 600,
+      "centerY": 180,
+      "fill": "#FFA200"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "bg_color",
+    "kv_bg",
+    "legal",
+    "subtitle_frame",
+    "subtitle",
+    "title",
+    "product",
+    "cta"
+  ]
+}

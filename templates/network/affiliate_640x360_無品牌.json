@@ -1,0 +1,71 @@
+{
+  "templateId": "affiliate_640x360_無品牌",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "affiliate_640x360_無品牌.psd"
+  },
+  "canvas": {
+    "width": 640,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "affiliate_640x360_無品牌",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "affiliate_640x360_無品牌"
+  },
+  "layers": {
+    "蝦皮購物_LOGO_白": {
+      "type": "image",
+      "psdName": "蝦皮購物_LOGO_白",
+      "x": 114,
+      "y": 105,
+      "width": 118,
+      "height": 29,
+      "centerX": 173,
+      "centerY": 119.5,
+      "assetFilename": "affiliate_640x360_無品牌_蝦皮購物_LOGO_白.png"
+    },
+    "直式_18號會員日_LOGO_白": {
+      "type": "image",
+      "psdName": "直式_18號會員日_LOGO_白",
+      "x": 82,
+      "y": 147,
+      "width": 182,
+      "height": 135,
+      "centerX": 173,
+      "centerY": 214.5,
+      "assetFilename": "affiliate_640x360_無品牌_直式_18號會員日_LOGO_白.png"
+    },
+    "直式_USP_無品牌": {
+      "type": "image",
+      "psdName": "直式_USP_無品牌",
+      "x": 284,
+      "y": 84,
+      "width": 275,
+      "height": 198,
+      "centerX": 421.5,
+      "centerY": 183,
+      "assetFilename": "affiliate_640x360_無品牌_直式_USP_無品牌.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 360,
+      "centerX": 320,
+      "centerY": 180,
+      "assetFilename": "affiliate_640x360_無品牌_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "直式_USP_無品牌",
+    "直式_18號會員日_LOGO_白",
+    "蝦皮購物_LOGO_白"
+  ]
+}

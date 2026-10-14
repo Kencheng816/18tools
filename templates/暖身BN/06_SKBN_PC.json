@@ -1,0 +1,177 @@
+{
+  "templateId": "SKBN_PC",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "SKBN_PC.psd"
+  },
+  "canvas": {
+    "width": 400,
+    "height": 110,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "SKBN_PC",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "SKBN_PC"
+  },
+  "layers": {
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "x": 326,
+      "y": 30,
+      "width": 50,
+      "height": 50,
+      "centerX": 351,
+      "centerY": 55,
+      "assetFilename": "SKBN_PC_CTA.png"
+    },
+    "18號會員日_LOGO": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 18,
+      "y": 22,
+      "width": 135,
+      "height": 28,
+      "centerX": 85.5,
+      "centerY": 36,
+      "assetFilename": "SKBN_PC_18號會員日_LOGO.png"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 17,
+      "y": 56,
+      "width": 187,
+      "height": 29,
+      "centerX": 110.5,
+      "centerY": 70.5,
+      "text": "刷卡限定88折",
+      "fontSizePt": 30,
+      "fontSizePx": 30,
+      "fontSizePtRaw": 59.76015853881836,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFF3C",
+      "lineHeight": 36,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.501731978225912,
+        "scaleY": 0.502006708687736
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 8,
+          "fontSizePx": 30,
+          "fontSizePtRaw": 59.76015853881836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFF3C",
+          "lineHeight": 36,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "價格": {
+      "type": "text",
+      "psdName": "價格",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "centerX": 0,
+      "centerY": 0,
+      "text": "",
+      "fontSizePt": 0.58,
+      "fontSizePx": 0.58,
+      "fontSizePtRaw": 1,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Regular",
+      "fontWeight": "400",
+      "italic": false,
+      "align": "center",
+      "color": "#000000",
+      "lineHeight": 0.7,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5823515761526777,
+        "scaleY": 0.5823515761526775
+      },
+      "textStyleRanges": [],
+      "dominantStyleSource": "fallback"
+    },
+    "價格_2": {
+      "type": "text",
+      "psdName": "價格",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "centerX": 0,
+      "centerY": 0,
+      "text": "",
+      "fontSizePt": 0.58,
+      "fontSizePx": 0.58,
+      "fontSizePtRaw": 1,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Regular",
+      "fontWeight": "400",
+      "italic": false,
+      "align": "center",
+      "color": "#000000",
+      "lineHeight": 0.7,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5823515761526775,
+        "scaleY": 0.5823515761526775
+      },
+      "textStyleRanges": [],
+      "dominantStyleSource": "fallback"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 210,
+      "y": 14,
+      "width": 116,
+      "height": 83,
+      "centerX": 268,
+      "centerY": 55.5,
+      "assetFilename": "SKBN_PC_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 116
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 400,
+      "height": 110,
+      "centerX": 200,
+      "centerY": 55,
+      "assetFilename": "SKBN_PC_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "價格_2",
+    "價格",
+    "subtitle",
+    "18號會員日_LOGO",
+    "cta"
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "templateId": "直播大廳BN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "直播大廳BN.psd"
+  },
+  "canvas": {
+    "width": 1125,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "直播大廳BN",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "直播大廳BN"
+  },
+  "layers": {
+    "CTA_立即看": {
+      "type": "image",
+      "psdName": "CTA_立即看",
+      "x": 54,
+      "y": 253,
+      "width": 217,
+      "height": 67,
+      "centerX": 162.5,
+      "centerY": 286.5,
+      "assetFilename": "直播大廳BN_CTA_立即看.png"
+    },
+    "LOGO": {
+      "type": "image",
+      "psdName": "LOGO",
+      "x": 50,
+      "y": 66,
+      "width": 189,
+      "height": 37,
+      "centerX": 144.5,
+      "centerY": 84.5,
+      "assetFilename": "直播日_LOGO.svg"
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 51,
+      "y": 118,
+      "width": 275,
+      "height": 38,
+      "centerX": 188.5,
+      "centerY": 137,
+      "text": "17號倒數搶購中",
+      "fontSizePt": 40,
+      "fontSizePx": 40,
+      "fontSizePtRaw": 52.972999572753906,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "left",
+      "color": "#FEFFA0",
+      "lineHeight": 48,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7546885172481421,
+        "scaleY": 0.7551017086955333
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 40,
+          "fontSizePtRaw": 52.972999572753906,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FEFFA0",
+          "lineHeight": 48,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 51,
+      "y": 169,
+      "width": 532,
+      "height": 67,
+      "centerX": 317,
+      "centerY": 202.5,
+      "text": "神券快搶折$500",
+      "fontSizePt": 70,
+      "fontSizePx": 70,
+      "fontSizePtRaw": 92.70274353027344,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFF600",
+      "lineHeight": 84,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.7546885172481421,
+        "scaleY": 0.7551017086955333
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 10,
+          "fontSizePx": 70,
+          "fontSizePtRaw": 92.70274353027344,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFF600",
+          "lineHeight": 84,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 586,
+      "y": 39,
+      "width": 496,
+      "height": 283,
+      "centerX": 834,
+      "centerY": 180.5,
+      "assetFilename": "直播大廳BN_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 496
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1125,
+      "height": 360,
+      "centerX": 562.5,
+      "centerY": 180,
+      "assetFilename": "直播大廳BN_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "subtitle_frame",
+    "subtitle",
+    "title",
+    "LOGO",
+    "CTA_立即看"
+  ]
+}

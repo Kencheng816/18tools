@@ -1,0 +1,306 @@
+{
+  "templateId": "C2C SKBN PC",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "C2C SKBN PC.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 110,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "SKBN_PC",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "C2C SKBN PC"
+  },
+  "layers": {
+    "免運車": {
+      "type": "image",
+      "psdName": "免運車",
+      "x": 773,
+      "y": 18,
+      "width": 101,
+      "height": 67,
+      "centerX": 823.5,
+      "centerY": 51.5,
+      "assetFilename": "C2C SKBN PC_免運車.png"
+    },
+    "VIP_單券_短版": {
+      "type": "image",
+      "psdName": "VIP_單券_短版",
+      "x": 769,
+      "y": 1,
+      "width": 106,
+      "height": 79,
+      "centerX": 822,
+      "centerY": 40.5,
+      "assetFilename": "C2C SKBN PC_VIP_單券_短版.png"
+    },
+    "全站_單券_左": {
+      "type": "image",
+      "psdName": "全站_單券_左",
+      "x": 308,
+      "y": 36,
+      "width": 127,
+      "height": 71,
+      "centerX": 371.5,
+      "centerY": 71.5,
+      "assetFilename": "C2C SKBN PC_全站_單券_左.png"
+    },
+    "18號_icon": {
+      "type": "image",
+      "psdName": "18號_icon",
+      "x": 570,
+      "y": 24,
+      "width": 60,
+      "height": 34,
+      "centerX": 600,
+      "centerY": 41,
+      "assetFilename": "C2C SKBN PC_18號_icon.png"
+    },
+    "VIP_LOGO": {
+      "type": "image",
+      "psdName": "VIP_LOGO",
+      "x": 958,
+      "y": 32,
+      "width": 79,
+      "height": 57,
+      "centerX": 997.5,
+      "centerY": 60.5,
+      "assetFilename": "C2C SKBN PC_VIP_LOGO.png"
+    },
+    "文案_右_右": {
+      "type": "text",
+      "psdName": "文案_右_右",
+      "x": 1043,
+      "y": 52,
+      "width": 99,
+      "height": 37,
+      "centerX": 1092.5,
+      "centerY": 70.5,
+      "text": "送8折",
+      "fontSizePt": 38,
+      "fontSizePx": 38,
+      "fontSizePtRaw": 108.1884994506836,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFE815",
+      "lineHeight": 45.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.3512388183345636,
+        "scaleY": 0.35123881833456605
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 4,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE815",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "文案_右_左": {
+      "type": "text",
+      "psdName": "文案_右_左",
+      "x": 881,
+      "y": 53,
+      "width": 74,
+      "height": 36,
+      "centerX": 918,
+      "centerY": 71,
+      "text": "加入",
+      "fontSizePt": 38,
+      "fontSizePx": 38,
+      "fontSizePtRaw": 108.1884994506836,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "right",
+      "color": "#FFFFFF",
+      "lineHeight": 45.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.3512388183345636,
+        "scaleY": 0.35123881833456605
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "文案_中下": {
+      "type": "text",
+      "psdName": "文案_中下",
+      "x": 451,
+      "y": 66,
+      "width": 299,
+      "height": 37,
+      "centerX": 600.5,
+      "centerY": 84.5,
+      "text": "全站大免運$99起",
+      "fontSizePt": 38,
+      "fontSizePx": 38,
+      "fontSizePtRaw": 108.1884994506836,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 45.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.3512388183345636,
+        "scaleY": 0.35123881833456605
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 5,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE815",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE815",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "文案_左": {
+      "type": "text",
+      "psdName": "文案_左",
+      "x": 45,
+      "y": 51,
+      "width": 200,
+      "height": 37,
+      "centerX": 145,
+      "centerY": 69.5,
+      "text": "灑全站93折",
+      "fontSizePt": 38,
+      "fontSizePx": 38,
+      "fontSizePtRaw": 108.1884994506836,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFE815",
+      "lineHeight": 45.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.3512388183345636,
+        "scaleY": 0.35123881833456605
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        },
+        {
+          "from": 3,
+          "to": 7,
+          "fontSizePx": 38,
+          "fontSizePtRaw": 108.1884994506836,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE815",
+          "lineHeight": 45.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 110,
+      "centerX": 600,
+      "centerY": 55,
+      "assetFilename": "C2C SKBN PC_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "文案_左",
+    "文案_中下",
+    "文案_右_左",
+    "文案_右_右",
+    "VIP_LOGO",
+    "18號_icon",
+    "全站_單券_左",
+    "VIP_單券_短版",
+    "免運車"
+  ]
+}

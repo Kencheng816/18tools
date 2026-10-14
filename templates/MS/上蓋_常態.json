@@ -1,0 +1,146 @@
+{
+  "templateId": "上蓋_常態",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "上蓋_常態.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 444,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "上蓋_常態",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "上蓋_常態"
+  },
+  "layers": {
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 392,
+      "y": 144,
+      "width": 421,
+      "height": 71,
+      "centerX": 602.5,
+      "centerY": 181.5,
+      "text": "連續簽到7天",
+      "fontSizePt": 75,
+      "fontSizePx": 75,
+      "fontSizePtRaw": 60.78302001953125,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 77.8131332397461,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.2381269374814932,
+        "scaleY": 1.2338972418323566
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 7,
+          "fontSizePx": 75,
+          "fontSizePtRaw": 60.78302001953125,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 77.8131332397461,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 291,
+      "y": 244,
+      "width": 617,
+      "height": 85,
+      "centerX": 599.5,
+      "centerY": 286.5,
+      "text": "加碼抽100蝦幣",
+      "fontSizePt": 91,
+      "fontSizePx": 91,
+      "fontSizePtRaw": 91,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 109.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 91,
+          "fontSizePtRaw": 91,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 109.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 444,
+      "centerX": 600,
+      "centerY": 222,
+      "assetFilename": "上蓋_常態_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": 25,
+      "useDynamicBounds": true,
+      "shape": {
+        "kind": "roundedRectangle",
+        "cornerRadius": 25
+      },
+      "rules": {
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 50,
+        "fixedHeight": 117,
+        "radius": 25,
+        "alignTo": "layers.subtitle.centerX",
+        "centerYTo": "layers.subtitle.y + layers.subtitle.height / 2",
+        "centerYOffset": 0,
+        "compareTitleWidth": true,
+        "titleWiderThresholdPx": 50
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "subtitle_frame",
+    "subtitle",
+    "title"
+  ]
+}

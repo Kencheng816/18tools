@@ -1,0 +1,185 @@
+{
+  "_comment": "18節 黃金樣本清單（步驟 1 擷取，2026-09-16）。run-golden.js 依此清單用整合版重跑並逐像素比對。",
+  "cases": [
+    {
+      "tool": "Affiliate_AMS",
+      "sheetName": "2026.4_Line購物_4.5-4.18",
+      "project": "",
+      "caseDir": "Affiliate_AMS/2026.4_Line購物_4.5-4.18",
+      "generated": 9,
+      "images": 9,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "Affiliate_network",
+      "sheetName": "Network_4.5-4.18",
+      "project": "",
+      "caseDir": "Affiliate_network/Network_4.5-4.18",
+      "generated": 151,
+      "images": 151,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "ENG",
+      "sheetName": "17th + 18 day KV",
+      "project": "__ALL__",
+      "caseDir": "ENG/17th + 18 day KV____ALL__",
+      "generated": 30,
+      "images": 30,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "ENG",
+      "sheetName": "1st + DD day KV",
+      "project": "__ALL__",
+      "caseDir": "ENG/1st + DD day KV____ALL__",
+      "generated": 18,
+      "images": 18,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "ENG",
+      "sheetName": "BAU + 快閃日 KV",
+      "project": "__ALL__",
+      "caseDir": "ENG/BAU + 快閃日 KV____ALL__",
+      "generated": 30,
+      "images": 30,
+      "unmatched": 18,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "ENG",
+      "sheetName": "紅包雨KV",
+      "project": "__ALL__",
+      "caseDir": "ENG/紅包雨KV____ALL__",
+      "generated": 2,
+      "images": 2,
+      "unmatched": 2,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "KV_第一單",
+      "sheetName": "4.18 第一單",
+      "project": "",
+      "caseDir": "KV_第一單/4.18 第一單",
+      "generated": 30,
+      "images": 30,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 8
+    },
+    {
+      "tool": "KV_第二單",
+      "sheetName": "4.18 第二單",
+      "project": "",
+      "caseDir": "KV_第二單/4.18 第二單",
+      "generated": 30,
+      "images": 30,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 13
+    },
+    {
+      "tool": "LineOA",
+      "sheetName": "LineOA_wave1",
+      "project": "",
+      "caseDir": "LineOA/LineOA_wave1",
+      "generated": 9,
+      "images": 9,
+      "unmatched": 4,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "外廣OM_wave1",
+      "sheetName": "外廣_Wave1",
+      "project": "",
+      "caseDir": "外廣OM_wave1/外廣_Wave1",
+      "generated": 65,
+      "images": 65,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "外廣OM_wave2",
+      "sheetName": "外廣_Wave2(急件)",
+      "project": "",
+      "caseDir": "外廣OM_wave2/外廣_Wave2(急件)",
+      "generated": 17,
+      "images": 17,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "暖正MS",
+      "sheetName": "L1_暖正GD做圖列表",
+      "project": "",
+      "caseDir": "暖正MS/L1_暖正GD做圖列表",
+      "generated": 27,
+      "images": 27,
+      "unmatched": 18,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "暖身BN",
+      "sheetName": "新增製作物_OSP BN(42發單)",
+      "project": "",
+      "caseDir": "暖身BN/新增製作物_OSP BN(42發單)",
+      "generated": 5,
+      "images": 5,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "暖身BN",
+      "sheetName": "暖身BN(311發單)",
+      "project": "",
+      "caseDir": "暖身BN/暖身BN(311發單)",
+      "generated": 97,
+      "images": 97,
+      "unmatched": 2,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "正式BN",
+      "sheetName": "新增製作物_正式BN(330發單)",
+      "project": "",
+      "caseDir": "正式BN/新增製作物_正式BN(330發單)",
+      "generated": 7,
+      "images": 7,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "正式BN",
+      "sheetName": "正式BN(319發單)",
+      "project": "",
+      "caseDir": "正式BN/正式BN(319發單)",
+      "generated": 69,
+      "images": 69,
+      "unmatched": 9,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "跨夜直播",
+      "sheetName": "418跨夜_線上宣傳圖",
+      "project": "",
+      "caseDir": "跨夜直播/418跨夜_線上宣傳圖",
+      "generated": 21,
+      "images": 21,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    },
+    {
+      "tool": "鏡面",
+      "sheetName": "418_鏡面",
+      "project": "",
+      "caseDir": "鏡面/418_鏡面",
+      "generated": 8,
+      "images": 8,
+      "unmatched": 0,
+      "hostReviewAutoConfirmed": 0
+    }
+  ]
+}

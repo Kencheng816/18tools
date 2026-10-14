@@ -1,0 +1,288 @@
+{
+  "templateId": "MALL_SKBN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "MALL_SKBN.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "MALL_SKBN",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "MALL_SKBN"
+  },
+  "layers": {
+    "18號會員日_LOGO": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 921,
+      "y": 36,
+      "width": 201,
+      "height": 42,
+      "centerX": 1021.5,
+      "centerY": 57,
+      "assetFilename": "MALL_SKBN_18號會員日_LOGO.png"
+    },
+    "18號會員日_LOGO_2": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 482,
+      "y": 27,
+      "width": 236,
+      "height": 50,
+      "centerX": 600,
+      "centerY": 52,
+      "assetFilename": "MALL_SKBN_18號會員日_LOGO.png"
+    },
+    "18號會員日_LOGO_3": {
+      "type": "image",
+      "psdName": "18號會員日_LOGO",
+      "x": 78,
+      "y": 36,
+      "width": 201,
+      "height": 42,
+      "centerX": 178.5,
+      "centerY": 57,
+      "assetFilename": "MALL_SKBN_18號會員日_LOGO.png"
+    },
+    "文案_右": {
+      "type": "text",
+      "psdName": "文案_右",
+      "x": 943,
+      "y": 89,
+      "width": 157,
+      "height": 36,
+      "centerX": 1021.5,
+      "centerY": 107,
+      "text": "商城95折",
+      "fontSizePt": 37,
+      "fontSizePx": 37,
+      "fontSizePtRaw": 72.08321380615234,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFC00",
+      "lineHeight": 44.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5140617287614043,
+        "scaleY": 0.5132956556248396
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 6,
+          "fontSizePx": 37,
+          "fontSizePtRaw": 72.08321380615234,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 44.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "文案_中": {
+      "type": "text",
+      "psdName": "文案_中",
+      "x": 420,
+      "y": 85,
+      "width": 361,
+      "height": 45,
+      "centerX": 600.5,
+      "centerY": 107.5,
+      "text": "全站大免運$99起",
+      "fontSizePt": 46,
+      "fontSizePx": 46,
+      "fontSizePtRaw": 72.89372253417969,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFC00",
+      "lineHeight": 55.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.6319975301158655,
+        "scaleY": 0.6310557048386499
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 5,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 72.89372253417969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 72.89372253417969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 72.89372253417969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "文案_左": {
+      "type": "text",
+      "psdName": "文案_左",
+      "x": 40,
+      "y": 89,
+      "width": 279,
+      "height": 36,
+      "centerX": 179.5,
+      "centerY": 107,
+      "text": "商城滿千折$200",
+      "fontSizePt": 37,
+      "fontSizePx": 37,
+      "fontSizePtRaw": 72.08321380615234,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFC00",
+      "lineHeight": 44.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5140617287614044,
+        "scaleY": 0.5132956556248396
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 5,
+          "fontSizePx": 37,
+          "fontSizePtRaw": 72.08321380615234,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 44.4,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "fontSizePx": 37,
+          "fontSizePtRaw": 72.08321380615234,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 44.4,
+          "letterSpacing": 0
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "fontSizePx": 37,
+          "fontSizePtRaw": 72.08321380615234,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFC00",
+          "lineHeight": 44.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "商品圖_左": {
+      "type": "image",
+      "psdName": "商品圖_左",
+      "x": 21,
+      "y": 133,
+      "width": 250,
+      "height": 189,
+      "centerX": 146,
+      "centerY": 227.5,
+      "assetFilename": "MALL_SKBN_商品圖_左.png"
+    },
+    "商品圖_中": {
+      "type": "image",
+      "psdName": "商品圖_中",
+      "x": 454,
+      "y": 142,
+      "width": 270,
+      "height": 204,
+      "centerX": 589,
+      "centerY": 244,
+      "assetFilename": "MALL_SKBN_商品圖_中.png"
+    },
+    "商品圖_右": {
+      "type": "image",
+      "psdName": "商品圖_右",
+      "x": 865,
+      "y": 133,
+      "width": 250,
+      "height": 189,
+      "centerX": 990,
+      "centerY": 227.5,
+      "assetFilename": "MALL_SKBN_商品圖_右.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 360,
+      "centerX": 600,
+      "centerY": 180,
+      "assetFilename": "MALL_SKBN_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "商品圖_右",
+    "商品圖_中",
+    "商品圖_左",
+    "文案_左",
+    "文案_中",
+    "文案_右",
+    "18號會員日_LOGO_3",
+    "18號會員日_LOGO_2",
+    "18號會員日_LOGO"
+  ]
+}
