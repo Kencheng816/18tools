@@ -6,7 +6,8 @@
  *   1. config/tools.js 登錄的每個工具都有 config/profiles/<id>.profile.js、rules/<ns>/rules.manifest.js，且 profile 的 coreScripts／templatesDir／assetsDir 都存在。
  *   2. 共用字型檔存在。
  *   3. tests/run-golden/cases-core.json 每個案例的 profile、黃金資料夾、工單都存在。
- *   4. 專案裡沒有 Git LFS 指標檔（2026-10-14：字型／素材若變成指標檔，程式會悄悄用替代字型，輸出會變）。
+ *   4. 根目錄有 .nojekyll（GitHub Pages 預設跑 Jekyll，會略過底線開頭的 config/profiles/_defaults.js → 分類啟用失敗）。
+ *   5. 專案裡沒有 Git LFS 指標檔（2026-10-14：字型／素材若變成指標檔，程式會悄悄用替代字型，輸出會變）。
  * 有任何一項不符就以非 0 結束，讓 CI 擋下來。
  */
 
@@ -50,6 +51,10 @@ function checkFonts() {
 const LFS_POINTER_HEAD = 'version https://git-lfs.github.com/spec/v1';
 const SKIP_DIRS = new Set(['node_modules', '.git', 'tests/golden-diff', 'tests/regression-out', 'work']);
 
+function checkNoJekyll() {
+  if (!exists('.nojekyll')) problems.push('缺少根目錄 .nojekyll：GitHub Pages 會略過底線開頭的 config/profiles/_defaults.js（2026-10-15 實際踩到）');
+}
+
 function checkLfsPointers() {
   const pointers = [];
   const walk = (dir) => {
@@ -85,6 +90,7 @@ function checkGoldenCases() {
 const toolCount = checkTools();
 checkFonts();
 const caseCount = checkGoldenCases();
+checkNoJekyll();
 checkLfsPointers();
 
 if (problems.length) {
@@ -92,4 +98,4 @@ if (problems.length) {
   problems.forEach((problem) => console.error(`  - ${problem}`));
   process.exit(1);
 }
-console.log(`check-tools：${toolCount} 工具 profile、共用字型、${caseCount} 黃金案例設定都齊全，沒有 Git LFS 指標檔`);
+console.log(`check-tools：${toolCount} 工具 profile、共用字型、${caseCount} 黃金案例設定都齊全，.nojekyll 在、沒有 Git LFS 指標檔`);
