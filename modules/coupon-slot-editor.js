@@ -6,7 +6,7 @@
  *   遮罩框住前面那張券蓋到上券的區域，上券價格被蓋到的部分會像實際疊券一樣被遮住）。
  * 框可拖動、拉角落縮放、拉上方把手旋轉（也可直接打角度）。框好後圖上即時用範例價格畫出結果。
  * 「套用」→ 存進瀏覽器（CouponSlots.save），所有用到這張券的製作物價格馬上重貼；「匯出定義檔」→ 下載 config/coupon-price-slots.js
- * 放進專案一起上 GitLab，之後大家開工具就直接帶這組。
+ * 放進專案一起上 GitHub，之後大家開工具就直接帶這組。
  */
 (function initCouponSlotEditor() {
   'use strict';
@@ -80,7 +80,7 @@
             <p class="panel-description">上券＝畫面上方、疊在後面那張；下券＝畫面下方、疊在前面那張。框＝價格文字放的範圍：置中、字級自動縮到塞得下、角度照框。上券遮罩＝前面那張券蓋到上券的區域，沒另外框就用下券價格範圍；上券文字被蓋到的部分會被遮住。</p>
             <div class="coupon-slot-actions">
               <button type="button" id="couponSlotDelete" class="secondary-btn">刪除這個框</button>
-              <button type="button" id="couponSlotExport" class="secondary-btn" title="下載 coupon-price-slots.js，放進專案 config/ 一起上 GitLab">匯出定義檔</button>
+              <button type="button" id="couponSlotExport" class="secondary-btn" title="下載 coupon-price-slots.js，放進專案 config/ 一起上 GitHub">匯出定義檔</button>
             </div>
             <div class="coupon-slot-actions">
               <button type="button" id="couponSlotClear" class="secondary-btn" title="刪掉這張券的定義，回到原本規則算法">清除定義</button>

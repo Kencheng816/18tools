@@ -8,7 +8,7 @@
  *   { top: {...}, bottom: {...}, mask: {...} }                       雙券：上券／下券各一個價格範圍；mask＝上券的遮罩
  *   名詞（使用者 2026-11-04 定義）：上券＝畫面上方、疊在「後面」那張；下券＝畫面下方、疊在「前面」那張。
  *   上券的價格會被前面的下券蓋住 → 遮罩框住「下券蓋到上券的區域」（通常就是整張下券），上券價格層畫的時候以它做反向裁切。
- * 來源：config/coupon-price-slots.js（window.COUPON_PRICE_SLOTS，跟專案一起上 GitLab）＋ 瀏覽器 localStorage（進階模式「定義券面案型範圍」
+ * 來源：config/coupon-price-slots.js（window.COUPON_PRICE_SLOTS，跟專案一起上 GitHub）＋ 瀏覽器 localStorage（進階模式「定義券面案型範圍」
  * 視窗存的，優先）。沒有定義的券走原本規則算法，不受影響。
  *
  * 套用時機（純加法）：PriceCouponManager.apply 產完價格層後、BatchManager.stabilizeTemplateBeforePreview 之後，

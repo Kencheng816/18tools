@@ -1,0 +1,54 @@
+# 18節生成工具（整合版）CI（GitHub Actions；2026-11-04 從 .gitlab-ci.yml 換過來）
+#   check  ：不開瀏覽器的靜態檢查（每次 push／PR 都跑，幾秒鐘）
+#   golden ：19 案例（14 工具）黃金樣本回歸＋入口頁＋點縮圖＋存檔往返＋手動編輯流程（需 headless Chromium）
+#            main 分支 push 自動跑；其他分支可在 Actions 頁手動 Run workflow。
+# GitHub Pages 不在這裡：repo Settings → Pages → Source 選「Deploy from a branch」→ main / (root)，push 後 GitHub 自己部署
+#（偶爾看到 deploy 失敗 502 是 GitHub Pages 服務當下故障，Re-run 即可）。
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GOLDEN_WORK_DIR: /tmp/golden-work # 純 ASCII 路徑（CDP 檔案上傳對 # 與中文路徑失效）
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node tests/check-tools.js
+
+  golden:
+    needs: check
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      NODE_PATH: ${{ github.workspace }}/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - name: Chromium 依賴
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2t64 libpango-1.0-0 libcairo2 fonts-noto-cjk > /dev/null
+      - run: npm ci
+      - run: node tests/run-golden/run-launcher.js
+      - run: node tests/run-golden/run-core-golden.js
+      - run: node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs
+      - run: node tests/run-golden/run-roundtrip.js
+      - run: node tests/run-golden/run-edit-flows.js
+      - name: 失敗時留下比對結果
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-out
+          path: |
+            tests/regression-out/
+            tests/golden-diff/
+          retention-days: 7
+          if-no-files-found: ignore
