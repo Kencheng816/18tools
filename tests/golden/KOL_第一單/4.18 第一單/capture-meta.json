@@ -209,5 +209,11 @@
       "直播主照片範例/KOL代播_長髮半身照範圍.png": "72b0b8edab6938d24f469227a7fddaf54f0d86abfd8fa64efe2b1953a8fc1132",
       "蝦皮KOL代播_LOGO.svg": "763df67d2ab3a37e253fbeb57bd1324bede0850389816ab94777991983e941b3"
     }
+  },
+  "rebaselined": {
+    "at": "2026-10-30T09:15:31.151Z",
+    "by": "run-core-golden --update-golden",
+    "reason": "2026-10-30 公版整併（頭巾／HBN／DD Card／KOL）＋符號重排＋字距校正",
+    "images": 30
   }
 }

@@ -4,9 +4,10 @@
 
   const KEYWORD_VIP = 'VIP';
   const KEYWORD_SCS = '蝦皮直營';
-  const TEMPLATE_BASE = '05_POPUP';
-  const TEMPLATE_VIP = '05_POPUP_VIP';
-  const TEMPLATE_SCS = '05_POPUP_SCS';
+  // 2026-11-03 公版整併：三種變體（一般／VIP／蝦皮直營）都用同一支 04_POPUP.json，差別只在規則切換哪組圖層。
+  const TEMPLATE_BASE = '04_POPUP';
+  const TEMPLATE_VIP = '04_POPUP';
+  const TEMPLATE_SCS = '04_POPUP';
   const GAP_PX = 8;
   const CAPSULE_LAYER_KEY = '__popup_subtitle_capsule';
 
@@ -246,17 +247,67 @@
 
   function getTitleEntries(template) {
     const base = findLayerEntry(template, ['title', '主標題'], { type: 'text' });
-    const vipLogo = findLayerEntry(template, ['主標題蝦皮VIP_LOGO', '蝦皮VIP_LOGO', '蝦皮VIP LOGO', 'VIP LOGO']);
+    const vipLogo = findLayerEntry(template, ['主標題蝦皮VIP_LOGO']);
     const vipText = findLayerEntry(template, ['主標題_文字'], { type: 'text' });
     const scsLogo = findLayerEntry(template, ['蝦皮直營_LOGO', '蝦皮直營 LOGO']);
     return { base, vipLogo, vipText, scsLogo };
   }
 
+  /** 副標那組：base＝副標文字；vipLogo／vipText＝VIP 群組；scsLogo／scsText＝蝦皮直營 群組（2026-11-03 使用者決定：直營也定義在副標列）。
+   *  logo／text＝目前啟用的那組（template.__popupSubtitleVariant：'vip'｜'scs'），給排版共用。 */
   function getSubtitleEntries(template) {
     const base = findLayerEntry(template, ['subtitle', '副標題'], { type: 'text' });
     const vipLogo = findLayerEntry(template, ['副標題蝦皮VIP_LOGO', '副標題_蝦皮VIP_LOGO', '副標題蝦皮VIP LOGO', '副標題 VIP LOGO']);
     const vipText = findLayerEntry(template, ['副標題_文字', '副標題文字'], { type: 'text' });
-    return { base, vipLogo, vipText };
+    const scsLogo = template?.layers?.['蝦皮直營_LOGO'] ? { key: '蝦皮直營_LOGO', layer: template.layers['蝦皮直營_LOGO'] } : null;
+    const scsText = template?.layers?.['蝦皮直營_副標題_右'] ? { key: '蝦皮直營_副標題_右', layer: template.layers['蝦皮直營_副標題_右'] } : null;
+    const scs = template?.__popupSubtitleVariant === 'scs';
+    return { base, vipLogo, vipText, scsLogo, scsText, logo: scs ? scsLogo : vipLogo, text: scs ? scsText : vipText, variant: scs ? 'scs' : 'vip' };
+  }
+
+  /** 2026-11-03 公版整併（04_POPUP.json 由使用者重做）：新圖層名對回規則原本認的名字，其餘邏輯不動。
+   *   蝦皮VIP_LOGO＋蝦皮VIP_副標題_右 ＝ 副標那組（舊名 副標題蝦皮VIP_LOGO／副標題_文字）；
+   *   蝦皮直營_LOGO＋蝦皮直營_副標題_右 ＝ 副標的直營群組（副標含「蝦皮直營」時用，2026-11-03）；主標含「蝦皮直營」時 LOGO 由 layoutScsTitle 搬到主標列；
+   *   副標題_BG 只是參考（真正的膠囊仍由 subtitle_frame／__popup_subtitle_capsule 自動畫）。 */
+  function adaptMergedTemplate(template) {
+    const rename = (from, to) => {
+      if (!template.layers[from] || template.layers[to]) return;
+      template.layers[to] = template.layers[from];
+      delete template.layers[from];
+      if (Array.isArray(template.renderOrder)) template.renderOrder = template.renderOrder.map((key) => (key === from ? to : key));
+    };
+    rename('蝦皮VIP_LOGO', '副標題蝦皮VIP_LOGO');
+    rename('蝦皮VIP_副標題_右', '副標題_文字');
+    setLayerVisible(template.layers['蝦皮直營_副標題_右'], false);
+    setLayerVisible(template.layers['蝦皮直營_LOGO'], false);
+    const guide = template.layers['副標題_BG'];
+    if (guide) { if (window.LayerHygiene?.markGuide) window.LayerHygiene.markGuide(guide); else { guide.hidden = true; guide.locked = true; guide.__internal = true; } }
+  }
+
+  /** 價格／商品框版面鍵：依工單 商品圖1＋價格 對到 priceRules.productLayouts（含 variants），不再看輸出編號。 */
+  function pickLayoutKey(record) {
+    const productKey = norm(record?.['商品圖1']);
+    const price = norm(record?.['價格']);
+    const layouts = RULES.priceRules?.productLayouts || {};
+    const key = Object.keys(layouts).find((candidate) => norm(candidate) === productKey);
+    const entry = key ? layouts[key] : null;
+    if (!entry) return '';
+    const variant = (entry.variants || []).find((item) => [].concat(item.priceIncludes || []).some((word) => word && price.includes(norm(word))));
+    return variant?.useTemplate || entry.useTemplate || '';
+  }
+
+  /** core 的 resolveTemplateProductImageRule 只用公版／輸出名查 templateLayouts；POPUP 改成依商品＋價格，所以在這裡接一層。 */
+  function wireProductImageRule() {
+    const BatchManager = window.BatchManager;
+    if (!BatchManager?.resolveTemplateProductImageRule || BatchManager.resolveTemplateProductImageRule.__popupWired) return;
+    const original = BatchManager.resolveTemplateProductImageRule;
+    const wrapped = function resolveTemplateProductImageRuleWithPopupKey(template, ...rest) {
+      const key = template?.__popupLayoutKey;
+      const layout = key ? RULES.priceRules?.templateLayouts?.[key] : null;
+      return layout?.productImageBox ? layout : original.call(this, template, ...rest);
+    };
+    wrapped.__popupWired = true;
+    BatchManager.resolveTemplateProductImageRule = wrapped;
   }
 
   function resetTitleLayers(template) {
@@ -271,10 +322,10 @@
   }
 
   function resetSubtitleGroup(template) {
-    const { base, vipLogo, vipText } = getSubtitleEntries(template);
+    const { base, vipLogo, vipText, scsLogo, scsText } = getSubtitleEntries(template);
     clearProxy(base?.layer);
-    setLayerVisible(vipLogo?.layer, false);
-    setLayerVisible(vipText?.layer, false);
+    [vipLogo, vipText, scsLogo, scsText].forEach((entry) => setLayerVisible(entry?.layer, false));
+    delete template.__popupSubtitleVariant;
   }
 
   function layoutVipTitle(template, helpers, rules) {
@@ -328,7 +379,11 @@
     const { base, scsLogo } = getTitleEntries(template);
     if (!base?.layer || !scsLogo?.layer) return { width: 0, centerX: Number(rules.centerX ?? 290), isGroup: false };
 
-    setImage(scsLogo.layer, rules.scsLogoAsset || '蝦皮直營_LOGO-01.svg');
+    setImage(scsLogo.layer, rules.scsLogoAsset || '蝦皮直營_LOGO.svg');
+    // 合併公版的 蝦皮直營_LOGO 畫在副標那列，這裡搬到主標列：以主標框的垂直中心對齊
+    const titleCenterY = Number(base.layer.y || 0) + Number(base.layer.height || 0) / 2;
+    scsLogo.layer.y = round(titleCenterY - Number(scsLogo.layer.height || 0) / 2);
+    scsLogo.layer.centerY = round(titleCenterY);
     const centerX = Number(rules.centerX ?? template.canvas?.width / 2 ?? 290);
     const titleWidth = measureActualText(base.layer, helpers);
     const logoWidth = Number(scsLogo.layer.width || 0);
@@ -359,15 +414,15 @@
     return { width, centerX, isGroup: false };
   }
 
+  /** 副標 LOGO 群組排版（VIP 或 蝦皮直營，依 template.__popupSubtitleVariant）：[LOGO][gap][文字] 置中，膠囊寬度跟著整組。 */
   function layoutVipSubtitle(template, helpers, rules) {
-    const { base, vipLogo, vipText } = getSubtitleEntries(template);
+    const { base, logo: vipLogo, text: vipText, variant } = getSubtitleEntries(template);
     if (!base?.layer || !vipLogo?.layer || !vipText?.layer) {
       return { width: 0, centerX: Number(rules.centerX ?? 290), centerY: 0, isVip: false, beforeKeys: base ? [base.key] : [] };
     }
 
-    setImage(vipLogo.layer, rules.vipLogoAsset || '蝦皮VIP_LOGO.svg');
-    vipLogo.layer.psdName = '副標題蝦皮VIP_LOGO';
-    vipText.layer.psdName = '副標題_文字';
+    setImage(vipLogo.layer, variant === 'scs' ? (rules.scsLogoAsset || '蝦皮直營_LOGO.svg') : (rules.vipLogoAsset || '蝦皮VIP_LOGO.svg'));
+    if (variant !== 'scs') { vipLogo.layer.psdName = '副標題蝦皮VIP_LOGO'; vipText.layer.psdName = '副標題_文字'; }
     vipText.layer.align = 'left';
     vipText.layer.textAlign = 'left';
     setLayerVisible(vipText.layer, !!toText(vipText.layer.text));
@@ -573,8 +628,9 @@
           "lockToEditedJson": true,
           "productFirst": false,
           "resolvePriority": "templateFirst",
+          "_comment": "2026-11-03：templateLayouts 原本以輸出編號 POPUP_01～08 當鍵（工單多一筆就整個錯位），改成 popup_layout_NN 並由 productLayouts 依商品圖＋價格（variants）對應",
           "templateLayouts": {
-                "POPUP_01": {
+                "popup_layout_01": {
                       "productImageBox": {
                             "x": 97.8,
                             "y": 396.9,
@@ -615,7 +671,7 @@
                             }
                       ]
                 },
-                "POPUP_02": {
+                "popup_layout_02": {
                       "productImageBox": {
                             "x": 135.0,
                             "y": 400.0,
@@ -680,7 +736,7 @@
                             }
                       ]
                 },
-                "POPUP_03": {
+                "popup_layout_03": {
                       "productImageBox": {
                             "x": 135.0,
                             "y": 400.0,
@@ -745,7 +801,7 @@
                             }
                       ]
                 },
-                "POPUP_04": {
+                "popup_layout_04": {
                       "productImageBox": {
                             "x": 136.2,
                             "y": 407.9,
@@ -786,7 +842,7 @@
                             }
                       ]
                 },
-                "POPUP_05": {
+                "popup_layout_05": {
                       "productImageBox": {
                             "x": 135.0,
                             "y": 400.0,
@@ -851,7 +907,7 @@
                             }
                       ]
                 },
-                "POPUP_06": {
+                "popup_layout_06": {
                       "productImageBox": {
                             "x": 130.4,
                             "y": 400.6,
@@ -892,7 +948,7 @@
                             }
                       ]
                 },
-                "POPUP_07": {
+                "popup_layout_07": {
                       "productImageBox": {
                             "x": 139.0,
                             "y": 406.0,
@@ -933,7 +989,7 @@
                             }
                       ]
                 },
-                "POPUP_08": {
+                "popup_layout_08": {
                       "productImageBox": {
                             "x": 135.0,
                             "y": 400.0,
@@ -1000,665 +1056,35 @@
                 }
           },
           "productLayouts": {
-                "VIP_單券_蝦幣": {
-                      "useTemplate": "POPUP_01"
-                },
+                "VIP_單券_蝦幣": { "useTemplate": "popup_layout_01" },
                 "全站券_雙券": {
-                      "useTemplate": "POPUP_02"
+                      "useTemplate": "popup_layout_02",
+                      "variants": [
+                            { "priceIncludes": "93", "useTemplate": "popup_layout_03" },
+                            { "priceIncludes": "94", "useTemplate": "popup_layout_05" }
+                      ]
                 },
-                "信用卡加全站券": {
-                      "useTemplate": "POPUP_04"
-                },
-                "免運車加全站券": {
-                      "useTemplate": "POPUP_06"
-                },
-                "商城券加蝦幣": {
-                      "useTemplate": "POPUP_07"
-                },
-                "商城券_雙券": {
-                      "useTemplate": "POPUP_08"
-                }
+                "信用卡加全站券": { "useTemplate": "popup_layout_04" },
+                "免運車加全站券": { "useTemplate": "popup_layout_06" },
+                "商城券加蝦幣": { "useTemplate": "popup_layout_07" },
+                "商城券_雙券": { "useTemplate": "popup_layout_08" },
+                "SCS_雙券": { "useTemplate": "popup_layout_02", "_comment": "2026-11-03 蝦皮直營 POPUP：雙券版面沿用 全站券_雙券（原本沒設定→價格不會顯示）" }
           },
           "classifiers": []
     },
 
     layoutRules: {
       centerX: 290,
-      editedLayerLayouts: {
-              "POPUP_01": {
-                      "title": {
-                              "x": 98.0,
-                              "y": 202.0,
-                              "width": 384.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 124.0,
-                              "y": 279.0,
-                              "width": 332.0,
-                              "height": 57.0,
-                              "centerX": 290.0,
-                              "centerY": 307.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 98.0,
-                              "y": 275.0,
-                              "width": 384.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 124.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 206.0,
-                              "centerY": 307.5,
-                              "hidden": 0.0,
-                              "visible": 1.0,
-                              "assetFilename": "蝦皮VIP_LOGO.svg"
-                      },
-                      "副標題_文字": {
-                              "x": 296.0,
-                              "y": 298.0,
-                              "width": 160.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      }
-              },
-              "POPUP_02": {
-                      "title": {
-                              "x": 133.0,
-                              "y": 202.0,
-                              "width": 314.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 104.0,
-                              "y": 275.0,
-                              "width": 372.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              },
-              "POPUP_03": {
-                      "title": {
-                              "x": 122.5,
-                              "y": 202.0,
-                              "width": 335.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 55.5,
-                              "y": 275.0,
-                              "width": 469.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              },
-              "POPUP_04": {
-                      "title": {
-                              "x": 164.0,
-                              "y": 202.0,
-                              "width": 252.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 135.0,
-                              "y": 275.0,
-                              "width": 310.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              },
-              "POPUP_05": {
-                      "title": {
-                              "x": 132.5,
-                              "y": 202.0,
-                              "width": 315.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 132.5,
-                              "y": 275.0,
-                              "width": 315.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              },
-              "POPUP_06": {
-                      "title": {
-                              "x": 41.5,
-                              "y": 202.0,
-                              "width": 497.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 41.5,
-                              "y": 275.0,
-                              "width": 497.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              },
-              "POPUP_07": {
-                      "title": {
-                              "x": 59.0,
-                              "y": 202.0,
-                              "width": 462.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 59.0,
-                              "y": 275.0,
-                              "width": 462.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              },
-              "POPUP_08": {
-                      "title": {
-                              "x": 80.5,
-                              "y": 202.0,
-                              "width": 419.0,
-                              "height": 61.0,
-                              "centerX": 290.0,
-                              "centerY": 232.5,
-                              "fontSizePx": 63.0,
-                              "fontSizePt": 63.0,
-                              "lineHeight": 75.6,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "subtitle": {
-                              "x": 108.0,
-                              "y": 286.5,
-                              "width": 369.0,
-                              "height": 48.0,
-                              "centerX": 292.5,
-                              "centerY": 310.5,
-                              "fontSizePx": 50.0,
-                              "fontSizePt": 50.0,
-                              "lineHeight": 60.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "legal": {
-                              "x": 122.0,
-                              "y": 363.0,
-                              "width": 336.0,
-                              "height": 29.0,
-                              "centerX": 290.0,
-                              "centerY": 377.5,
-                              "fontSizePx": 30.0,
-                              "fontSizePt": 30.0,
-                              "lineHeight": 36.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 0.0
-                      },
-                      "__popup_subtitle_capsule": {
-                              "x": 80.5,
-                              "y": 275.0,
-                              "width": 419.0,
-                              "height": 75.0,
-                              "centerX": 290.0,
-                              "centerY": 312.5,
-                              "hidden": 0.0,
-                              "visible": 1.0
-                      },
-                      "副標題蝦皮VIP_LOGO": {
-                              "x": 127.0,
-                              "y": 279.0,
-                              "width": 164.0,
-                              "height": 57.0,
-                              "centerX": 209.0,
-                              "centerY": 307.5,
-                              "hidden": 1.0,
-                              "visible": 0.0,
-                              "assetFilename": "POPUP_副標題蝦皮VIP_LOGO.png"
-                      },
-                      "副標題_文字": {
-                              "x": 297.0,
-                              "y": 298.0,
-                              "width": 158.0,
-                              "height": 38.0,
-                              "centerX": 376.0,
-                              "centerY": 317.0,
-                              "fontSizePx": 40.0,
-                              "fontSizePt": 40.0,
-                              "lineHeight": 48.0,
-                              "letterSpacing": 0.0,
-                              "hidden": 1.0,
-                              "visible": 0.0
-                      }
-              }
-      },
+      // 2026-11-03：原本這裡有 POPUP_01～08 每張輸出的圖層座標快照（editedLayerLayouts，以輸出編號當鍵）。
+      // 實測拿掉後 8 張黃金逐 byte 不變（程式排版已算出同樣的位置），而且以編號當鍵會在工單多一筆（蝦皮直營）時整個錯位，所以移除。
+      editedLayerLayouts: {},
       logoGapPx: GAP_PX,
       vipLogoAsset: '蝦皮VIP_LOGO.svg',
+      // 2026-11-03：原本還有 POPUP_01／05／06 三個以輸出編號當鍵的項目，數值跟 default 一樣，拿掉（以編號當鍵＝工單多一筆就錯位）
       vipLogoPositionLayouts: {
-        POPUP_01: { y: 93, height: 76 },
-        POPUP_05: { y: 93, height: 76 },
-        POPUP_06: { y: 93, height: 76 },
         default: { y: 93, height: 76 },
       },
-      scsLogoAsset: '蝦皮直營_LOGO-01.svg',
+      scsLogoAsset: '蝦皮直營_LOGO.svg',
       subtitleLayers: ['subtitle', '副標題'],
       legalLayers: ['legal', '法務', '法務小字'],
       widthDiffUseSubtitlePaddingPx: 50,
@@ -1681,10 +1107,10 @@
         const label = norm(`${template.sheetTemplateRoute?.templateId || ''} ${template.templateId || ''} ${template.source?.psdName || ''}`);
         const routeKey = String(template.sheetTemplateRoute?.key || '').toLowerCase();
         const { vipText: titleVipText } = getTitleEntries(template);
-        const { vipText: subtitleVipText } = getSubtitleEntries(template);
+        const { vipText: subtitleVipText, scsText: subtitleScsText } = getSubtitleEntries(template);
         const isVipTitle = routeKey === 'popup_vip' || label.includes('vip') || isVisible(titleVipText?.layer);
         const isScsTitle = routeKey === 'popup_scs' || label.includes('scs');
-        const isVipSubtitle = isVisible(subtitleVipText?.layer);
+        const isVipSubtitle = isVisible(subtitleVipText?.layer) || isVisible(subtitleScsText?.layer); // VIP 或 蝦皮直營 群組都走同一套排版
 
         applyEditedStaticLayout(template, rules);
 
@@ -1710,21 +1136,26 @@
 
     beforeApplyRecordToTemplate({ template, record, diagnostics }) {
       if (!template?.layers) return;
+      adaptMergedTemplate(template);
+      template.__popupLayoutKey = pickLayoutKey(record);
       const rawTitle = toText(record?.['主標']);
       const rawSubtitle = toText(record?.['副標']);
 
-      if (rawSubtitle.includes(KEYWORD_VIP)) {
-        const { base, vipLogo, vipText } = getSubtitleEntries(template);
-        if (base?.layer && vipLogo?.layer && vipText?.layer) {
-          setImage(vipLogo.layer, RULES.layoutRules.vipLogoAsset);
-          setText(vipText.layer, stripKeyword(rawSubtitle, KEYWORD_VIP));
-          vipLogo.layer.psdName = '副標題蝦皮VIP_LOGO';
-          vipText.layer.psdName = '副標題_文字';
+      // 副標含「蝦皮直營」→ 直營群組（蝦皮直營_LOGO＋蝦皮直營_副標題_右）；含「VIP」→ VIP 群組；關鍵字在哪一欄就換哪一欄（2026-11-03 使用者確認）
+      resetSubtitleGroup(template);
+      const subtitleVariant = rawSubtitle.includes(KEYWORD_SCS) ? 'scs' : rawSubtitle.includes(KEYWORD_VIP) ? 'vip' : '';
+      if (subtitleVariant) {
+        template.__popupSubtitleVariant = subtitleVariant;
+        const { base, logo, text } = getSubtitleEntries(template);
+        if (base?.layer && logo?.layer && text?.layer) {
+          const keyword = subtitleVariant === 'scs' ? KEYWORD_SCS : KEYWORD_VIP;
+          setImage(logo.layer, subtitleVariant === 'scs' ? RULES.layoutRules.scsLogoAsset : RULES.layoutRules.vipLogoAsset);
+          setText(text.layer, stripKeyword(rawSubtitle, keyword));
+          setLayerVisible(logo.layer, true);
+          if (subtitleVariant === 'vip') { logo.layer.psdName = '副標題蝦皮VIP_LOGO'; text.layer.psdName = '副標題_文字'; }
           record['副標'] = '';
-          diagnostics?.push?.({ field: '副標', status: 'ok', value: rawSubtitle, target: 'POPUP 副標題 VIP 群組' });
-        }
-      } else {
-        resetSubtitleGroup(template);
+          diagnostics?.push?.({ field: '副標', status: 'ok', value: rawSubtitle, target: subtitleVariant === 'scs' ? 'POPUP 副標題 蝦皮直營 群組' : 'POPUP 副標題 VIP 群組' });
+        } else delete template.__popupSubtitleVariant;
       }
 
       if (!rawTitle) return;
@@ -1764,6 +1195,11 @@
       }
     },
   };
+
+  (function whenCoreReady() {
+    if (window.__coreScriptsReady && window.__appReady) Promise.resolve(window.__appReady).then(wireProductImageRule);
+    else setTimeout(whenCoreReady, 100);
+  })();
 
   window.TemplateRuleRegistry?.register?.('popup', {
     family: 'popup',

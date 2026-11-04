@@ -11,6 +11,7 @@ window.__profileRegistry["profile:MS"] = {
   "rulesNamespace": "rules/MS/",
   "_comment": "18節 A 系（docs/core-diff/05 §B）；函式由 core/legacy18/MS.overrides.js 原文覆寫（含 MS L1 解析、陰影 pass、isMSL1 膠囊）；word-editor.patch.js 原檔照載（D10）。",
   "flags": {
+    "diagnostics.skipBlocks": ["下蓋_", "上蓋_遊戲"],
     "text.autoShrinkSymbols": true,
     "price.rebuildAfterHook": "none",
     "assets.fuzzyRoleGuard": false,

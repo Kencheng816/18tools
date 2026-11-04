@@ -11,6 +11,7 @@ window.__profileRegistry["profile:正式BN"] = {
   "rulesNamespace": "rules/正式BN/",
   "_comment": "18節 A 系（docs/core-diff/05 §D）；差異大的函式由 core/legacy18/正式BN.overrides.js 原文覆寫（含 Price* 整組：MALL SKBN 三欄價格、顏色 extend）。C2C SKBN 切圖（D8）只在 JPG 匯出時發生，黃金為 PNG，待補。",
   "flags": {
+    "layout.productBoxSources": ["*"],
     "text.autoShrinkSymbols": true,
     "price.rebuildAfterHook": "none",
     "assets.fuzzyRoleGuard": false,
@@ -75,7 +76,8 @@ window.__profileRegistry["profile:正式BN"] = {
     "core/product-engine.js",
     "renderers/shape-renderer.formal18.js",
     "core/app.core.js",
-    "core/legacy18/正式BN.overrides.js"
+    "core/legacy18/正式BN.overrides.js",
+    "modules/layout-by-record.js"
   ],
   "templatesDir": "templates/正式BN",
   "assetsDir": "assets/正式BN"

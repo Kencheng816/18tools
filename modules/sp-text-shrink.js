@@ -157,23 +157,40 @@
     return segments;
   }
 
-  /** 整行的字串（segments 串起來）與每個字在「原字級、整行一次排版」下的起點：prefix 寬度含 kerning，
-   *  和原本整行 fillText 的字位置一致。小字只是縮在自己原本的格子裡，所以整行寬度、其他字的位置都不變。 */
+  /**
+   * 整行排版（2026-10-30 封測回饋：縮小的符號前面會多一段空隙）。
+   * 舊做法是「小字縮在自己原本的格子裡」——$ 的格子還是原字級寬，縮小後貼右、左邊就空出一塊，視覺字距跟其他字不一樣。
+   * 改成真正重排：大字以原字級、小字以縮小後的實際寬度依序往右排，前後字緊接，整行寬度也跟著變窄；
+   * 置中／靠右對齊用重排後的寬度算。大字連續的一串仍整串量（保留 kerning）；小字寬度用「大字字型量 × 比例」推算
+   * （向量字型線性縮放；大字字型此刻一定已載入，小字字型若還在載入會量到替代字型）。
+   * 回傳每個字的起點（相對行首）、每個字的字級與整行寬度。
+   */
   function lineLayout(canvasCtx, segments, letterSpacing) {
-    const chars = segments.flatMap((segment) => [...String(segment.text || '')]);
     const spacing = Number(letterSpacing || 0);
-    const starts = [];
-    let prefix = '';
-    if (!spacing) {
-      chars.forEach((ch) => { starts.push(canvasCtx.measureText(prefix).width); prefix += ch; });
-      return { chars, starts, width: canvasCtx.measureText(prefix).width };
-    }
-    {
-      // 有字距：原本就是逐字畫、逐字量，照同樣方式累加。
-      let x = 0;
-      chars.forEach((ch) => { starts.push(x); x += canvasCtx.measureText(ch).width + spacing; });
-      return { chars, starts, width: Math.max(0, x - spacing) };
-    }
+    const baseFont = canvasCtx.font;
+    const bigPx = segments.reduce((max, segment) => Math.max(max, Number(segment.fontSizePx || 0)), 0) || parseFloat(baseFont) || 24;
+    const bigFont = fontWithSize(baseFont, bigPx);
+    const chars = []; const starts = []; const sizes = [];
+    let x = 0;
+    canvasCtx.font = bigFont;
+    segments.forEach((segment) => {
+      const text = [...String(segment.text || '')];
+      if (!text.length) return;
+      const px = Number(segment.fontSizePx || bigPx);
+      const ratio = px / bigPx;
+      if (!spacing && ratio === 1) {
+        // 大字一串：prefix 寬度含 kerning，和原本整行 fillText 的字位置一致
+        let prefix = '';
+        text.forEach((ch) => { chars.push(ch); sizes.push(px); starts.push(x + canvasCtx.measureText(prefix).width); prefix += ch; });
+        x += canvasCtx.measureText(prefix).width;
+        return;
+      }
+      // 小字（或有字距時的任何字）逐字排：每個字後面加字距，最後再把結尾多加的那一個扣掉
+      text.forEach((ch) => { chars.push(ch); sizes.push(px); starts.push(x); x += canvasCtx.measureText(ch).width * ratio + spacing; });
+    });
+    if (spacing && chars.length) x -= spacing;
+    canvasCtx.font = baseFont;
+    return { chars, starts, sizes, width: Math.max(0, x), bigPx, bigFont };
   }
 
   function measureSegments(canvasCtx, segments, letterSpacing) {
@@ -181,8 +198,8 @@
   }
 
   /** 字級感知繪製（A 系原文 top 基線、B 系 legacy 都走這裡）：
-   *  - 大字：以原字級、在原本整行排版的位置畫（prefix 寬含 kerning → 位置與沒縮之前逐像素相同）
-   *  - 小字：縮在自己原本的格子裡置中，墨水底端切齊大字底端（25節 source-baseline） */
+   *  - 大字：以原字級畫在重排後的位置（同一串大字仍整串 fillText，保留 kerning）
+   *  - 小字：縮小後緊接前一個字，墨水底端切齊大字底端（25節 source-baseline） */
   function drawSegments(canvasCtx, segments, x, y, align, letterSpacing, fallbackColor) {
     const visible = segments.filter((segment) => String(segment.text || '').length);
     if (!visible.length) return;
@@ -190,49 +207,31 @@
     const savedAlign = canvasCtx.textAlign; const savedFill = canvasCtx.fillStyle; const savedBaseline = canvasCtx.textBaseline;
     const layout = lineLayout(canvasCtx, visible, letterSpacing);
     const lineStart = align === 'right' ? x - layout.width : align === 'center' ? x - layout.width / 2 : x;
-    const bigPx = visible.reduce((max, segment) => Math.max(max, Number(segment.fontSizePx || 0)), 0);
-    const bigFont = bigPx ? fontWithSize(baseFont, bigPx) : baseFont;
+    const { bigPx, bigFont } = layout;
     const refInk = inkMetrics(canvasCtx, bigFont, visible.map((segment) => segment.text).join(''));
-    // 原本以 top 基線畫在 y：大字的 alphabetic 基線 = y + baselineBelowTop（實測換算，大字位置與原本逐像素相同）；墨水底端 = 基線 + descent。
+    // 原本以 top 基線畫在 y：大字的 alphabetic 基線 = y + baselineBelowTop（實測換算）；墨水底端 = 基線 + descent。
     const baselineY = savedBaseline === 'alphabetic' ? y : y + refInk.baselineBelowTop;
     const inkBottomY = baselineY + refInk.descent;
     canvasCtx.textAlign = 'left';
     canvasCtx.textBaseline = 'alphabetic';
-    const totalChars = layout.chars.length;
     let charIndex = 0;
     visible.forEach((segment) => {
       const text = String(segment.text || '');
       const chars = [...text];
-      const isSmall = Number(segment.fontSizePx || 0) < bigPx;
+      const px = Number(segment.fontSizePx || bigPx);
       canvasCtx.fillStyle = segment.color || fallbackColor;
-      if (!isSmall) {
+      if (px >= bigPx) {
         canvasCtx.font = bigFont;
-        canvasCtx.fillText(text, lineStart + layout.starts[charIndex], baselineY);
+        if (!Number(letterSpacing || 0)) canvasCtx.fillText(text, lineStart + layout.starts[charIndex], baselineY);
+        else chars.forEach((ch, i) => canvasCtx.fillText(ch, lineStart + layout.starts[charIndex + i], baselineY));
         charIndex += chars.length;
         return;
       }
-      // 連續的小字當成「一串」排：整串佔它們原本格子的總寬，串內小字彼此緊貼（不會像「蝦 幣」一樣被各自置中而分開）。
-      const smallFont = fontWithSize(baseFont, segment.fontSizePx);
-      const ratio = Number(segment.fontSizePx) / bigPx;
-      const runStart = layout.starts[charIndex];
-      const runEnd = charIndex + chars.length < totalChars ? layout.starts[charIndex + chars.length] - Number(letterSpacing || 0) : layout.width;
+      const ratio = px / bigPx;
       canvasCtx.font = bigFont;
-      // 小字的寬度與墨水 descent 都用「大字字型的度量 × 比例」推算（向量字型線性縮放），不另外以小字字型量：
-      // 大字字型此刻一定已載入（原引擎正用它畫整行），小字字型若還在載入會量到替代字型，兩次產圖就會差幾 px。
-      const widths = chars.map((ch) => canvasCtx.measureText(ch).width * ratio);
       const descents = chars.map((ch) => inkMetrics(canvasCtx, bigFont, ch).descent * ratio);
-      const runWidth = widths.reduce((sum, w) => sum + w, 0) + Number(letterSpacing || 0) * Math.max(0, chars.length - 1);
-      const slack = Math.max(0, runEnd - runStart - runWidth);
-      // 貼哪一邊：貨幣符號（$）屬於後面的數字 → 貼右；%／折／蝦幣／起／號 屬於前面的數字 → 貼左；逗號 → 置中。
-      const runText = chars.join('');
-      const hugRight = /[$＄]/.test(runText);
-      const hugLeft = !hugRight && /[%％號折起]|蝦幣/.test(runText);
-      let x = lineStart + runStart + (hugRight ? slack : hugLeft ? 0 : slack / 2);
-      canvasCtx.font = smallFont;
-      chars.forEach((ch, i) => {
-        canvasCtx.fillText(ch, x, inkBottomY - descents[i]);
-        x += widths[i] + Number(letterSpacing || 0);
-      });
+      canvasCtx.font = fontWithSize(baseFont, px);
+      chars.forEach((ch, i) => canvasCtx.fillText(ch, lineStart + layout.starts[charIndex + i], inkBottomY - descents[i]));
       charIndex += chars.length;
     });
     canvasCtx.font = baseFont; canvasCtx.textAlign = savedAlign; canvasCtx.fillStyle = savedFill; canvasCtx.textBaseline = savedBaseline;

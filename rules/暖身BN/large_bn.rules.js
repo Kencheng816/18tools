@@ -21,6 +21,10 @@
     rules.positioningMode = 'absolute';
     rules.lockToEditedJson = true;
     rules.followProduct = true;
+    // 2026-11-03：HBN 的規則改成「商品優先」後，這裡複製過來要改回「公版優先」——這三個版位的版面是依公版名（Game BN／直播大廳BN／MS輪播 BN）
+    // 登記在下面，不是依商品；否則 VIP_單券_蝦幣 會套到 HBN 的版面。
+    rules.productFirst = false;
+    rules.resolvePriority = 'templateFirst';
     rules.templateLayouts = { ...(rules.templateLayouts || {}) };
 
     Object.entries(LARGE_BN_LAYOUTS).forEach(([routeKey, layout]) => {

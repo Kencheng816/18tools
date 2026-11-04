@@ -1504,6 +1504,46 @@
     "default": false
   },
   {
+    "key": "batch.multiProductSplit",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "工單商品圖欄「A + B」拆多張並排（modules/multi-product.js）：半形／全形＋拆開各自找素材，P 框寬平分、間距 4%、各自等比 contain 垂直置中；第一張用原商品圖層（價格錨點不變），其餘複製層 __multiProductOf。只有一個名字時不動。目前只有暖身BN 開。",
+    "source": "18節 封測第二輪 2026-11-02",
+    "default": false
+  },
+  {
+    "key": "diagnostics.skipBlocks",
+    "type": "array",
+    "affects": "ui",
+    "summary": "診斷「刻意略過」的製作物名稱前綴（modules/diagnostics-report.js）：工單有、但這個工具刻意不做的製作物（沒有公版、或只有圖沒案型），找不到公版／欄位空白／略過的列都不報紅，改列資訊層「刻意略過」。2026-11-03 清查 #5／#7：MS 下蓋_、上蓋_遊戲；ENG Game 頭巾／Game BN／Seller BN／IG Story；LineOA POPUP_RESIZE／03_Churn。",
+    "source": "18節 工單變更清查 2026-11-03",
+    "default": []
+  },
+  {
+    "key": "layout.productBoxSources",
+    "type": "array",
+    "affects": "pixel",
+    "summary": "商品框版面依工單內容對應（modules/layout-by-record.js）要套用的製作物（製作內容／來源公版名開頭，'*'＝全部）。2026-11-03 批次 ⑨ 拿掉輸出編號鍵後，core 以輸出名找 templateLayouts.productImageBox 的路會失效，由這支模組依 商品圖1＋價格 找。原工具只有輸出名對得上版面鍵的才套得到（正式BN 全部；暖身BN 只有 HBN），為了輸出一致照這樣設。",
+    "source": "18節 批次 ⑨ 2026-11-03",
+    "default": []
+  },
+  {
+    "key": "layers.guideNameKeywords",
+    "type": "array",
+    "affects": "pixel",
+    "summary": "參考用圖層名稱關鍵字（modules/layer-hygiene.js）：名稱含這些字的圖層 hidden＋locked＋__internal（畫布可用「規範」開關疊圖、輸出不畫、圖層清單不列）。預設 ['規範']；暖身BN 加 '範圍'（公版整併後 P_範圍 會被畫成實心框）。B 系的 P_範圍 是商品位置框、core 自己處理，不可加。",
+    "source": "18節 封測 2026-10-30 第 2 題",
+    "default": ["規範"]
+  },
+  {
+    "key": "text.normalizeRawTracking",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "字距單位校正（modules/layer-hygiene.js）：PSD 匯出沒換算成 px 的字距（|字距| 超過字級 15%，只可能是 Photoshop 千分之一 em 原始值）換算成 px（值÷1000×字級）。【會改變輸出】只有暖身BN 開（01_頭巾 subtitle 的 -10）；鏡面 人名標「主持人」的 10 使用者決定維持原樣，所以預設 false。",
+    "source": "18節 封測 2026-10-30 第 3 批（頭巾副標擠字）",
+    "default": false
+  },
+  {
     "key": "text.autoShrinkSymbols",
     "type": "bool",
     "affects": "pixel",

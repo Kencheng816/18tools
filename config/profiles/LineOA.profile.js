@@ -12,6 +12,7 @@ window.__profileRegistry["profile:LineOA"] = {
   "rulesNamespace": "rules/LineOA/",
   "_comment": "flags 只放與 _defaults.json（defaults ＋ families.b）不同的旗標；其餘沿用預設。",
   "flags": {
+    "diagnostics.skipBlocks": ["POPUP_RESIZE", "03_Churn"],
     "assets.shopeeVipGuard": "stemExact",
     "assets.fuzzyStemMatch": true,
     "ui.toolName": "18節生成工具",

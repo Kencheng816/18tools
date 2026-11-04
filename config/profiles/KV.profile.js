@@ -74,7 +74,8 @@ window.__profileRegistry["profile:KV"] = {
     "core/product-engine.js",
     "renderers/shape-renderer.formal18.js",
     "core/app.core.js",
-    "core/legacy18/KV.overrides.js"
+    "core/legacy18/KV.overrides.js",
+    "modules/kv-bank-logos.js"
   ],
   "templatesDir": "templates/KV",
   "assetsDir": "assets/KV"

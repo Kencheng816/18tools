@@ -161,9 +161,9 @@
     }
   },
   "rebaselined": {
-    "at": "2026-10-07T09:28:15.996Z",
+    "at": "2026-10-30T09:18:52.762Z",
     "by": "run-core-golden --update-golden",
-    "reason": "2026-10-07 使用者決定：同製作內容下各變體各自從 01 編號；像素與前一基準逐 byte 相同（hash 比對）",
+    "reason": "2026-10-30 公版整併（頭巾／HBN／DD Card／KOL）＋符號重排＋字距校正",
     "images": 27
   }
 }

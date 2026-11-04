@@ -5,7 +5,11 @@
 const FAMILY = 'skbn_app';
   const KEYWORD_VIP = 'VIP';
   const VIP_LOGO_ASSET = '06_SKBN_APP/蝦皮VIP_LOGO.svg';
+  // CTA 全版位共用素材（2026-10-30 封測第 15 題）：中／左 都用 SKBN_APP_CTA.png，VIP 版用 SKBN_APP_VIP_CTA.png；
+  // 公版 JSON 裡的 SKBN_中_APP_CTA.png 等檔名不再需要素材。
   const CTA_ASSET = '06_SKBN_APP/SKBN_APP_CTA.png';
+  const CTA_VIP_ASSET = '06_SKBN_APP/SKBN_APP_VIP_CTA.png';
+  const isVipTemplate = (template) => template?.sheetTemplateRoute?.key === 'skbn_app_center_vip';
   const VIP_TEXT_GAP_PX = 5;
   const WHOLE_SITE_PRICE_COLOR = '#EE4D2D';
 
@@ -486,16 +490,21 @@ const FAMILY = 'skbn_app';
     diagnostics?.push?.({ field: '副標', status: 'ok', value: subtitle.text, target: `蝦皮VIP_LOGO.svg 使用確認版 Y=${VIP_LOGO_CONFIRMED_BOX.y}，${VIP_TEXT_GAP_PX}px + 副標群組置中` });
   }
 
+  function findCtaLayer(template) {
+    return template?.layers?.cta || findLayerByWords(template, 'image', ['cta', '按鈕', 'button']);
+  }
+
   function applyUnifiedCta(template, diagnostics) {
-    const ctaLayer = template?.layers?.cta || findLayerByWords(template, 'image', ['cta', '按鈕', 'button']);
+    const ctaLayer = findCtaLayer(template);
+    const asset = isVipTemplate(template) ? CTA_VIP_ASSET : CTA_ASSET;
     if (!ctaLayer) {
-      diagnostics?.push?.({ field: 'CTA', status: 'missing-layer', value: CTA_ASSET, target: 'SKBN APP 共用 CTA 圖層' });
+      diagnostics?.push?.({ field: 'CTA', status: 'missing-layer', value: asset, target: 'SKBN APP 共用 CTA 圖層' });
       return;
     }
-    ctaLayer.assetFilename = CTA_ASSET;
+    ctaLayer.assetFilename = asset;
     ctaLayer.hidden = false;
     ctaLayer.keepAspectRatio = true;
-    diagnostics?.push?.({ field: 'CTA', status: 'ok', value: CTA_ASSET, target: 'SKBN APP 全版位共用 CTA' });
+    diagnostics?.push?.({ field: 'CTA', status: 'ok', value: asset, target: 'SKBN APP 全版位共用 CTA' });
   }
 
   function normalizePlacement(value) {
@@ -617,7 +626,10 @@ const FAMILY = 'skbn_app';
       return resolveRoute(block, record);
     },
 
-    beforeApplyRecordToTemplate({ record, diagnostics }) {
+    beforeApplyRecordToTemplate({ template, record, diagnostics }) {
+      // 先把公版 CTA 檔名換成共用素材，核心接著比對素材時才不會回報「素材缺少 SKBN_中_APP_CTA.png」。
+      const ctaLayer = findCtaLayer(template);
+      if (ctaLayer) ctaLayer.assetFilename = isVipTemplate(template) ? CTA_VIP_ASSET : CTA_ASSET;
       if (!containsVip(record?.['副標'])) return;
       record['副標'] = removeVipText(record['副標']);
       diagnostics?.push?.({ field: '副標', status: 'ok', value: record['副標'], target: '移除文字 VIP，改用蝦皮VIP_LOGO.svg' });

@@ -98,8 +98,8 @@ const RULES = {
       }
     ],
     "templateLayouts": {
-      "HBN_01": {
-            "templateId": "HBN_01",
+      "layout_VIP_單券_蝦幣_18%蝦幣": {
+            "templateId": "layout_VIP_單券_蝦幣_18%蝦幣",
             "productName": "VIP_單券_蝦幣",
             "productKey": "vip單券蝦幣",
             "layoutKey": "vip",
@@ -170,8 +170,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_02": {
-            "templateId": "HBN_02",
+      "layout_全站券_雙券_$100": {
+            "templateId": "layout_全站券_雙券_$100",
             "productName": "全站券_雙券",
             "productKey": "全站券雙券",
             "layoutKey": "doubleCoupon",
@@ -272,8 +272,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_03": {
-            "templateId": "HBN_03",
+      "layout_全站券_雙券_93折": {
+            "templateId": "layout_全站券_雙券_93折",
             "productName": "全站券_雙券",
             "productKey": "全站券雙券",
             "layoutKey": "doubleCoupon",
@@ -374,80 +374,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_04": {
-            "templateId": "HBN_04",
-            "productName": "VIP_單券_蝦幣",
-            "productKey": "vip單券蝦幣",
-            "layoutKey": "vip",
-            "rawPriceExample": "18%蝦幣",
-            "isDoubleCoupon": false,
-            "coordinateMode": "absolute",
-            "positioningMode": "absolute",
-            "lockToEditedJson": true,
-            "disableAnchorSync": false,
-            "disableContentScale": true,
-            "productImageBox": {
-                  "x": 736,
-                  "y": 50,
-                  "width": 375,
-                  "height": 238,
-                  "centerX": 923.5,
-                  "centerY": 169,
-                  "targetWidth": 375,
-                  "targetHeight": 238,
-                  "maxTargetHeight": 238,
-                  "sizingMode": "containByPBox",
-                  "keepAspectRatio": 1
-            },
-            "layouts": [
-                  {
-                        "slot": "single",
-                        "psdName": "價格",
-                        "positioningMode": "absolute",
-                        "x": 790,
-                        "y": 145,
-                        "width": 350,
-                        "height": 100,
-                        "centerX": 965,
-                        "centerY": 195,
-                        "rotation": 12,
-                        "baseHeight": 94.56,
-                        "baseWidth": 330.98,
-                        "baseFontSizePx": 58.63,
-                        "rotationOffset": 12,
-                        "offsetY": 24.59,
-                        "offsetX": 39.24,
-                        "fontSizePx": 62,
-                        "fontSizePt": 62,
-                        "lineHeight": 66.96,
-                        "lineHeightMultiplier": 1.08,
-                        "letterSpacing": 0,
-                        "color": "#ff770f",
-                        "preserveExactSize": true,
-                        "skipAutoScale": true,
-                        "disableContentScale": true,
-                        "disableAnchorSync": false,
-                        "lockToEditedJson": true,
-                        "followProduct": true,
-                  }
-            ],
-            "anchorSource": {
-                  "layerKey": "product",
-                  "x": 736,
-                  "y": 50,
-                  "width": 375,
-                  "height": 238,
-                  "centerX": 923.5,
-                  "centerY": 169,
-                  "targetWidth": 375,
-                  "targetHeight": 238,
-                  "maxTargetHeight": 238,
-                  "sizingMode": "containByPBox",
-                  "keepAspectRatio": 1
-            }
-      },
-      "HBN_05": {
-            "templateId": "HBN_05",
+      "layout_商城券_雙券_$200": {
+            "templateId": "layout_商城券_雙券_$200",
             "productName": "商城券_雙券",
             "productKey": "商城券雙券",
             "layoutKey": "doubleCoupon",
@@ -548,8 +476,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_06": {
-            "templateId": "HBN_06",
+      "layout_商城券_雙券_92折": {
+            "templateId": "layout_商城券_雙券_92折",
             "productName": "商城券_雙券",
             "productKey": "商城券雙券",
             "layoutKey": "doubleCoupon",
@@ -650,8 +578,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_07": {
-            "templateId": "HBN_07",
+      "layout_商城券_雙券_93折": {
+            "templateId": "layout_商城券_雙券_93折",
             "productName": "商城券_雙券",
             "productKey": "商城券雙券",
             "layoutKey": "doubleCoupon",
@@ -752,8 +680,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_08": {
-            "templateId": "HBN_08",
+      "layout_免運車加商城券_92折": {
+            "templateId": "layout_免運車加商城券_92折",
             "productName": "免運車加商城券",
             "productKey": "免運車加商城券",
             "layoutKey": "freeShippingCoupon",
@@ -824,8 +752,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_09": {
-            "templateId": "HBN_09",
+      "layout_免運車加商城券_$200": {
+            "templateId": "layout_免運車加商城券_$200",
             "productName": "免運車加商城券",
             "productKey": "免運車加商城券",
             "layoutKey": "freeShippingCoupon",
@@ -896,8 +824,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_10": {
-            "templateId": "HBN_10",
+      "layout_免運車加商城券_95折": {
+            "templateId": "layout_免運車加商城券_95折",
             "productName": "免運車加商城券",
             "productKey": "免運車加商城券",
             "layoutKey": "freeShippingCoupon",
@@ -968,8 +896,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_11": {
-            "templateId": "HBN_11",
+      "layout_商城券加蝦幣_20%": {
+            "templateId": "layout_商城券加蝦幣_20%",
             "productName": "商城券加蝦幣",
             "productKey": "商城券加蝦幣",
             "layoutKey": "couponCoin",
@@ -1040,8 +968,8 @@ const RULES = {
                   "keepAspectRatio": 1
             }
       },
-      "HBN_12": {
-            "templateId": "HBN_12",
+      "layout_商城券_雙券_9折": {
+            "templateId": "layout_商城券_雙券_9折",
             "productName": "商城券_雙券",
             "productKey": "商城券雙券",
             "layoutKey": "doubleCoupon",
@@ -1149,78 +1077,74 @@ const RULES = {
             "variants": [
                   {
                         "priceIncludes": "18%蝦幣",
-                        "useTemplate": "HBN_01"
-                  },
-                  {
-                        "priceIncludes": "18%蝦幣",
-                        "useTemplate": "HBN_04"
+                        "useTemplate": "layout_VIP_單券_蝦幣_18%蝦幣"
                   }
-            ],
-            "useTemplate": "HBN_01"
+                ],
+            "useTemplate": "layout_VIP_單券_蝦幣_18%蝦幣"
       },
       "全站券雙券": {
             "productName": "全站券_雙券",
             "variants": [
                   {
                         "priceIncludes": "$100",
-                        "useTemplate": "HBN_02"
+                        "useTemplate": "layout_全站券_雙券_$100"
                   },
                   {
                         "priceIncludes": "93折",
-                        "useTemplate": "HBN_03"
+                        "useTemplate": "layout_全站券_雙券_93折"
                   }
             ],
-            "useTemplate": "HBN_02"
+            "useTemplate": "layout_全站券_雙券_$100"
       },
       "商城券雙券": {
             "productName": "商城券_雙券",
             "variants": [
                   {
                         "priceIncludes": "$200",
-                        "useTemplate": "HBN_05"
+                        "useTemplate": "layout_商城券_雙券_$200"
                   },
                   {
                         "priceIncludes": "92折",
-                        "useTemplate": "HBN_06"
+                        "useTemplate": "layout_商城券_雙券_92折"
                   },
                   {
                         "priceIncludes": "93折",
-                        "useTemplate": "HBN_07"
+                        "useTemplate": "layout_商城券_雙券_93折"
                   },
                   {
                         "priceIncludes": "9折",
-                        "useTemplate": "HBN_12"
+                        "useTemplate": "layout_商城券_雙券_9折"
                   }
             ],
-            "useTemplate": "HBN_05"
+            "useTemplate": "layout_商城券_雙券_$200"
       },
       "免運車加商城券": {
             "productName": "免運車加商城券",
             "variants": [
                   {
                         "priceIncludes": "92折",
-                        "useTemplate": "HBN_08"
+                        "useTemplate": "layout_免運車加商城券_92折"
                   },
                   {
                         "priceIncludes": "$200",
-                        "useTemplate": "HBN_09"
+                        "useTemplate": "layout_免運車加商城券_$200"
                   },
                   {
                         "priceIncludes": "95折",
-                        "useTemplate": "HBN_10"
+                        "useTemplate": "layout_免運車加商城券_95折"
                   }
             ],
-            "useTemplate": "HBN_08"
+            "useTemplate": "layout_免運車加商城券_92折"
       },
       "商城券加蝦幣": {
             "productName": "商城券加蝦幣",
             "variants": [
                   {
                         "priceIncludes": "20%",
-                        "useTemplate": "HBN_11"
+                        "useTemplate": "layout_商城券加蝦幣_20%"
                   }
             ],
-            "useTemplate": "HBN_11"
+            "useTemplate": "layout_商城券加蝦幣_20%"
       }
 }
   }
@@ -1403,1316 +1327,9 @@ const RULES = {
 
 
 
-  const HBN_TEXT_LAYER_LAYOUTS = Object.freeze({
-    "HBN_01": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 22.5,
-            "y": 207,
-            "width": 631,
-            "height": 63,
-            "centerX": 338,
-            "centerY": 229.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "legal": {
-            "x": 195,
-            "y": 285,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 119,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 210,
-            "centerY": 229.5,
-            "hidden": 0,
-            "visible": 1
-        },
-        "副標題_文字": {
-            "x": 304,
-            "y": 218,
-            "width": 253,
-            "height": 43,
-            "centerX": 430.5,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "left",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_02": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 22.5,
-            "y": 207,
-            "width": 631,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_03": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 100.5,
-            "y": 207,
-            "width": 475,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_04": {
-        "title": {
-            "x": 51,
-            "y": 69,
-            "width": 608,
-            "height": 111,
-            "centerX": 355,
-            "centerY": 124.5,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "subtitle": {
-            "x": 51,
-            "y": 206,
-            "width": 608,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 283,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 51,
-            "y": 69,
-            "width": 316,
-            "height": 111,
-            "centerX": 209,
-            "centerY": 124.5,
-            "hidden": 0,
-            "visible": 1
-        },
-        "主標題_文字": {
-            "x": 370,
-            "y": 107,
-            "width": 289,
-            "height": 73,
-            "centerX": 514.5,
-            "centerY": 143.5,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "left",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_05": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 33,
-            "y": 207,
-            "width": 610,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_06": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 126,
-            "y": 207,
-            "width": 424,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_07": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 125.5,
-            "y": 207,
-            "width": 425,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_08": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 22.5,
-            "y": 207,
-            "width": 631,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_09": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 22.5,
-            "y": 207,
-            "width": 631,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_10": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 22.5,
-            "y": 207,
-            "width": 631,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_11": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 45,
-            "y": 207,
-            "width": 586,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    },
-    "HBN_12": {
-        "title": {
-            "x": 24,
-            "y": 105,
-            "width": 628,
-            "height": 76,
-            "centerX": 338,
-            "centerY": 143,
-            "fontSizePx": 80,
-            "fontSizePt": 80,
-            "lineHeight": 96,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 0,
-            "visible": 1
-        },
-        "subtitle": {
-            "x": 72,
-            "y": 207,
-            "width": 532,
-            "height": 53,
-            "centerX": 337.5,
-            "centerY": 233.5,
-            "fontSizePx": 57,
-            "fontSizePt": 57,
-            "lineHeight": 68.4,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 0,
-            "visible": 1
-        },
-        "legal": {
-            "x": 195,
-            "y": 284,
-            "width": 287,
-            "height": 23,
-            "centerX": 338.5,
-            "centerY": 295.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 35.0,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366",
-            "hidden": 0
-        },
-        "主標題_蝦皮VIP_LOGO": {
-            "x": 29,
-            "y": 70,
-            "width": 316,
-            "height": 109,
-            "centerX": 187,
-            "centerY": 124.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "主標題_文字": {
-            "x": 349,
-            "y": 108,
-            "width": 300,
-            "height": 72,
-            "centerX": 499,
-            "centerY": 144,
-            "fontSizePx": 75.78,
-            "fontSizePt": 75.78,
-            "lineHeight": 90.94,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF",
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_蝦皮VIP_LOGO": {
-            "x": 111,
-            "y": 198,
-            "width": 182,
-            "height": 63,
-            "centerX": 202,
-            "centerY": 229.5,
-            "hidden": 1,
-            "visible": 0
-        },
-        "副標題_文字": {
-            "x": 299,
-            "y": 218,
-            "width": 268,
-            "height": 43,
-            "centerX": 433,
-            "centerY": 239.5,
-            "fontSizePx": 46,
-            "fontSizePt": 46,
-            "lineHeight": 55.2,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C",
-            "hidden": 1,
-            "visible": 0
-        },
-        "cta": {
-            "x": 938,
-            "y": 290,
-            "width": 240,
-            "height": 44,
-            "centerX": 1058,
-            "centerY": 312
-        }
-    }
-});
+  // 2026-11-03：原本這裡有 HBN_01～12 每張輸出的文字層座標快照（以輸出編號當鍵）；實測拿掉後 12 張黃金逐 byte 不變（程式排版已算出同樣位置），
+  // 而且以編號當鍵會在工單順序改變時套錯。
+  const HBN_TEXT_LAYER_LAYOUTS = Object.freeze({});
 
   const resolveHbnTemplateId = (template = {}) => {
     const labels = [
@@ -2723,9 +1340,7 @@ const RULES = {
       template?.source?.psdName,
     ].filter(Boolean).map(String);
     const normalize = (value) => String(value || '').toLowerCase().replace(/[\s_\-]+/g, '');
-    return Object.keys(HBN_TEXT_LAYER_LAYOUTS).find((id) =>
-      labels.some((label) => normalize(label).includes(normalize(id)))
-    ) || '';
+    return '';
   };
 
   const applyHbnEditedLayerLayouts = ({ template, helpers = {} } = {}) => {

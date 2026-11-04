@@ -57,9 +57,11 @@ const RULES = {
         "color": "#EE4D2D"
       }
     ],
+    "productFirst": true,
+    "resolvePriority": "productFirst",
     "templateLayouts": {
-      "HBN_06": {
-        "templateId": "HBN_06",
+      "layout_SCS_雙券_$350": {
+        "templateId": "layout_SCS_雙券_$350",
         "productName": "SCS_雙券",
         "productKey": "scs雙券",
         "layoutKey": "doubleCoupon",
@@ -142,8 +144,8 @@ const RULES = {
           }
         ]
       },
-      "HBN_07": {
-        "templateId": "HBN_07",
+      "layout_VIP_單券_蝦幣_18%蝦幣": {
+        "templateId": "layout_VIP_單券_蝦幣_18%蝦幣",
         "productName": "VIP_單券_蝦幣",
         "productKey": "VIP_單券_蝦幣",
         "layoutKey": "vip",
@@ -210,8 +212,8 @@ const RULES = {
           "maxTargetHeight": 265
         }
       },
-      "HBN_08": {
-        "templateId": "HBN_08",
+      "layout_全站券_雙券_$40": {
+        "templateId": "layout_全站券_雙券_$40",
         "productName": "全站券_雙券",
         "productKey": "全站券雙券",
         "layoutKey": "doubleCoupon",
@@ -294,8 +296,8 @@ const RULES = {
           }
         ]
       },
-      "HBN_09": {
-        "templateId": "HBN_09",
+      "layout_信用卡加全站券_88折": {
+        "templateId": "layout_信用卡加全站券_88折",
         "productName": "信用卡加全站券",
         "productKey": "信用卡加全站券",
         "layoutKey": "creditCardCoupon",
@@ -362,8 +364,8 @@ const RULES = {
           "maxTargetHeight": 265
         }
       },
-      "HBN_10": {
-        "templateId": "HBN_10",
+      "layout_免運車加全站券_88折": {
+        "templateId": "layout_免運車加全站券_88折",
         "productName": "免運車加全站券",
         "productKey": "免運車加全站券",
         "layoutKey": "freeShippingCoupon",
@@ -430,8 +432,8 @@ const RULES = {
           "maxTargetHeight": 265
         }
       },
-      "HBN_11": {
-        "templateId": "HBN_11",
+      "layout_免運車加全站券_18%蝦幣": {
+        "templateId": "layout_免運車加全站券_18%蝦幣",
         "productName": "免運車加全站券",
         "productKey": "免運車加全站券",
         "layoutKey": "freeShippingCoupon",
@@ -498,8 +500,8 @@ const RULES = {
           "maxTargetHeight": 265
         }
       },
-      "HBN_14": {
-        "templateId": "HBN_14",
+      "layout_免運車加全站券_$40": {
+        "templateId": "layout_免運車加全站券_$40",
         "productName": "免運車加全站券",
         "productKey": "免運車加全站券",
         "layoutKey": "freeShippingCoupon",
@@ -566,8 +568,8 @@ const RULES = {
           "maxTargetHeight": 265
         }
       },
-      "HBN_16": {
-        "templateId": "HBN_16",
+      "layout_商城券_雙券_93折": {
+        "templateId": "layout_商城券_雙券_93折",
         "productName": "商城券_雙券",
         "productKey": "商城券雙券",
         "layoutKey": "doubleCoupon",
@@ -629,8 +631,8 @@ const RULES = {
           }
         ]
       },
-      "HBN_17": {
-        "templateId": "HBN_17",
+      "layout_全站券加蝦幣_蝦幣山": {
+        "templateId": "layout_全站券加蝦幣_蝦幣山",
         "productName": "全站券加蝦幣",
         "productKey": "全站券加蝦幣",
         "layoutKey": "couponCoin",
@@ -697,8 +699,8 @@ const RULES = {
           "maxTargetHeight": 265
         }
       },
-      "HBN_18": {
-        "templateId": "HBN_18",
+      "layout_全站券加短影音_雙券_$40+$10": {
+        "templateId": "layout_全站券加短影音_雙券_$40+$10",
         "productName": "全站券加短影音_雙券",
         "productKey": "全站券加短影音雙券",
         "layoutKey": "doubleCoupon",
@@ -760,8 +762,8 @@ const RULES = {
           }
         ]
       },
-      "HBN_19": {
-        "templateId": "HBN_19",
+      "layout_商城券_雙券_$200": {
+        "templateId": "layout_商城券_雙券_$200",
         "productName": "商城券_雙券",
         "productKey": "商城券雙券",
         "layoutKey": "doubleCoupon",
@@ -844,134 +846,8 @@ const RULES = {
           }
         ]
       },
-      "HBN_20": {
-        "templateId": "HBN_20",
-        "productName": "商城券_雙券",
-        "productKey": "商城券雙券",
-        "layoutKey": "doubleCoupon",
-        "rawPriceExample": "93折",
-        "isDoubleCoupon": true,
-        "coordinateMode": "absolute",
-        "positioningMode": "absolute",
-        "lockToEditedJson": true,
-        "disableAnchorSync": false,
-        "disableContentScale": true,
-        "layouts": [
-          {
-            "slot": "bottom",
-            "psdName": "價格1（下券）",
-            "positioningMode": "absolute",
-            "x": 866,
-            "y": 158,
-            "width": 200,
-            "height": 95,
-            "centerX": 966,
-            "centerY": 205.5,
-            "rotation": 2,
-            "fontSizePx": 85,
-            "fontSizePt": 85,
-            "lineHeight": 91.8,
-            "lineHeightMultiplier": 1.08,
-            "letterSpacing": 0,
-            "color": "#d0011b",
-            "preserveExactSize": true,
-            "skipAutoScale": true,
-            "disableContentScale": true,
-            "disableAnchorSync": false,
-            "lockToEditedJson": true,
-            "followProduct": true,
-          },
-          {
-            "slot": "top",
-            "psdName": "價格2（上券）",
-            "positioningMode": "absolute",
-            "x": 848,
-            "y": 38,
-            "width": 220,
-            "height": 105,
-            "centerX": 958,
-            "centerY": 90.51,
-            "rotation": -6,
-            "fontSizePx": 85,
-            "fontSizePt": 85,
-            "lineHeight": 91.8,
-            "lineHeightMultiplier": 1.08,
-            "letterSpacing": 0,
-            "color": "#d0011b",
-            "preserveExactSize": true,
-            "skipAutoScale": true,
-            "disableContentScale": true,
-            "disableAnchorSync": false,
-            "lockToEditedJson": true,
-            "followProduct": true,
-          }
-        ]
-      },
-      "HBN_22": {
-        "templateId": "HBN_22",
-        "productName": "商城券_雙券",
-        "productKey": "商城券雙券",
-        "layoutKey": "doubleCoupon",
-        "rawPriceExample": "93折",
-        "isDoubleCoupon": true,
-        "coordinateMode": "absolute",
-        "positioningMode": "absolute",
-        "lockToEditedJson": true,
-        "disableAnchorSync": false,
-        "disableContentScale": true,
-        "layouts": [
-          {
-            "slot": "bottom",
-            "psdName": "價格1（下券）",
-            "positioningMode": "absolute",
-            "x": 865.8,
-            "y": 158.6,
-            "width": 194.2,
-            "height": 95.5,
-            "centerX": 962.9,
-            "centerY": 206.35,
-            "rotation": 2,
-            "fontSizePx": 85,
-            "fontSizePt": 85,
-            "lineHeight": 91.8,
-            "lineHeightMultiplier": 1.08,
-            "letterSpacing": 0,
-            "color": "#d0011b",
-            "preserveExactSize": true,
-            "skipAutoScale": true,
-            "disableContentScale": true,
-            "disableAnchorSync": false,
-            "lockToEditedJson": true,
-            "followProduct": true,
-          },
-          {
-            "slot": "top",
-            "psdName": "價格2（上券）",
-            "positioningMode": "absolute",
-            "x": 847.8,
-            "y": 37.6,
-            "width": 218.3,
-            "height": 107.3,
-            "centerX": 956.95,
-            "centerY": 91.25,
-            "rotation": -6,
-            "fontSizePx": 85,
-            "fontSizePt": 85,
-            "lineHeight": 91.8,
-            "lineHeightMultiplier": 1.08,
-            "letterSpacing": 0,
-            "color": "#d0011b",
-            "preserveExactSize": true,
-            "skipAutoScale": true,
-            "disableContentScale": true,
-            "disableAnchorSync": false,
-            "lockToEditedJson": true,
-            "followProduct": true,
-          }
-        ]
-      },
-      "HBN_21": {
-        "templateId": "HBN_21",
+      "layout_免運車加蝦幣": {
+        "templateId": "layout_免運車加蝦幣",
         "productName": "免運車加蝦幣",
         "productKey": "免運車加蝦幣",
         "layoutKey": "freeShippingCoupon",
@@ -1004,109 +880,106 @@ const RULES = {
       }
     },
     "productLayouts": {
+      "免運車加蝦幣": {"productName":"免運車加蝦幣","variants":[],"useTemplate":"layout_免運車加蝦幣"},
       "scs雙券": {
         "productName": "SCS_雙券",
         "variants": [
           {
             "priceIncludes": "$350",
-            "useTemplate": "HBN_06"
+            "useTemplate": "layout_SCS_雙券_$350"
           }
         ],
-        "useTemplate": "HBN_06"
+        "useTemplate": "layout_SCS_雙券_$350"
       },
       "vip單券蝦幣": {
         "productName": "VIP_單券_蝦幣",
         "variants": [
           {
             "priceIncludes": "18%蝦幣",
-            "useTemplate": "HBN_07"
+            "useTemplate": "layout_VIP_單券_蝦幣_18%蝦幣"
           }
         ],
-        "useTemplate": "HBN_07"
+        "useTemplate": "layout_VIP_單券_蝦幣_18%蝦幣"
       },
       "全站券雙券": {
         "productName": "全站券_雙券",
         "variants": [
           {
             "priceIncludes": "$40",
-            "useTemplate": "HBN_08"
+            "useTemplate": "layout_全站券_雙券_$40"
           }
         ],
-        "useTemplate": "HBN_08"
+        "useTemplate": "layout_全站券_雙券_$40"
       },
       "信用卡加全站券": {
         "productName": "信用卡加全站券",
         "variants": [
           {
             "priceIncludes": "88折",
-            "useTemplate": "HBN_09"
+            "useTemplate": "layout_信用卡加全站券_88折"
           }
         ],
-        "useTemplate": "HBN_09"
+        "useTemplate": "layout_信用卡加全站券_88折"
       },
       "免運車加全站券": {
         "productName": "免運車加全站券",
         "variants": [
           {
             "priceIncludes": "88折",
-            "useTemplate": "HBN_10"
+            "useTemplate": "layout_免運車加全站券_88折"
           },
           {
             "priceIncludes": "18%蝦幣",
-            "useTemplate": "HBN_11"
+            "useTemplate": "layout_免運車加全站券_18%蝦幣"
           },
           {
             "priceIncludes": "$40",
-            "useTemplate": "HBN_14"
+            "useTemplate": "layout_免運車加全站券_$40"
           }
         ],
-        "useTemplate": "HBN_10"
+        "useTemplate": "layout_免運車加全站券_88折"
       },
       "商城券雙券": {
         "productName": "商城券_雙券",
         "variants": [
           {
             "priceIncludes": "93折",
-            "useTemplate": "HBN_16"
+            "useTemplate": "layout_商城券_雙券_93折"
           },
           {
             "priceIncludes": "$200",
-            "useTemplate": "HBN_19"
-          },
-          {
-            "priceIncludes": "93折",
-            "useTemplate": "HBN_20"
-          },
-          {
-            "priceIncludes": "93折",
-            "useTemplate": "HBN_22"
+            "useTemplate": "layout_商城券_雙券_$200"
           }
         ],
-        "useTemplate": "HBN_16"
+        "useTemplate": "layout_商城券_雙券_93折"
       },
       "全站券加蝦幣": {
         "productName": "全站券加蝦幣",
         "variants": [
           {
             "priceIncludes": "蝦幣山",
-            "useTemplate": "HBN_17"
+            "useTemplate": "layout_全站券加蝦幣_蝦幣山"
           }
         ],
-        "useTemplate": "HBN_17"
+        "useTemplate": "layout_全站券加蝦幣_蝦幣山"
       },
       "全站券加短影音雙券": {
         "productName": "全站券加短影音_雙券",
         "variants": [
           {
             "priceIncludes": "$40 + $10",
-            "useTemplate": "HBN_18"
+            "useTemplate": "layout_全站券加短影音_雙券_$40+$10"
           }
         ],
-        "useTemplate": "HBN_18"
+        "useTemplate": "layout_全站券加短影音_雙券_$40+$10"
       }
     }
   }
 };
+
+  // 2026-10-30 公版整併：主標三型態（VIP／蝦皮直營 LOGO）、VIP 背景切換、底色、參考層——見 rules/shared/title-variants.js
+  RULES.shapeLayers = Object.assign({}, RULES.shapeLayers, { '__base_bg': window.WarmupTitleVariants?.BASE_BG_RULE || { renderer: 'rectangle', fill: '#ffa200' } });
+  RULES.afterApplyRecordToTemplate = function afterApplyRecordToTemplate(context) { window.WarmupTitleVariants?.apply?.(context); };
 
   window.TemplateRuleRegistry?.register?.("hbn", {
     family: "hbn",

@@ -80,6 +80,66 @@
   const LOGO_LAYER_KEY = 'LOGO';
   const LOGO_RANGE_TARGET = { frameWidth: 136, frameHeight: 53, leftX: 399 };
 
+  // ── LOGO 底色（2026-10-30 公版新增 LOGO_範圍_底色；封測第 14 題，做法參考 Shopeelivev3「Logo 加底色」）──
+  // 圓角矩形貼著 LOGO 實際可見外框（去背圖用 alpha 外框、再跟 LOGO_範圍 的 clip 邊界取交集），
+  // 留白 pad＝max(6px, 短邊×留白比例)，圓角 r＝pad×1.8（上限＝邊長一半）。預設關、白色、留白 10%；
+  // 開關／顏色／留白比例在「調整」面板（modules/logo-backdrop-controls.js），設定存在底色圖層的 backdrop 欄位。
+  const LOGO_BACKDROP_KEY = 'LOGO_範圍_底色';
+  const LOGO_BACKDROP_DEFAULTS = Object.freeze({ enabled: false, color: '#FFFFFF', padRatio: 0.1 });
+  const LOGO_BACKDROP_MIN_PAD = 6;
+  const LOGO_BACKDROP_RADIUS_FACTOR = 1.8;
+
+  function ensureBackdropSettings(layer) {
+    if (!layer.backdrop) layer.backdrop = { ...LOGO_BACKDROP_DEFAULTS };
+    return layer.backdrop;
+  }
+
+  /** LOGO 實際可見範圍（畫布座標）：圖片 alpha 外框換算到圖層框，再跟 LOGO_範圍（clip 邊界）取交集。 */
+  function visibleLogoBox(template) {
+    const logo = template.layers?.[LOGO_LAYER_KEY];
+    const range = template.layers?.[LOGO_RANGE_KEY];
+    if (!logo || !(Number(logo.width) > 0) || !logo.assetFilename) return null;
+    let box = { x: Number(logo.x), y: Number(logo.y), width: Number(logo.width), height: Number(logo.height) };
+    const image = window.AppState?.images?.[LOGO_LAYER_KEY];
+    if (image?.naturalWidth && image.__loadedForFilename === logo.assetFilename) {
+      if (!image.__alphaBBox) image.__alphaBBox = U.computeAlphaBBox(image) || false;
+      const alpha = image.__alphaBBox;
+      if (alpha) {
+        const sx = box.width / image.naturalWidth; const sy = box.height / image.naturalHeight;
+        box = { x: box.x + alpha.x * sx, y: box.y + alpha.y * sy, width: alpha.width * sx, height: alpha.height * sy };
+      }
+    }
+    if (range) {
+      const left = Math.max(box.x, Number(range.x)); const top = Math.max(box.y, Number(range.y));
+      const right = Math.min(box.x + box.width, Number(range.x) + Number(range.width));
+      const bottom = Math.min(box.y + box.height, Number(range.y) + Number(range.height));
+      if (right <= left || bottom <= top) return null;
+      box = { x: left, y: top, width: right - left, height: bottom - top };
+    }
+    return box;
+  }
+
+  function layoutLogoBackdrop(template) {
+    const backdrop = template.layers?.[LOGO_BACKDROP_KEY];
+    if (!backdrop) return;
+    const settings = ensureBackdropSettings(backdrop);
+    backdrop.locked = true;
+    backdrop.__nonInteractive = true;
+    backdrop.useDynamicBounds = true;
+    const box = settings.enabled ? visibleLogoBox(template) : null;
+    backdrop.hidden = !box;
+    backdrop.visible = !!box;
+    if (!box) return;
+    const pad = Math.max(LOGO_BACKDROP_MIN_PAD, Math.min(box.width, box.height) * Number(settings.padRatio || 0));
+    backdrop.x = box.x - pad; backdrop.y = box.y - pad;
+    backdrop.width = box.width + pad * 2; backdrop.height = box.height + pad * 2;
+    backdrop.centerX = backdrop.x + backdrop.width / 2; backdrop.centerY = backdrop.y + backdrop.height / 2;
+    const radius = Math.min(pad * LOGO_BACKDROP_RADIUS_FACTOR, Math.min(backdrop.width, backdrop.height) / 2);
+    backdrop.fill = settings.color;
+    // 整組 shape 重寫：PSD 匯出的 geometry／pathBounds 是靜態座標，留著會蓋過上面算的框。
+    backdrop.shape = { kind: 'roundedRectangle', fill: settings.color, fillEnabled: true, cornerRadius: radius };
+  }
+
   // 建立實際 LOGO 圖層（如果還沒有的話）。放在 LOGO_範圍 後面、標籤前面。
   // 位置與初始尺寸都跟 LOGO_範圍 貼齊（LOGO 一開始佔滿 LOGO_範圍 的邊界）。
   function ensureLogoLayer(template) {
@@ -303,7 +363,9 @@
 
           const shopeeLogoEntry = findLayerEntry(template, ['蝦皮KOL代播_LOGO'], { type: 'image' });
           const dividerEntry = findLayerEntry(template, ['白色直線'], { type: 'shape' });
-          const logoRangeEntry = findLayerEntry(template, ['LOGO_範圍'], { type: 'image' });
+          // LOGO_範圍 直接用鍵名拿：公版 2026-10-30 起改成 shape（之前是 image），且新增的 LOGO_範圍_底色 名稱也含「LOGO_範圍」，
+          // 用關鍵字比對會抓錯層。
+          const logoRangeEntry = template.layers?.[LOGO_RANGE_KEY] ? { key: LOGO_RANGE_KEY, layer: template.layers[LOGO_RANGE_KEY] } : null;
           if (!shopeeLogoEntry || !dividerEntry || !logoRangeEntry) return;
 
           const logoRangeLayer = logoRangeEntry.layer;
@@ -387,12 +449,23 @@
               if (Number.isFinite(Number(layer.centerX))) layer.centerX = Number(layer.centerX) + delta;
             });
           }
+
+          // LOGO 底色：每次重排都依 LOGO 目前的實際位置重算（使用者拖曳／縮放 LOGO 後底色跟著走）。
+          layoutLogoBackdrop(template);
         },
       },
 
       // 匯出KB上限：這份工單每一列都是 200K，這裡當作這個公版的預設值；
       // 如果之後改工單改成別的數字，通用引擎一律以Excel「KB」欄的實際值為準，這裡只是沒讀到欄位時的備援。
       exportConstraints: { maxKB: 200 },
+
+      // 「調整」面板的 LOGO 底色控制列（modules/logo-backdrop-controls.js）讀這組設定：選到 logoKey 圖層時顯示，改完呼叫 relayout。
+      logoBackdrop: {
+        logoKey: LOGO_LAYER_KEY,
+        backdropKey: LOGO_BACKDROP_KEY,
+        defaults: LOGO_BACKDROP_DEFAULTS,
+        relayout: layoutLogoBackdrop,
+      },
     },
   });
 })();

@@ -142,9 +142,10 @@
         { name: '商城券', keyword: '商城券', color: '#D0011B' },
         { name: '全站券', keyword: '全站券', color: '#EE4D2D' },
       ],
+      // 2026-11-03 批次 ⑨：鍵改成內容型（商品＋價格），不用輸出編號 SCBN_NN
       templateLayouts: {
-        SCBN_01: {
-          templateId: 'SCBN_01',
+        layout_免運車: {
+          templateId: 'layout_免運車',
           productName: '免運車',
           productKey: '免運車',
           layoutKey: 'singleProduct',
@@ -164,8 +165,8 @@
           },
           layouts: [],
         },
-        SCBN_02: {
-          templateId: 'SCBN_02',
+        'layout_商城券_雙券_92折+93折': {
+          templateId: 'layout_商城券_雙券_92折+93折',
           productName: '商城券_雙券',
           productKey: '商城券雙券',
           layoutKey: 'doubleCoupon',
@@ -239,11 +240,11 @@
         },
       },
       productLayouts: {
-        '免運車': { productName: '免運車', useTemplate: 'SCBN_01' },
+        '免運車': { productName: '免運車', useTemplate: 'layout_免運車' },
         '商城券雙券': {
           productName: '商城券_雙券',
-          useTemplate: 'SCBN_02',
-          variants: [{ priceIncludes: '92折 + 93折', useTemplate: 'SCBN_02' }],
+          useTemplate: 'layout_商城券_雙券_92折+93折',
+          variants: [{ priceIncludes: '92折 + 93折', useTemplate: 'layout_商城券_雙券_92折+93折' }],
         },
       },
     },

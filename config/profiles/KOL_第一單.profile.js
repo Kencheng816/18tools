@@ -71,7 +71,8 @@ window.__profileRegistry["profile:KOL_第一單"] = {
     "renderers/shape-renderer.js",
     "core/app.core.js",
     "modules/asset-review-modal.b.js",
-    "modules/single-size-asset-sync.js"
+    "modules/single-size-asset-sync.js",
+    "modules/logo-backdrop-controls.js"
   ],
   "templatesDir": "templates/KOL代播圖",
   "assetsDir": "assets/KOL_第一單"

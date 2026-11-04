@@ -43,7 +43,8 @@
       templateFile: 'Seller BN_Mall.json',
       outputPrefix: 'Seller_BN_Mall',
       assetPrefix: 'Seller BN_Mall',
-      ticketLayers: Object.freeze({ 左: ['小票券_VIP'], 中: ['小票券_商城'], 右: ['小票券_商城_2'] }),
+      // 2026-11-03 修正（原工具就寫反）：公版 小票券_商城_2 在中間（x435）、小票券_商城 在右邊（x777）
+      ticketLayers: Object.freeze({ 左: ['小票券_VIP'], 中: ['小票券_商城_2'], 右: ['小票券_商城'] }),
     }),
     'C2C+SV': Object.freeze({
       key: 'seller_bn_c2c_sv',
@@ -59,7 +60,8 @@
       templateFile: 'Seller BN_C2C.json',
       outputPrefix: 'Seller_BN_C2C',
       assetPrefix: 'Seller BN_C2C',
-      ticketLayers: Object.freeze({ 左: ['小票券_VIP'], 中: ['小票券_商城'], 右: ['小票券_全站'] }),
+      // 2026-11-03 修正（原工具就寫錯）：C2C 公版沒有 小票券_商城；小票券_全站_2 在中間（x448）、小票券_全站 在右邊（x789）
+      ticketLayers: Object.freeze({ 左: ['小票券_VIP'], 中: ['小票券_全站_2'], 右: ['小票券_全站'] }),
     }),
   });
 

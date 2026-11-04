@@ -3,11 +3,12 @@
 
 /**
  * 不開瀏覽器的靜態檢查（npm run check）：
- *   1. config/tools.js 登錄的每個工具都有 config/profiles/<id>.profile.js、rules/<ns>/rules.manifest.js，且 profile 的 coreScripts／templatesDir／assetsDir 都存在。
+ *   1. config/tools.js 每張卡片的每個 profile 都有 config/profiles/<id>.profile.js、rules/<ns>/rules.manifest.js，且 profile 的 sheetHints 不為空、coreScripts／templatesDir／assetsDir 都存在。
  *   2. 共用字型檔存在。
  *   3. tests/run-golden/cases-core.json 每個案例的 profile、黃金資料夾、工單都存在。
  *   4. 根目錄有 .nojekyll（GitHub Pages 預設跑 Jekyll，會略過底線開頭的 config/profiles/_defaults.js → 分類啟用失敗）。
  *   5. 專案裡沒有 Git LFS 指標檔（2026-10-14：字型／素材若變成指標檔，程式會悄悄用替代字型，輸出會變）。
+ *   6. 內建公版 bundle（templates/<分類>/_bundle.js）與資料夾內的 JSON 同步。
  * 有任何一項不符就以非 0 結束，讓 CI 擋下來。
  */
 
@@ -27,16 +28,20 @@ function loadRegistryScript(rel, key) {
 
 function checkTools() {
   const tools = loadRegistryScript('config/tools.js').TOOL_REGISTRY || [];
-  if (!tools.length) problems.push('config/tools.js 沒有登錄任何工具');
+  if (!tools.length) problems.push('config/tools.js 沒有登錄任何卡片');
   for (const tool of tools) {
-    if (!Array.isArray(tool.sheetHints) || !tool.sheetHints.length) problems.push(`${tool.id}: sheetHints 為空，入口頁無法自動判別`);
-    const profileFile = `config/profiles/${tool.id}.profile.js`;
-    if (!exists(profileFile)) { problems.push(`${tool.id}: 缺少 ${profileFile}`); continue; }
-    const profile = loadRegistryScript(profileFile, `profile:${tool.id}`);
-    if (!profile) { problems.push(`${tool.id}: ${profileFile} 沒有登錄 profile:${tool.id}`); continue; }
-    if (!exists(`${profile.rulesNamespace}rules.manifest.js`)) problems.push(`${tool.id}: 缺少 ${profile.rulesNamespace}rules.manifest.js`);
-    for (const dir of [profile.templatesDir, profile.assetsDir]) if (dir && !exists(dir)) problems.push(`${tool.id}: 缺少 ${dir}`);
-    for (const script of profile.coreScripts || []) if (!exists(script)) problems.push(`${tool.id}: coreScripts 找不到 ${script}`);
+    if (!Array.isArray(tool.profiles) || !tool.profiles.length) { problems.push(`${tool.id}: profiles 為空，卡片開不了工具`); continue; }
+    for (const profileId of tool.profiles) {
+      const profileFile = `config/profiles/${profileId}.profile.js`;
+      if (!exists(profileFile)) { problems.push(`${tool.id}: 缺少 ${profileFile}`); continue; }
+      const profile = loadRegistryScript(profileFile, `profile:${profileId}`);
+      if (!profile) { problems.push(`${tool.id}: ${profileFile} 沒有登錄 profile:${profileId}`); continue; }
+      // 多分類卡片（?group=）靠分頁名在群組內選定，sheetHints 一定要有。
+      if (!Array.isArray(profile.sheetHints) || !profile.sheetHints.length) problems.push(`${profileId}: sheetHints 為空，工具頁無法由工單分頁自動判別`);
+      if (!exists(`${profile.rulesNamespace}rules.manifest.js`)) problems.push(`${profileId}: 缺少 ${profile.rulesNamespace}rules.manifest.js`);
+      for (const dir of [profile.templatesDir, profile.assetsDir]) if (dir && !exists(dir)) problems.push(`${profileId}: 缺少 ${dir}`);
+      for (const script of profile.coreScripts || []) if (!exists(script)) problems.push(`${profileId}: coreScripts 找不到 ${script}`);
+    }
   }
   return tools.length;
 }
@@ -87,15 +92,22 @@ function checkGoldenCases() {
   return cases.length;
 }
 
+/** 6. 內建公版 bundle 與 templates/<分類>/*.json 同步（2026-10-29 公版改內建；見 tests/tools/bundle-templates.js）。 */
+function checkTemplateBundles() {
+  const stale = require('./tools/bundle-templates').checkBundles();
+  if (stale.length) problems.push(`公版 bundle 不同步（請跑 npm run bundle:templates）：${stale.join('、')}`);
+}
+
 const toolCount = checkTools();
 checkFonts();
 const caseCount = checkGoldenCases();
 checkNoJekyll();
 checkLfsPointers();
+checkTemplateBundles();
 
 if (problems.length) {
   console.error(`check-tools：${problems.length} 個問題`);
   problems.forEach((problem) => console.error(`  - ${problem}`));
   process.exit(1);
 }
-console.log(`check-tools：${toolCount} 工具 profile、共用字型、${caseCount} 黃金案例設定都齊全，.nojekyll 在、沒有 Git LFS 指標檔`);
+console.log(`check-tools：${toolCount} 卡片的 profile、共用字型、${caseCount} 黃金案例設定都齊全，.nojekyll 在、沒有 Git LFS 指標檔、公版 bundle 同步`);

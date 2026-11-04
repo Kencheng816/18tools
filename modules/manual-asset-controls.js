@@ -60,7 +60,8 @@
   }
 
   // ── 替換 ──
-  async function replaceLayerAsset(key, layer, file, template) {
+  /** @param {{ priceSync?: boolean }} [options] priceSync=false：不重算價格（商品合成視窗自己依比例貼回，modules/product-composer.js） */
+  async function replaceLayerAsset(key, layer, file, template, { priceSync = true } = {}) {
     const { ManualAssetUpload, Interaction, HistoryManager, AppState } = core();
     if (!ManualAssetUpload.canManuallyEdit(key, layer)) return false;
     if (!isImageFile(file)) { alert('請提供圖片檔（png / jpg / webp / svg）。'); return false; }
@@ -94,7 +95,7 @@
     if (count > 0) {
       window.CouponControls?.onAssetReplaced?.(template, key, layer, file);
       // （18節 2026-10-07）換了票券素材 → 價格依新素材的規則重算（modules/coupon-price-sync.js）；結果顯示在 Inspector 狀態列。
-      const priceResult = await window.CouponPriceSync?.rebuildForAsset?.(template, key, file.name, file);
+      const priceResult = priceSync ? await window.CouponPriceSync?.rebuildForAsset?.(template, key, file.name, file) : null;
       if (priceResult?.message) { const status = $('assetControlStatus'); if (status) status.textContent = priceResult.message; window.showToast?.(priceResult.message); }
       refreshAfterChange(template);
     }

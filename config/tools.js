@@ -1,23 +1,43 @@
-/* 18節 整合版 — 工具登錄表（單一入口用）
+/* 18節 整合版 — 入口頁卡片登錄表
  *
- * 每個工具一筆：id（＝config/profiles/<id>.profile.js）、label、group、sheetHints（工單分頁名含這些字就判定為此工具）、
- * core：'app'＝整合核心 app.html?profile=<id>（13 個工具都是；'tool' 值保留給日後臨時掛原 core 的 tools/<id>/ 用）。
- * 入口頁依 sheetHints 對上傳工單的分頁名打分，列出候選；使用者也可直接點選。
+ * 每張卡片一筆：id、label（卡片文字）、group（入口頁分區標題）、profiles（這張卡片底下的工具分類，＝config/profiles/<id>.profile.js）。
+ *   - profiles 只有一個：點卡片直接開 app.html?profile=<id>。
+ *   - profiles 多個（外廣 OM 的 Wave 1／2、KOL代播圖的第一單／第二單）：點卡片開 app.html?group=<id>，
+ *     進工具後「1. 開始」上傳工單時，由 core/bootstrap.js 依分頁名在這幾個分類裡自動選定，使用者不用知道有分。
  * 用 <script> 載入（不用 fetch），雙擊 index.html 以 file:// 開啟也能用。
  */
-window.TOOL_REGISTRY = [
-  { id: 'OM_w1',  label: '外廣 OM Wave 1', version: 'V3.8',  group: '外廣', sheetHints: ['外廣_Wave1'], core: 'app' },
-  { id: 'OM_w2',  label: '外廣 OM Wave 2', version: 'V0.5',  group: '外廣', sheetHints: ['外廣_Wave2'], core: 'app' },
-  { id: 'LineOA', label: 'LineOA',         version: 'V0.4',  group: '外廣', sheetHints: ['LineOA_wave'], core: 'app' },
-  { id: 'network', label: 'Affiliate network', version: 'V0.5', group: 'Affiliate', sheetHints: ['Network_'], core: 'app' },
-  { id: 'AMS',    label: 'Line購物 AMS',    version: 'V0.5',  group: 'Affiliate', sheetHints: ['Line購物_'], core: 'app' },
-  { id: '鏡面',   label: '跨夜 鏡面',       version: 'V0.1',  group: '跨夜直播', sheetHints: ['_鏡面'], core: 'app' },
-  { id: '跨夜',   label: '跨夜直播宣傳圖',  version: 'V0.9',  group: '跨夜直播', sheetHints: ['跨夜_線上宣傳圖'], core: 'app' },
-  { id: 'KV',     label: 'KV（Logo+KV 版配）', version: 'V1.2',  group: 'KV', sheetHints: ['Logo+KV'], core: 'app' },
-  { id: 'KOL_第一單', label: 'KOL代播圖 第一單', version: 'V0.9', group: 'KOL代播圖', sheetHints: ['第一單'], core: 'app' },
-  { id: 'KOL_第二單', label: 'KOL代播圖 第二單', version: 'V0.9', group: 'KOL代播圖', sheetHints: ['第二單'], core: 'app' },
-  { id: 'MS',     label: '暖正 MS',         version: 'V0.5',  group: 'BN／MS', sheetHints: ['L1_暖正GD做圖列表', '暖正L1'], core: 'app' },
-  { id: '暖身BN', label: '暖身 BN',         version: 'V5.11', group: 'BN／MS', sheetHints: ['暖身BN('], core: 'app' },
-  { id: '正式BN', label: '正式 BN',         version: 'V7.4',  group: 'BN／MS', sheetHints: ['正式BN('], core: 'app' },
-  { id: 'ENG',    label: 'ENG',             version: 'V0.9',  group: 'ENG', sheetHints: ['day KV', '紅包雨KV', 'OMKV'], core: 'app' },
+/** 入口頁群組順序（由左至右、由上到下，一排 4 欄）。hidden=true 的群組先不顯示（待開發）。 */
+window.TOOL_GROUPS = [
+  { name: 'KV' },
+  { name: 'BN／MS' },
+  { name: '外廣' },
+  { name: 'Affiliate' },
+  { name: '超商', hidden: true },
+  { name: '跨夜直播' },
+  { name: 'ENG' },
+  { name: 'KOL代播圖' },
 ];
+
+/** 卡片順序＝同群組內由上而下的順序。 */
+window.TOOL_REGISTRY = [
+  { id: 'KV',      label: 'Logo＋KV 版配',       group: 'KV',        profiles: ['KV'] },
+  { id: '暖身BN',  label: '暖身 BN',             group: 'BN／MS',    profiles: ['暖身BN'] },
+  { id: '正式BN',  label: '正式 BN',             group: 'BN／MS',    profiles: ['正式BN'] },
+  { id: 'MS',      label: '暖正 MS',             group: 'BN／MS',    profiles: ['MS'] },
+  { id: 'OM',      label: '外廣 OM',            group: '外廣',      profiles: ['OM_w1', 'OM_w2'] },
+  { id: 'LineOA',  label: 'LineOA',             group: '外廣',      profiles: ['LineOA'] },
+  { id: 'network', label: 'Affiliate network',  group: 'Affiliate', profiles: ['network'] },
+  { id: 'AMS',     label: 'Line購物 AMS',        group: 'Affiliate', profiles: ['AMS'] },
+  { id: '鏡面',    label: '鏡面',               group: '跨夜直播',  profiles: ['鏡面'] },
+  { id: '跨夜',    label: '跨夜直播宣傳圖',      group: '跨夜直播',  profiles: ['跨夜'] },
+  { id: 'ENG',     label: 'ENG',                group: 'ENG',       profiles: ['ENG'] },
+  { id: 'KOL',     label: 'KOL代播圖',           group: 'KOL代播圖', profiles: ['KOL_第一單', 'KOL_第二單'] },
+];
+
+/** 卡片要開的工具頁網址（入口頁與工具頁共用）。 */
+window.toolPageUrl = function toolPageUrl(tool) {
+  if (!tool) return 'app.html';
+  return tool.profiles.length === 1
+    ? `app.html?profile=${encodeURIComponent(tool.profiles[0])}`
+    : `app.html?group=${encodeURIComponent(tool.id)}`;
+};

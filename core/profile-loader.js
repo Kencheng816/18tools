@@ -39,6 +39,22 @@
 
   const listeners = new Set();
 
+  /**
+   * 預先下載（2026-10-29 封測回饋：線上版開頁慢）：規則、core、模組必須照順序「執行」，但可以同時「下載」。
+   * 這裡用 <link rel=preload as=script> 把之後要 loadScript 的檔案一次丟給瀏覽器平行抓，loadScript 時直接命中快取；
+   * 執行順序完全不變（仍由 loadScript 逐支等待），對輸出零影響。file:// 下瀏覽器可能忽略 preload，沒有副作用。
+   */
+  function prefetchScripts(urls) {
+    for (const src of urls) {
+      if (!src || document.querySelector(`link[rel="preload"][href="${CSS.escape(src)}"]`)) continue;
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'script';
+      link.href = src;
+      document.head.appendChild(link);
+    }
+  }
+
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const el = document.createElement('script');
@@ -118,8 +134,13 @@
       window.__profile = profile;
       state.active = profile;
 
+      const coreScripts = Array.isArray(profile.coreScripts) && profile.coreScripts.length ? profile.coreScripts : DEFAULT_CORE_SCRIPTS;
+      const templatesBundle = profile.templatesDir ? `${String(profile.templatesDir).replace(/\/+$/, '')}/_bundle.js` : '';
+      prefetchScripts([`${namespace}rules.manifest.js`, RULES_LOADER, ...(Array.isArray(profile.scripts) ? profile.scripts : []), ...coreScripts, templatesBundle]);
+
       await loadScript(`${namespace}rules.manifest.js`);
       const ruleFiles = namespacedRuleFiles(window.TemplateRulesManifest, namespace);
+      prefetchScripts(ruleFiles);
       // rulesAfterCore（network／AMS／跨夜 原 index.html 把規則檔排在 core 與模組之後）：
       // loader 先以空清單載入（讓 core 的 rulesReady 立即成立），規則檔等 core 載完再逐支載入。
       const rulesAfterCore = profile.rulesAfterCore === true;
@@ -131,7 +152,7 @@
 
       // 規則就緒後才載入 core 與其引擎模組（core 建構時會依 profile 選用 A／B 實作）。
       window.__rulesLoadResult = result || {};
-      for (const src of Array.isArray(profile.coreScripts) && profile.coreScripts.length ? profile.coreScripts : DEFAULT_CORE_SCRIPTS) await loadScript(src);
+      for (const src of coreScripts) await loadScript(src);
       if (rulesAfterCore) {
         for (const src of ruleFiles) await loadScript(src);
         window.__rulesLoadResult = { ...(result || {}), loadedRuleFiles: ruleFiles.slice() };

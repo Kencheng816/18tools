@@ -34,7 +34,7 @@ window.__profileRegistry["profile:AMS"] = {
     "export.formatSource": "specTable",
     "export.multiSizeForceJpg": false,
     "export.stemSource": "templateId",
-    "export.folderStrategy": "workOrderContent",
+    "export.folderStrategy": "rootFolder",
     "export.jsonMode": "raw",
     "price.layerBaselineMode": "none",
     "price.specialCharRanges82": false,

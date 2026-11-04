@@ -5,8 +5,8 @@
   const FAMILY = 'ig_story';
 
   const CONFIRMED_IG_LAYOUTS = {
-  "IG_01": {
-    "templateId": "IG_01",
+  "layout_VIP_單券_蝦幣_18%蝦幣": {
+    "templateId": "layout_VIP_單券_蝦幣_18%蝦幣",
     "sourceJson": "IG_01_edited.json",
     "textLayers": {
       "title": {
@@ -216,8 +216,8 @@
       "centerY": 1138
     }
   },
-  "IG_02": {
-    "templateId": "IG_02",
+  "layout_鬧鐘加全站券_18%蝦幣": {
+    "templateId": "layout_鬧鐘加全站券_18%蝦幣",
     "sourceJson": "IG_02_edited.json",
     "textLayers": {
       "title": {
@@ -354,8 +354,8 @@
       "centerY": 1169.5
     }
   },
-  "IG_03": {
-    "templateId": "IG_03",
+  "layout_SCS_雙券_$350": {
+    "templateId": "layout_SCS_雙券_$350",
     "sourceJson": "IG_03_edited.json",
     "textLayers": {
       "title": {
@@ -581,8 +581,8 @@
   function getDDCardPriceRules() {
     const rules = clone(window.TemplateRuleRegistry?.getRules?.('ddcard', 'priceRules') || {});
     rules.enabled = true;
-    rules.productFirst = false;
-    rules.resolvePriority = 'templateFirst';
+    rules.productFirst = true;
+    rules.resolvePriority = 'productFirst';
     rules.coordinateMode = 'absolute';
     rules.positioningMode = 'absolute';
     rules.anchorLayerName = '商品圖1';
@@ -607,26 +607,27 @@
         followProduct: true,
       };
     });
+    // 商品＋價格 → IG 版面（不再用輸出編號）；DD Card 複製過來的 productLayouts 全部換成 IG 自己的
+    rules.productLayouts = {};
+    Object.entries(CONFIRMED_IG_LAYOUTS).forEach(([key, layout]) => {
+      const productKey = norm(layout.productName);
+      if (!rules.productLayouts[productKey]) rules.productLayouts[productKey] = { productName: layout.productName, variants: [], useTemplate: key };
+      if (layout.rawPriceExample) rules.productLayouts[productKey].variants.push({ priceIncludes: layout.rawPriceExample, useTemplate: key });
+    });
 
     return rules;
   }
 
-  function getTemplateKey(template) {
-    const candidates = [
-      template?.templateId,
-      template?.pricePresetMeta?.templateId,
-      template?.batchSourceName,
-      template?.canvas?.templateId,
-      template?.source?.psdName,
-    ].filter(Boolean);
-
-    for (const value of candidates) {
-      if (CONFIRMED_IG_LAYOUTS[value]) return value;
-      const key = Object.keys(CONFIRMED_IG_LAYOUTS).find((candidate) => norm(candidate) === norm(value));
-      if (key) return key;
-    }
-
-    return null;
+  /** 2026-11-03：不再用輸出編號（IG_01…）找版面，改依工單 商品圖1＋價格 對到 CONFIRMED_IG_LAYOUTS 的 productName／rawPriceExample。 */
+  function getTemplateKey(template, recordArg) {
+    const record = recordArg || template?.batchRecord || {};
+    const product = norm(record['商品圖1']);
+    const price = norm(record['價格']);
+    if (!product) return null;
+    const candidates = Object.entries(CONFIRMED_IG_LAYOUTS).filter(([, layout]) => norm(layout.productName) === product);
+    if (!candidates.length) return null;
+    const byPrice = candidates.find(([, layout]) => layout.rawPriceExample && price.includes(norm(layout.rawPriceExample)));
+    return (byPrice || candidates[0])[0];
   }
 
   function applyValues(target, values, options = {}) {
@@ -777,7 +778,7 @@
     },
 
     afterApplyRecordToTemplate({ template, record, diagnostics }) {
-      const templateKey = getTemplateKey(template);
+      const templateKey = getTemplateKey(template, record);
       const layout = templateKey ? CONFIRMED_IG_LAYOUTS[templateKey] : null;
 
       if (layout) {

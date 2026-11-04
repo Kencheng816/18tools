@@ -180,6 +180,7 @@
     if (!target || !/^#[0-9a-f]{6}$/i.test(value) || value === target.layer.color) return;
     HistoryManager?.push?.();
     target.layer.color = value;
+    window.ManualOverrideManager?.mark?.(target.layer, ['color']); // 規則重畫不蓋掉（modules/manual-override-guard.js）
     const inspectorColor = $('colorInput'); if (inspectorColor) inspectorColor.value = value;
     afterLayerChange(target);
   }
@@ -191,6 +192,7 @@
     if (!target || !Number.isFinite(size) || size === target.layer.fontSizePx) return;
     HistoryManager?.push?.();
     target.layer.fontSizePx = size; target.layer.fontSizePt = size;
+    window.ManualOverrideManager?.mark?.(target.layer, ['fontSizePx', 'fontSizePt', 'lineHeight']);
     if (target.layer.lineHeightMultiplier) target.layer.lineHeight = size * target.layer.lineHeightMultiplier;
     const inspectorSize = $('fontSizeInput'); if (inspectorSize) inspectorSize.value = size;
     afterLayerChange(target);

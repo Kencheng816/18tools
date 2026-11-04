@@ -279,10 +279,12 @@ const KEYWORD_VIP = 'VIP';
       "coordinateMode": "absolute",
       "positioningMode": "absolute",
       "lockToEditedJson": true,
-      "productFirst": false,
-      "resolvePriority": "templateFirst",
+      "productFirst": true,
+      "resolvePriority": "productFirst",
       "templateLayouts": {
-            "POPUP_01": {
+            "layout_VIP_單券_蝦幣_18%蝦幣": {
+              "productName": "VIP_單券_蝦幣",
+              "rawPriceExample": "18%蝦幣",
                   "productImageBox": {
                         "x": 76.7,
                         "y": 310.0,
@@ -315,7 +317,7 @@ const KEYWORD_VIP = 'VIP';
                         }
                   ]
             },
-            "POPUP_02": {
+            "layout_SCS_雙券_$350": {
                   "productImageBox": {
                         "x": 105.0,
                         "y": 309.8,
@@ -366,7 +368,9 @@ const KEYWORD_VIP = 'VIP';
                         }
                   ]
             },
-            "POPUP_03": {
+            "layout_信用卡加全站券_88折": {
+              "productName": "信用卡加全站券",
+              "rawPriceExample": "88折",
                   "productImageBox": {
                         "x": 100.6,
                         "y": 311.7,
@@ -399,7 +403,7 @@ const KEYWORD_VIP = 'VIP';
                         }
                   ]
             },
-            "POPUP_04": {
+            "layout_鬧鐘加全站券_$40": {
                   "productImageBox": {
                                     "x": 106.5,
                                     "y": 310,
@@ -446,40 +450,9 @@ const KEYWORD_VIP = 'VIP';
                                     }
                   ]
 },
-            "POPUP_05": {
-                  "productImageBox": {
-                        "x": 76.5,
-                        "y": 313.0,
-                        "width": 423.1,
-                        "height": 269.0,
-                        "targetWidth": 423.1,
-                        "targetHeight": 269.0,
-                        "maxTargetHeight": 269.0,
-                        "sizingMode": "containByPBox",
-                        "keepAspectRatio": true
-                  },
-                  "layouts": [
-                        {
-                              "slot": "single",
-                              "psdName": "價格",
-                              "x": 177.0,
-                              "y": 422.0,
-                              "width": 329.0,
-                              "height": 121.0,
-                              "centerX": 341.5,
-                              "centerY": 482.5,
-                              "rotation": 12.0,
-                              "fontSizePx": 70.0,
-                              "fontSizePt": 70.0,
-                              "letterSpacing": 0.0,
-                              "lineHeight": 78.22,
-                              "positioningMode": "absolute",
-                              "lockToEditedJson": true,
-                              "disableAnchorSync": true,
-                        }
-                  ]
-            },
-            "POPUP_06": {
+            "layout_商城券_雙券_9折": {
+              "productName": "商城券_雙券",
+              "rawPriceExample": "9折",
                   "productImageBox": {
                         "x": 108.0,
                         "y": 312.0,
@@ -530,7 +503,9 @@ const KEYWORD_VIP = 'VIP';
                         }
                   ]
             },
-            "POPUP_07": {
+            "layout_全站券加蝦幣_蝦幣18%": {
+              "productName": "全站券加蝦幣",
+              "rawPriceExample": "蝦幣18%",
                   "productImageBox": {
                         "x": 102.7,
                         "y": 318.8,
@@ -563,7 +538,7 @@ const KEYWORD_VIP = 'VIP';
                         }
                   ]
             },
-            "POPUP_08": {
+            "layout_商城券_雙券_$200": {
                   "productImageBox": {
                         "x": 108.0,
                         "y": 312.0,
@@ -615,17 +590,21 @@ const KEYWORD_VIP = 'VIP';
                   ]
             }
       },
-      "productLayouts": {}
+      "productLayouts": {
+      "全站券加蝦幣": {"productName":"全站券加蝦幣","variants":[{"priceIncludes":"蝦幣18%","useTemplate":"layout_全站券加蝦幣_蝦幣18%"}],"useTemplate":"layout_全站券加蝦幣_蝦幣18%"},
+      "商城券_雙券": {"productName":"商城券_雙券","variants":[{"priceIncludes":"9折","useTemplate":"layout_商城券_雙券_9折"},{"priceIncludes":"$200","useTemplate":"layout_商城券_雙券_$200"}],"useTemplate":"layout_商城券_雙券_9折"},
+      "鬧鐘加全站券": {"productName":"鬧鐘加全站券","variants":[{"priceIncludes":"$40","useTemplate":"layout_鬧鐘加全站券_$40"}],"useTemplate":"layout_鬧鐘加全站券_$40"},
+      "信用卡加全站券": {"productName":"信用卡加全站券","variants":[{"priceIncludes":"88折","useTemplate":"layout_信用卡加全站券_88折"}],"useTemplate":"layout_信用卡加全站券_88折"},
+      "SCS_雙券": {"productName":"SCS_雙券","variants":[{"priceIncludes":"$350","useTemplate":"layout_SCS_雙券_$350"}],"useTemplate":"layout_SCS_雙券_$350"},
+      "VIP_單券_蝦幣": {"productName":"VIP_單券_蝦幣","variants":[{"priceIncludes":"18%蝦幣","useTemplate":"layout_VIP_單券_蝦幣_18%蝦幣"}],"useTemplate":"layout_VIP_單券_蝦幣_18%蝦幣"},}
 },
 
     layoutRules: {
       centerX: 290,
       logoGapPx: GAP_PX,
       vipLogoAsset: '蝦皮VIP_LOGO.svg',
+      // 2026-11-03：拿掉以輸出編號當鍵的三筆（跟 default 一樣）
       vipLogoPositionLayouts: {
-        POPUP_01: { y: 93, height: 76 },
-        POPUP_05: { y: 93, height: 76 },
-        POPUP_06: { y: 93, height: 76 },
         default: { y: 93, height: 76 },
       },
       scsLogoAsset: '蝦皮直營_LOGO-01.svg',

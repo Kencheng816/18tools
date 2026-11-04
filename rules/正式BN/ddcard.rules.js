@@ -34,8 +34,9 @@
     specialText: 'VIP獨享18%蝦幣',
   });
 
+  // 2026-11-03：原本以輸出編號當鍵（DDC_01＝副標 VIP、DDC_04＝主標 VIP），改成直接以「VIP 在哪一欄」當鍵
   const DD_CARD_VIP_LAYER_LAYOUTS = Object.freeze({
-    DDC_01: {
+    subtitle: {
       subtitle: {
         group: {
           x: 80,
@@ -71,7 +72,7 @@
         },
       },
     },
-    DDC_04: {
+    title: {
       title: {
         group: {
           x: 31,
@@ -333,8 +334,7 @@
   }
 
   function applyEditedVipLayerLayout(template, fieldKey, groupLayer, logoLayer, textLayer) {
-    const templateId = resolveDdCardTemplateId(template);
-    const preset = DD_CARD_VIP_LAYER_LAYOUTS?.[templateId]?.[fieldKey];
+    const preset = DD_CARD_VIP_LAYER_LAYOUTS?.[fieldKey]?.[fieldKey];
     if (!preset) return false;
 
     copyNumericLayout(groupLayer, preset.group);
@@ -554,7 +554,52 @@
   }
 
   const DD_CARD_TEXT_LAYER_LAYOUTS = Object.freeze({
-    "DDC_01": {
+    // 2026-11-03：原本以輸出編號 DDC_01～12 當鍵（12 組），內容其實只有三種：一般／副標含 VIP／主標含 VIP（其餘差異只是文字框寬度，置中後畫出來一樣）。
+    "default": {
+        "title": {
+            "x": 41,
+            "y": 136,
+            "width": 449,
+            "height": 58,
+            "centerX": 265.5,
+            "centerY": 165,
+            "fontSizePx": 60.45,
+            "fontSizePt": 60.45,
+            "lineHeight": 72.54,
+            "letterSpacing": 0,
+            "align": "center",
+            "color": "#FFFFFF"
+        },
+        "subtitle": {
+            "x": 27,
+            "y": 220,
+            "width": 477,
+            "height": 42,
+            "centerX": 265.5,
+            "centerY": 240,
+            "fontSizePx": 44.62,
+            "fontSizePt": 44.62,
+            "lineHeight": 53.54,
+            "letterSpacing": 0,
+            "align": "center",
+            "color": "#FFFF3C"
+        },
+        "legal": {
+            "x": 110,
+            "y": 286,
+            "width": 310,
+            "height": 23,
+            "centerX": 265,
+            "centerY": 296.5,
+            "fontSizePx": 24,
+            "fontSizePt": 24,
+            "lineHeight": 28.8,
+            "letterSpacing": 0,
+            "align": "center",
+            "color": "#113366"
+        }
+    },
+    "vipSubtitle": {
         "title": {
             "x": 41,
             "y": 136,
@@ -598,95 +643,7 @@
             "color": "#113366"
         }
     },
-    "DDC_02": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 27,
-            "y": 220,
-            "width": 477,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_03": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 79.5,
-            "y": 220,
-            "width": 372,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_04": {
+    "vipTitle": {
         "title": {
             "x": 31,
             "y": 126,
@@ -729,373 +686,20 @@
             "align": "center",
             "color": "#113366"
         }
-    },
-    "DDC_05": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 35,
-            "y": 220,
-            "width": 461,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_06": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 80.5,
-            "y": 220,
-            "width": 370,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_07": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 105,
-            "y": 220,
-            "width": 321,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_08": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 27,
-            "y": 220,
-            "width": 477,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_09": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 27,
-            "y": 220,
-            "width": 477,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_10": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 27,
-            "y": 220,
-            "width": 477,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_11": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 44,
-            "y": 220,
-            "width": 443,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
-    },
-    "DDC_12": {
-        "title": {
-            "x": 41,
-            "y": 136,
-            "width": 449,
-            "height": 58,
-            "centerX": 265.5,
-            "centerY": 165,
-            "fontSizePx": 60.45,
-            "fontSizePt": 60.45,
-            "lineHeight": 72.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFFFF"
-        },
-        "subtitle": {
-            "x": 64.5,
-            "y": 220,
-            "width": 402,
-            "height": 42,
-            "centerX": 265.5,
-            "centerY": 240,
-            "fontSizePx": 44.62,
-            "fontSizePt": 44.62,
-            "lineHeight": 53.54,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#FFFF3C"
-        },
-        "legal": {
-            "x": 110,
-            "y": 286,
-            "width": 310,
-            "height": 23,
-            "centerX": 265,
-            "centerY": 296.5,
-            "fontSizePx": 24,
-            "fontSizePt": 24,
-            "lineHeight": 28.8,
-            "letterSpacing": 0,
-            "align": "center",
-            "color": "#113366"
-        }
     }
-});
+  });
 
+  /** 2026-11-03：依工單內容決定文字版面（不看輸出編號）：主標含 VIP → vipTitle；副標含 VIP → vipSubtitle；其餘 default。 */
   function resolveDdCardTemplateId(template = {}) {
-    const labels = [
-      template?.templateId,
-      template?.pricePresetMeta?.templateId,
-      template?.sheetTemplateRoute?.sourceTemplateId,
-      template?.batchSourceName,
-      template?.source?.psdName,
-    ].filter(Boolean).map(String);
-    return Object.keys(DD_CARD_TEXT_LAYER_LAYOUTS).find((id) =>
-      labels.some((label) => normalizeText(label).includes(normalizeText(id)))
-    ) || '';
+    // 這組座標是 DD Card 公版（531×792）量出來的；同家族但不同尺寸的公版（例：330 工單的 HBN-C2C (DD card) 1200×360）不套
+    if (Number(template?.canvas?.width) !== 531 || Number(template?.canvas?.height) !== 792) return '';
+    const record = template?.batchRecord || {};
+    const hasVip = (value) => /vip/i.test(String(value || ''));
+    if (hasVip(record['主標'])) return 'vipTitle';
+    if (hasVip(record['副標'])) return 'vipSubtitle';
+    return 'default';
   }
+
 
   function applyDdCardTextLayerLayout({ template, helpers }) {
     const templateId = resolveDdCardTemplateId(template);
@@ -1127,8 +731,8 @@ const RULES = {
   },
   "priceRules": {
     "enabled": true,
-    "productFirst": false,
-    "resolvePriority": "templateFirst",
+    "productFirst": true,
+    "resolvePriority": "productFirst",
     "coordinateMode": "absolute",
     "anchorLayerName": "商品圖1",
     "anchorLayerNames": [
@@ -1141,8 +745,8 @@ const RULES = {
     ],
     "defaultColor": "#D0011B",
     "templateLayouts": {
-      "DDC_01": {
-            "templateId": "DDC_01",
+      "layout_VIP_單券_蝦幣_18%蝦幣": {
+            "templateId": "layout_VIP_單券_蝦幣_18%蝦幣",
             "productName": "VIP_單券_蝦幣",
             "productKey": "VIP_單券_蝦幣",
             "layoutKey": "vip",
@@ -1215,8 +819,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_02": {
-            "templateId": "DDC_02",
+      "layout_全站券_雙券_$100": {
+            "templateId": "layout_全站券_雙券_$100",
             "productName": "全站券_雙券",
             "productKey": "全站券_雙券",
             "layoutKey": "doubleCoupon",
@@ -1321,8 +925,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_03": {
-            "templateId": "DDC_03",
+      "layout_全站券_雙券_93折": {
+            "templateId": "layout_全站券_雙券_93折",
             "productName": "全站券_雙券",
             "productKey": "全站券_雙券",
             "layoutKey": "doubleCoupon",
@@ -1427,82 +1031,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_04": {
-            "templateId": "DDC_04",
-            "productName": "VIP_單券_蝦幣",
-            "productKey": "VIP_單券_蝦幣",
-            "layoutKey": "vip",
-            "rawPriceExample": "18%蝦幣",
-            "isDoubleCoupon": false,
-            "productImageBox": {
-                  "x": 45,
-                  "y": 357.7,
-                  "width": 410,
-                  "height": 260.7,
-                  "centerX": 250,
-                  "centerY": 488,
-                  "targetWidth": 410,
-                  "targetHeight": 260.7,
-                  "maxTargetHeight": 260.7,
-                  "sizingMode": "containByPBox",
-                  "keepAspectRatio": 1
-            },
-            "anchorSource": {
-                  "layerKey": "product_1",
-                  "x": 45,
-                  "y": 357.7,
-                  "width": 410,
-                  "height": 260.7,
-                  "centerX": 250,
-                  "centerY": 488,
-                  "targetWidth": 410,
-                  "targetHeight": 260.7,
-                  "maxTargetHeight": 260.7,
-                  "sizingMode": "containByPBox",
-                  "keepAspectRatio": 1
-            },
-            "layouts": [
-                  {
-                        "slot": "single",
-                        "psdName": "價格",
-                        "positioningMode": "absolute",
-                        "x": 138,
-                        "y": 461,
-                        "width": 318,
-                        "height": 117,
-                        "centerX": 297,
-                        "centerY": 519.5,
-                        "rotation": 12,
-                        "fontSizePx": 70,
-                        "fontSizePt": 70,
-                        "lineHeight": 75.56,
-                        "letterSpacing": 0,
-                        "lineHeightMultiplier": 1.08,
-                        "color": "#ff770f",
-                        "leftX": 138,
-                        "topY": 461,
-                        "baseHeight": 117,
-                        "baseWidth": 318,
-                        "baseFontSizePx": 70,
-                        "rotationOffset": 12,
-                        "offsetY": 31.5,
-                        "offsetX": 47,
-                        "preserveExactSize": true,
-                        "skipAutoScale": true,
-                        "disableAnchorSync": false,
-                        "lockToEditedJson": true,
-                        "followProduct": true,
-                        "disableContentScale": true
-                  }
-            ],
-            "positioningMode": "absolute",
-            "lockToEditedJson": true,
-            "coordinateMode": "absolute",
-            "disableAnchorSync": false,
-            "disableContentScale": true,
-      },
-      "DDC_05": {
-            "templateId": "DDC_05",
+      "layout_商城券_雙券_$200": {
+            "templateId": "layout_商城券_雙券_$200",
             "productName": "商城券_雙券",
             "productKey": "商城券_雙券",
             "layoutKey": "doubleCoupon",
@@ -1607,8 +1137,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_06": {
-            "templateId": "DDC_06",
+      "layout_商城券_雙券_92折": {
+            "templateId": "layout_商城券_雙券_92折",
             "productName": "商城券_雙券",
             "productKey": "商城券_雙券",
             "layoutKey": "doubleCoupon",
@@ -1713,8 +1243,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_07": {
-            "templateId": "DDC_07",
+      "layout_商城券_雙券_93折": {
+            "templateId": "layout_商城券_雙券_93折",
             "productName": "商城券_雙券",
             "productKey": "商城券_雙券",
             "layoutKey": "doubleCoupon",
@@ -1819,8 +1349,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_08": {
-            "templateId": "DDC_08",
+      "layout_免運車加商城券_92折": {
+            "templateId": "layout_免運車加商城券_92折",
             "productName": "免運車加商城券",
             "productKey": "免運車加商城券",
             "layoutKey": "freeShippingCoupon",
@@ -1897,8 +1427,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_09": {
-            "templateId": "DDC_09",
+      "layout_免運車加商城券_$200": {
+            "templateId": "layout_免運車加商城券_$200",
             "productName": "免運車加商城券",
             "productKey": "免運車加商城券",
             "layoutKey": "freeShippingCoupon",
@@ -1975,8 +1505,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_10": {
-            "templateId": "DDC_10",
+      "layout_免運車加商城券_95折": {
+            "templateId": "layout_免運車加商城券_95折",
             "productName": "免運車加商城券",
             "productKey": "免運車加商城券",
             "layoutKey": "freeShippingCoupon",
@@ -2053,8 +1583,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_11": {
-            "templateId": "DDC_11",
+      "layout_商城券加蝦幣_20%": {
+            "templateId": "layout_商城券加蝦幣_20%",
             "productName": "商城券加蝦幣",
             "productKey": "商城券加蝦幣",
             "layoutKey": "couponCoin",
@@ -2131,8 +1661,8 @@ const RULES = {
             "disableAnchorSync": false,
             "disableContentScale": true,
       },
-      "DDC_12": {
-            "templateId": "DDC_12",
+      "layout_商城券_雙券_9折": {
+            "templateId": "layout_商城券_雙券_9折",
             "productName": "商城券_雙券",
             "productKey": "商城券_雙券",
             "layoutKey": "doubleCoupon",
@@ -2238,7 +1768,12 @@ const RULES = {
             "disableContentScale": true,
       }
 },
-    "productLayouts": {},
+    "productLayouts": {
+      "商城券加蝦幣": {"productName":"商城券加蝦幣","variants":[{"priceIncludes":"20%","useTemplate":"layout_商城券加蝦幣_20%"}],"useTemplate":"layout_商城券加蝦幣_20%"},
+      "免運車加商城券": {"productName":"免運車加商城券","variants":[{"priceIncludes":"92折","useTemplate":"layout_免運車加商城券_92折"},{"priceIncludes":"$200","useTemplate":"layout_免運車加商城券_$200"},{"priceIncludes":"95折","useTemplate":"layout_免運車加商城券_95折"}],"useTemplate":"layout_免運車加商城券_92折"},
+      "商城券_雙券": {"productName":"商城券_雙券","variants":[{"priceIncludes":"$200","useTemplate":"layout_商城券_雙券_$200"},{"priceIncludes":"92折","useTemplate":"layout_商城券_雙券_92折"},{"priceIncludes":"93折","useTemplate":"layout_商城券_雙券_93折"},{"priceIncludes":"9折","useTemplate":"layout_商城券_雙券_9折"}],"useTemplate":"layout_商城券_雙券_$200"},
+      "全站券_雙券": {"productName":"全站券_雙券","variants":[{"priceIncludes":"$100","useTemplate":"layout_全站券_雙券_$100"},{"priceIncludes":"93折","useTemplate":"layout_全站券_雙券_93折"}],"useTemplate":"layout_全站券_雙券_$100"},
+      "VIP_單券_蝦幣": {"productName":"VIP_單券_蝦幣","variants":[{"priceIncludes":"18%蝦幣","useTemplate":"layout_VIP_單券_蝦幣_18%蝦幣"}],"useTemplate":"layout_VIP_單券_蝦幣_18%蝦幣"},},
     "positioningMode": "absolute",
     "lockToEditedJson": true,
     "followProduct": true,

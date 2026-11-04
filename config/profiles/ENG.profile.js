@@ -12,6 +12,7 @@ window.__profileRegistry["profile:ENG"] = {
   "rulesNamespace": "rules/ENG/",
   "_comment": "18節 ENG＝V4.20.3 舊 core 最乾淨的成員（AMS 減 AMS 專屬）；docs/core-diff/04 §2。",
   "flags": {
+    "diagnostics.skipBlocks": ["Game 頭巾", "Game BN", "Seller BN", "IG Story", "直播時縮圖"],
     "assets.fuzzyRoleGuard": false,
     "batch.coreCopyTextMap": false,
     "batch.coreSubtitleTextMap": true,

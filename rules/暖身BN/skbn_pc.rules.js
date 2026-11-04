@@ -122,15 +122,16 @@ const FAMILY = 'skbn_pc';
   const SKBNPCTemplateRules = {
     priceRules: {
       enabled: true,
-      productFirst: false,
-      resolvePriority: 'templateFirst',
+      // 2026-11-03 批次 ⑨：版面鍵改成內容型（商品＋價格），查找改商品優先；原本 SKBN_PC_01～12 以輸出編號當鍵（07～12 工單沒有對應筆數、06 跟 03 同商品同價格，已併）
+      productFirst: true,
+      resolvePriority: 'productFirst',
       coordinateMode: 'absolute',
       positioningMode: 'absolute',
       anchorLayerName: '商品圖1',
       anchorLayerNames: ['商品圖1', 'P1', '曝品', 'product_1', 'product', 'P'],
       defaultColor: '#D0011B',
       templateLayouts: {
-        "SKBN_PC_01": {
+        "layout_VIP_單券_蝦幣_有價格": {
   "layoutKey": "productOnly",
   "productName": "VIP_單券_蝦幣_有價格",
   "productImageBox": {
@@ -147,7 +148,8 @@ const FAMILY = 'skbn_pc';
   "suppressPrice": true,
   "sourceTemplateId": "SKBN_PC_01_edited"
 },
-        "SKBN_PC_02": {
+        "layout_全站_雙券_88折": {
+          "rawPriceExample": "88折",
   "layoutKey": "doubleCoupon",
   "productName": "全站_雙券",
   "productImageBox": {
@@ -209,7 +211,8 @@ const FAMILY = 'skbn_pc';
     }
   ]
 },
-        "SKBN_PC_03": {
+        "layout_全站_雙券_$40": {
+          "rawPriceExample": "$40",
   "layoutKey": "doubleCoupon",
   "productName": "全站_雙券",
   "productImageBox": {
@@ -271,7 +274,7 @@ const FAMILY = 'skbn_pc';
     }
   ]
 },
-        "SKBN_PC_04": {
+        "layout_蝦幣堆": {
   "layoutKey": "productOnly",
   "productName": "蝦幣堆",
   "productImageBox": {
@@ -286,7 +289,8 @@ const FAMILY = 'skbn_pc';
     "maxTargetHeight": 70.9
   }
 },
-        "SKBN_PC_05": {
+        "layout_全站_雙券_$500": {
+          "rawPriceExample": "$500",
   "layoutKey": "doubleCoupon",
   "productName": "全站_雙券",
   "productImageBox": {
@@ -334,393 +338,6 @@ const FAMILY = 'skbn_pc';
       "height": 28,
       "centerX": 285.6,
       "centerY": 74,
-      "rotation": 2,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    }
-  ]
-},
-        "SKBN_PC_06": {
-  "layoutKey": "doubleCoupon",
-  "productName": "全站_雙券",
-  "productImageBox": {
-    "x": 227.2,
-    "y": 14.4,
-    "width": 101.9,
-    "height": 73.8,
-    "centerX": 278.1,
-    "centerY": 51.3,
-    "targetWidth": 101.9,
-    "targetHeight": 73.8,
-    "maxTargetHeight": 73.8
-  },
-  "isDoubleCoupon": true,
-  "layouts": [
-    {
-      "slot": "top",
-      "psdName": "價格2（上券）",
-      "positioningMode": "absolute",
-      "leftX": 240.8,
-      "topY": 21.5,
-      "width": 84,
-      "height": 28,
-      "centerX": 282.8,
-      "centerY": 35.5,
-      "rotation": -6,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    },
-    {
-      "slot": "bottom",
-      "psdName": "價格1（下券）",
-      "positioningMode": "absolute",
-      "leftX": 252,
-      "topY": 53.7,
-      "width": 84,
-      "height": 28,
-      "centerX": 294,
-      "centerY": 67.7,
-      "rotation": 2,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    }
-  ]
-},
-        "SKBN_PC_07": {
-  "layoutKey": "doubleCoupon",
-  "productName": "全站_雙券",
-  "productImageBox": {
-    "x": 210,
-    "y": 14,
-    "width": 116,
-    "height": 83,
-    "centerX": 268,
-    "centerY": 55.5,
-    "targetWidth": 116,
-    "targetHeight": 83,
-    "maxTargetHeight": 83
-  },
-  "isDoubleCoupon": true,
-  "layouts": [
-    {
-      "slot": "top",
-      "psdName": "價格2（上券）",
-      "positioningMode": "absolute",
-      "leftX": 233.3,
-      "topY": 23.3,
-      "width": 84,
-      "height": 28,
-      "centerX": 275.3,
-      "centerY": 37.3,
-      "rotation": -6,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    },
-    {
-      "slot": "bottom",
-      "psdName": "價格1（下券）",
-      "positioningMode": "absolute",
-      "leftX": 244,
-      "topY": 60,
-      "width": 84,
-      "height": 28,
-      "centerX": 286,
-      "centerY": 74,
-      "rotation": 2,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    }
-  ]
-},
-        "SKBN_PC_08": {
-  "layoutKey": "doubleCoupon",
-  "productName": "全站_雙券",
-  "productImageBox": {
-    "x": 210,
-    "y": 14,
-    "width": 116,
-    "height": 83,
-    "centerX": 268,
-    "centerY": 55.5,
-    "targetWidth": 116,
-    "targetHeight": 83,
-    "maxTargetHeight": 83
-  },
-  "isDoubleCoupon": true,
-  "layouts": [
-    {
-      "slot": "top",
-      "psdName": "價格2（上券）",
-      "positioningMode": "absolute",
-      "leftX": 233.3,
-      "topY": 23.3,
-      "width": 84,
-      "height": 28,
-      "centerX": 275.3,
-      "centerY": 37.3,
-      "rotation": -6,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    },
-    {
-      "slot": "bottom",
-      "psdName": "價格1（下券）",
-      "positioningMode": "absolute",
-      "leftX": 244,
-      "topY": 60,
-      "width": 84,
-      "height": 28,
-      "centerX": 286,
-      "centerY": 74,
-      "rotation": 2,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    }
-  ]
-},
-        "SKBN_PC_09": {
-  "layoutKey": "doubleCoupon",
-  "productName": "全站_雙券",
-  "productImageBox": {
-    "x": 225.2,
-    "y": 17.1,
-    "width": 101.9,
-    "height": 73.8,
-    "centerX": 276.1,
-    "centerY": 54,
-    "targetWidth": 101.9,
-    "targetHeight": 73.8,
-    "maxTargetHeight": 73.8
-  },
-  "isDoubleCoupon": true,
-  "layouts": [
-    {
-      "slot": "top",
-      "psdName": "價格2（上券）",
-      "positioningMode": "absolute",
-      "leftX": 239.4,
-      "topY": 24.4,
-      "width": 84,
-      "height": 28,
-      "centerX": 281.4,
-      "centerY": 38.4,
-      "rotation": -6,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28.08,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    },
-    {
-      "slot": "bottom",
-      "psdName": "價格1（下券）",
-      "positioningMode": "absolute",
-      "leftX": 249.6,
-      "topY": 57.2,
-      "width": 84,
-      "height": 28,
-      "centerX": 291.6,
-      "centerY": 71.2,
-      "rotation": 2,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    }
-  ]
-},
-        "SKBN_PC_10": {
-  "layoutKey": "productOnly",
-  "productName": "蝦幣堆",
-  "productImageBox": {
-    "x": 201.6,
-    "y": 24.1,
-    "width": 130.3,
-    "height": 70.9,
-    "centerX": 266.8,
-    "centerY": 59.6,
-    "targetWidth": 130.3,
-    "targetHeight": 70.9,
-    "maxTargetHeight": 70.9
-  }
-},
-        "SKBN_PC_11": {
-  "layoutKey": "doubleCoupon",
-  "productName": "全站_雙券",
-  "productImageBox": {
-    "x": 210,
-    "y": 14,
-    "width": 116,
-    "height": 83,
-    "centerX": 268,
-    "centerY": 55.5,
-    "targetWidth": 116,
-    "targetHeight": 83,
-    "maxTargetHeight": 83
-  },
-  "isDoubleCoupon": true,
-  "layouts": [
-    {
-      "slot": "top",
-      "psdName": "價格2（上券）",
-      "positioningMode": "absolute",
-      "leftX": 231.5,
-      "topY": 23.2,
-      "width": 84,
-      "height": 28,
-      "centerX": 273.5,
-      "centerY": 37.2,
-      "rotation": -6,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    },
-    {
-      "slot": "bottom",
-      "psdName": "價格1（下券）",
-      "positioningMode": "absolute",
-      "leftX": 243.6,
-      "topY": 60,
-      "width": 84,
-      "height": 28,
-      "centerX": 285.6,
-      "centerY": 74,
-      "rotation": 2,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    }
-  ]
-},
-        "SKBN_PC_12": {
-  "layoutKey": "doubleCoupon",
-  "productName": "全站_雙券",
-  "productImageBox": {
-    "x": 227.2,
-    "y": 14.4,
-    "width": 101.9,
-    "height": 73.8,
-    "centerX": 278.1,
-    "centerY": 51.3,
-    "targetWidth": 101.9,
-    "targetHeight": 73.8,
-    "maxTargetHeight": 73.8
-  },
-  "isDoubleCoupon": true,
-  "layouts": [
-    {
-      "slot": "top",
-      "psdName": "價格2（上券）",
-      "positioningMode": "absolute",
-      "leftX": 240.8,
-      "topY": 21.5,
-      "width": 84,
-      "height": 28,
-      "centerX": 282.8,
-      "centerY": 35.5,
-      "rotation": -6,
-      "fontSizePx": 26,
-      "fontSizePt": 26,
-      "lineHeight": 28,
-      "letterSpacing": 0,
-      "color": "#EE4D2D",
-      "preserveExactSize": true,
-      "skipAutoScale": true,
-      "lockToEditedJson": true,
-      "followProduct": true,
-      "disableContentScale": true
-    },
-    {
-      "slot": "bottom",
-      "psdName": "價格1（下券）",
-      "positioningMode": "absolute",
-      "leftX": 252,
-      "topY": 53.7,
-      "width": 84,
-      "height": 28,
-      "centerX": 294,
-      "centerY": 67.7,
       "rotation": 2,
       "fontSizePx": 26,
       "fontSizePt": 26,
@@ -746,9 +363,26 @@ const FAMILY = 'skbn_pc';
         },
       },
       productLayouts: {
-        'VIP_單券_蝦幣_有價格': { productName: 'VIP_單券_蝦幣_有價格', useTemplate: 'SKBN_PC_01' },
-        '全站_雙券': { productName: '全站_雙券', useTemplate: 'SKBN_PC_DOUBLE_COUPON_FALLBACK' },
-        '全站雙券': { productName: '全站_雙券', useTemplate: 'SKBN_PC_DOUBLE_COUPON_FALLBACK' },
+        'VIP_單券_蝦幣_有價格': { productName: 'VIP_單券_蝦幣_有價格', useTemplate: 'layout_VIP_單券_蝦幣_有價格' },
+        '蝦幣堆': { productName: '蝦幣堆', useTemplate: 'layout_蝦幣堆' },
+        '全站_雙券': {
+          productName: '全站_雙券',
+          variants: [
+            { priceIncludes: '88折', useTemplate: 'layout_全站_雙券_88折' },
+            { priceIncludes: '$40', useTemplate: 'layout_全站_雙券_$40' },
+            { priceIncludes: '$500', useTemplate: 'layout_全站_雙券_$500' },
+          ],
+          useTemplate: 'SKBN_PC_DOUBLE_COUPON_FALLBACK',
+        },
+        '全站雙券': {
+          productName: '全站_雙券',
+          variants: [
+            { priceIncludes: '88折', useTemplate: 'layout_全站_雙券_88折' },
+            { priceIncludes: '$40', useTemplate: 'layout_全站_雙券_$40' },
+            { priceIncludes: '$500', useTemplate: 'layout_全站_雙券_$500' },
+          ],
+          useTemplate: 'SKBN_PC_DOUBLE_COUPON_FALLBACK',
+        },
       },
     },
 

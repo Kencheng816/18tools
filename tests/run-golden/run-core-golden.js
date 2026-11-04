@@ -131,8 +131,12 @@ async function extractZip(buffer) {
 }
 
 /** 開頁並等到分類啟用 → 規則與 core 載入 → App.init 完成 → bootstrap 解除閘門（輸入框啟用）。 */
+/** GOLDEN_FONTS：字型來源（見 config/fonts.js 的 ?fonts=）。預設 local＝只用內建 TTF（沙箱連不到 GitHub raw，省掉等逾時）；
+ *  要驗證 WOFF2 輸出零誤差時指到一個放 WOFF2 的網址，例如 GOLDEN_FONTS=http://127.0.0.1:PORT/fonts-woff2/ 。 */
+const FONTS_PARAM = process.env.GOLDEN_FONTS || 'local';
+
 async function openWithProfile(page, origin, profileId) {
-  await page.goto(`${origin}/app.html?profile=${encodeURIComponent(profileId)}`, { waitUntil: 'load' });
+  await page.goto(`${origin}/app.html?profile=${encodeURIComponent(profileId)}&fonts=${encodeURIComponent(FONTS_PARAM)}`, { waitUntil: 'load' });
   // 注意：__appReady 是 Promise，waitForFunction 回傳它本身會被 await 成 undefined，所以先轉成布林。
   await page.waitForFunction(() => !!(window.ProfileLoader?.active && window.__rulesLoadResult && window.App && window.__appReady && window.__coreScriptsReady), { timeout: 60000 });
   await page.evaluate(() => window.__appReady);

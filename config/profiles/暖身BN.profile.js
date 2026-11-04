@@ -11,7 +11,11 @@ window.__profileRegistry["profile:暖身BN"] = {
   "rulesNamespace": "rules/暖身BN/",
   "_comment": "18節 A 系＝25節 KV 前身（docs/core-diff/05）；以 ENG（V4 最乾淨成員）旗標為底＋A 系差異；差異大的函式以 core/legacy18/ 覆寫模組掛進 B 系。",
   "flags": {
+    "layout.productBoxSources": ["HBN", "DD card", "DDC", "POPUP", "IG", "SKBN PC"],
     "text.autoShrinkSymbols": true,
+    "text.normalizeRawTracking": true,
+    "layers.guideNameKeywords": ["規範", "範圍"],
+    "batch.multiProductSplit": true,
     "price.rebuildAfterHook": "none",
     "assets.fuzzyRoleGuard": false,
     "batch.coreCopyTextMap": false,
@@ -73,7 +77,8 @@ window.__profileRegistry["profile:暖身BN"] = {
     "core/product-engine.js",
     "renderers/shape-renderer.warmup18.js",
     "core/app.core.js",
-    "core/legacy18/暖身BN.overrides.js"
+    "core/legacy18/暖身BN.overrides.js",
+    "modules/layout-by-record.js"
   ],
   "templatesDir": "templates/暖身BN",
   "assetsDir": "assets/暖身BN"

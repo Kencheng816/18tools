@@ -208,5 +208,11 @@
       "蝦皮購物18號會員日_LOGO_白.svg": "3a11d17e16efb9fe7527c2ee50e2b8f1fd4a7a806f6eabcf66c6b9d82c40baa0",
       "蝦皮購物_LOGO_白.svg": "2d940580d5a5d640766e3f67aee7a1b39f24df9d8956690a50daa5f865edccea"
     }
+  },
+  "rebaselined": {
+    "at": "2026-11-03T02:15:24.867Z",
+    "by": "run-core-golden --update-golden",
+    "reason": "2026-11-03 補上 09_LineOA_Template_RM_強檔優惠.png（0418選單 多了精選強檔優惠專區標題）",
+    "images": 9
   }
 }

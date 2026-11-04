@@ -8,7 +8,7 @@
  *
  * 銀行 Logo（01~05_銀行）：
  *   - 工單讀到的銀行清單（依序）對應套用到 01_銀行_logo ~ 05_銀行_logo
- *   - 素材檔名＝銀行名稱 + .svg（例如「國泰世華」→「國泰世華.svg」）
+ *   - 素材檔名＝銀行名稱（svg／png／jpg／webp 都可；例如「國泰世華」→「國泰世華.svg」）；銀行清單由工單任何等於素材檔名的格子抓（modules/kv-bank-logos.js）
  *   - 實際置中、contain-fit 75% 縮放由公版 JSON 已設定好的
  *     keepAspectRatio / sizingMode=containByPBox / targetWidth / maxTargetHeight
  *     交給共用的 ProductEngine 在渲染時計算，這裡只需要指定檔名。
@@ -113,12 +113,15 @@
         return;
       }
 
+      // 2026-11-03：檔名不再假設是 .svg——素材夾裡 銀行名.svg／.png／.jpg／.webp 都可以，找不到才退回 .svg
+      const match = window.BatchManager?.findAssetFilename?.(bankName);
+      const filename = match?.found ? match.filename : `${bankName}.svg`;
       if (logoLayer) {
-        logoLayer.assetFilename = `${bankName}.svg`;
+        logoLayer.assetFilename = filename;
         logoLayer.hidden = false;
       }
       if (shadowLayer) shadowLayer.hidden = false;
-      diagnostics.push({ field: logoKey, status: 'ok', value: bankName, filename: `${bankName}.svg` });
+      diagnostics.push({ field: logoKey, status: match?.found === false ? 'missing' : 'ok', value: bankName, filename });
     });
   }
 
