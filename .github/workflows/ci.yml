@@ -33,10 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
+        with: { node-version: 20 } # 專案沒放 package-lock.json，不能開 cache: npm（它要鎖定檔）
       - name: Chromium 依賴
         run: sudo apt-get update -qq && sudo apt-get install -y -qq libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2t64 libpango-1.0-0 libcairo2 fonts-noto-cjk > /dev/null
-      - run: npm ci
+      - name: 安裝測試相依（有 package-lock.json 用 npm ci，沒有用 npm install）
+        run: if [ -f package-lock.json ]; then npm ci; else npm install --no-audit --no-fund; fi
       - run: node tests/run-golden/run-launcher.js
       - run: node tests/run-golden/run-core-golden.js
       - run: node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs
