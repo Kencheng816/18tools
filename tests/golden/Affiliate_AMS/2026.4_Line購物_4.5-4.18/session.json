@@ -4,12 +4,12 @@
   "currentProject": "",
   "templates": [
     {
-      "name": "0325_我的帳戶Down banner_1029*264",
-      "file": "0325_我的帳戶Down banner_1029*264.generated",
+      "name": "0325_我的帳戶Down banner_1029x264",
+      "file": "0325_我的帳戶Down banner_1029x264.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_我的帳戶Down banner_1029*264",
+        "templateId": "0325_我的帳戶Down banner_1029x264",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -6331,11 +6331,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "我的帳戶Down banner",
-          "檔名": "0325_我的帳戶Down banner_1029*264",
+          "檔名": "0325_我的帳戶Down banner_1029x264",
           "店名": "悠活原力官方旗艦店",
           "LINE_POINTS_PERCENT": "0.03",
           "__sourceRow": 13,
-          "__outputName": "0325_我的帳戶Down banner_1029*264"
+          "__outputName": "0325_我的帳戶Down banner_1029x264"
         },
         "batchDiagnostics": [
           {
@@ -6348,12 +6348,12 @@
       }
     },
     {
-      "name": "0325_首頁Top banner(web)_1029*357",
-      "file": "0325_首頁Top banner(web)_1029*357.generated",
+      "name": "0325_首頁Top banner(web)_1029x357",
+      "file": "0325_首頁Top banner(web)_1029x357.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_首頁Top banner(web)_1029*357",
+        "templateId": "0325_首頁Top banner(web)_1029x357",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -12675,11 +12675,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "首頁Top banner(web)",
-          "檔名": "0325_首頁Top banner(web)_1029*357",
+          "檔名": "0325_首頁Top banner(web)_1029x357",
           "店名": "聯合利華官方旗艦店",
           "LINE_POINTS_PERCENT": "0.04",
           "__sourceRow": 14,
-          "__outputName": "0325_首頁Top banner(web)_1029*357"
+          "__outputName": "0325_首頁Top banner(web)_1029x357"
         },
         "batchDiagnostics": [
           {
@@ -12692,12 +12692,12 @@
       }
     },
     {
-      "name": "0325_商店回饋Down banner_750*348",
-      "file": "0325_商店回饋Down banner_750*348.generated",
+      "name": "0325_商店回饋Down banner_750x348",
+      "file": "0325_商店回饋Down banner_750x348.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_商店回饋Down banner_750*348",
+        "templateId": "0325_商店回饋Down banner_750x348",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -19118,11 +19118,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "商店回饋Down banner",
-          "檔名": "0325_商店回饋Down banner_750*348",
+          "檔名": "0325_商店回饋Down banner_750x348",
           "店名": "悠活原力官方旗艦店",
           "LINE_POINTS_PERCENT": "0.03",
           "__sourceRow": 15,
-          "__outputName": "0325_商店回饋Down banner_750*348"
+          "__outputName": "0325_商店回饋Down banner_750x348"
         },
         "batchDiagnostics": [
           {
@@ -19135,12 +19135,12 @@
       }
     },
     {
-      "name": "0325_APP首頁蓋版APP (上半天)_674*674",
-      "file": "0325_APP首頁蓋版APP (上半天)_674*674.generated",
+      "name": "0325_APP首頁蓋版APP (上半天)_674x674",
+      "file": "0325_APP首頁蓋版APP (上半天)_674x674.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_APP首頁蓋版APP (上半天)_674*674",
+        "templateId": "0325_APP首頁蓋版APP (上半天)_674x674",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -25561,11 +25561,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "APP首頁蓋版APP (上半天)",
-          "檔名": "0325_APP首頁蓋版APP (上半天)_674*674",
+          "檔名": "0325_APP首頁蓋版APP (上半天)_674x674",
           "店名": "聯合利華官方旗艦店",
           "LINE_POINTS_PERCENT": "0.04",
           "__sourceRow": 16,
-          "__outputName": "0325_APP首頁蓋版APP (上半天)_674*674"
+          "__outputName": "0325_APP首頁蓋版APP (上半天)_674x674"
         },
         "batchDiagnostics": [
           {
@@ -25578,12 +25578,12 @@
       }
     },
     {
-      "name": "0325_APP首頁Top banner_1029*357",
-      "file": "0325_APP首頁Top banner_1029*357.generated",
+      "name": "0325_APP首頁Top banner_1029x357",
+      "file": "0325_APP首頁Top banner_1029x357.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_APP首頁Top banner_1029*357",
+        "templateId": "0325_APP首頁Top banner_1029x357",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -31893,11 +31893,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "APP首頁Top banner",
-          "檔名": "0325_APP首頁Top banner_1029*357",
+          "檔名": "0325_APP首頁Top banner_1029x357",
           "店名": "悠活原力官方旗艦店",
           "LINE_POINTS_PERCENT": "0.03",
           "__sourceRow": 17,
-          "__outputName": "0325_APP首頁Top banner_1029*357"
+          "__outputName": "0325_APP首頁Top banner_1029x357"
         },
         "batchDiagnostics": [
           {
@@ -31910,12 +31910,12 @@
       }
     },
     {
-      "name": "0325_APP首頁膠囊APP (下半天2)_1029*249",
-      "file": "0325_APP首頁膠囊APP (下半天2)_1029*249.generated",
+      "name": "0325_APP首頁膠囊APP (下半天2)_1029x249",
+      "file": "0325_APP首頁膠囊APP (下半天2)_1029x249.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_APP首頁膠囊APP (下半天2)_1029*249",
+        "templateId": "0325_APP首頁膠囊APP (下半天2)_1029x249",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -36637,11 +36637,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "APP首頁膠囊APP (下半天2)",
-          "檔名": "0325_APP首頁膠囊APP (下半天2)_1029*249",
+          "檔名": "0325_APP首頁膠囊APP (下半天2)_1029x249",
           "店名": "聯合利華官方旗艦店",
           "LINE_POINTS_PERCENT": "0.04",
           "__sourceRow": 18,
-          "__outputName": "0325_APP首頁膠囊APP (下半天2)_1029*249"
+          "__outputName": "0325_APP首頁膠囊APP (下半天2)_1029x249"
         },
         "batchDiagnostics": [
           {
@@ -36654,12 +36654,12 @@
       }
     },
     {
-      "name": "0325_品牌館Top Banner_1029*600",
-      "file": "0325_品牌館Top Banner_1029*600.generated",
+      "name": "0325_品牌館Top Banner_1029x600",
+      "file": "0325_品牌館Top Banner_1029x600.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_品牌館Top Banner_1029*600",
+        "templateId": "0325_品牌館Top Banner_1029x600",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -43068,11 +43068,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "品牌館Top Banner",
-          "檔名": "0325_品牌館Top Banner_1029*600",
+          "檔名": "0325_品牌館Top Banner_1029x600",
           "店名": "悠活原力官方旗艦店",
           "LINE_POINTS_PERCENT": "0.03",
           "__sourceRow": 19,
-          "__outputName": "0325_品牌館Top Banner_1029*600"
+          "__outputName": "0325_品牌館Top Banner_1029x600"
         },
         "batchDiagnostics": [
           {
@@ -43085,12 +43085,12 @@
       }
     },
     {
-      "name": "0325_好康頻道Top Banner_1029*357",
-      "file": "0325_好康頻道Top Banner_1029*357.generated",
+      "name": "0325_好康頻道Top Banner_1029x357",
+      "file": "0325_好康頻道Top Banner_1029x357.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_好康頻道Top Banner_1029*357",
+        "templateId": "0325_好康頻道Top Banner_1029x357",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -49408,11 +49408,11 @@
           "票券": "",
           "票券案型": "",
           "版位": "好康頻道Top Banner",
-          "檔名": "0325_好康頻道Top Banner_1029*357",
+          "檔名": "0325_好康頻道Top Banner_1029x357",
           "店名": "聯合利華官方旗艦店",
           "LINE_POINTS_PERCENT": "0.04",
           "__sourceRow": 20,
-          "__outputName": "0325_好康頻道Top Banner_1029*357"
+          "__outputName": "0325_好康頻道Top Banner_1029x357"
         },
         "batchDiagnostics": [
           {
@@ -49425,12 +49425,12 @@
       }
     },
     {
-      "name": "0325_LINE購物OAPush (分眾)_1040*1040",
-      "file": "0325_LINE購物OAPush (分眾)_1040*1040.generated",
+      "name": "0325_LINE購物OAPush (分眾)_1040x1040",
+      "file": "0325_LINE購物OAPush (分眾)_1040x1040.generated",
       "project": "",
       "visible": true,
       "data": {
-        "templateId": "0325_LINE購物OAPush (分眾)_1040*1040",
+        "templateId": "0325_LINE購物OAPush (分眾)_1040x1040",
         "version": "2.6.2-subtitle-frame-order",
         "source": {
           "type": "photoshop",
@@ -75810,7 +75810,7 @@
         },
         "batchRecord": {
           "版位": "LINE購物OAPush (分眾)",
-          "檔名": "0325_LINE購物OAPush (分眾)_1040*1040",
+          "檔名": "0325_LINE購物OAPush (分眾)_1040x1040",
           "主標": "蝦皮購物  X 3.25",
           "文案": "蝦皮購物 蝦皮商城 蝦皮直營\n最高15%回饋\n15%回饋僅限指定商店，詳請見導購頁\n\n(%數TBC)",
           "商品圖1": "",
@@ -75840,7 +75840,7 @@
           "右下6_短文案_下": "小氣泡爽膚沐浴露",
           "右下6_LINE_POINTS_PERCENT": "4%",
           "右下6_商品圖": "https://down-tw.img.susercontent.com/file/br-11134201-820l8-mlrom8hgnytc62.webp",
-          "__outputName": "0325_LINE購物OAPush (分眾)_1040*1040"
+          "__outputName": "0325_LINE購物OAPush (分眾)_1040x1040"
         },
         "batchDiagnostics": [
           {

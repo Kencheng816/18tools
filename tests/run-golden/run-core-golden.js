@@ -62,6 +62,10 @@ function prepareWorkCopy() {
 
 function sha256(buffer) { return crypto.createHash('sha256').update(buffer).digest('hex'); }
 
+/** 黃金檔名要能放進 Windows（* ? : " < > | 不能當檔名；AMS 的輸出名含「1029*357」）：存黃金時換成全形，比對時把實際輸出也換過再對。 */
+const WINDOWS_UNSAFE = { '*': '＊', '?': '？', ':': '：', '"': '＂', '<': '＜', '>': '＞', '|': '｜' };
+const safeName = (name) => String(name).replace(/[*?:"<>|]/g, (ch) => WINDOWS_UNSAFE[ch]);
+
 function listImages(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(dir, entry.name);
@@ -175,7 +179,7 @@ async function runCase(testCase, workDir, browser, options = {}) {
     if (options.clickThumbs) await clickEveryThumb(page);
 
     const zipBuffer = await driver.exportZip(page, testCase.exportFormat || 'auto');
-    const actual = await extractZip(zipBuffer);
+    let actual = await extractZip(zipBuffer);
     if (process.env.GOLDEN_DEBUG_LAYER) {
       // 除錯：匯出當下的 Renderer 包裝與指定圖層的 ranges（GOLDEN_DEBUG_LAYER=<name regex>）。
       const debug = await page.evaluate((pattern) => {
@@ -192,7 +196,7 @@ async function runCase(testCase, workDir, browser, options = {}) {
       // --update-golden：有意改變輸出時（例如 2026-10-06 自動縮小符號）以整合版目前輸出為新基準；舊基準請先複製到 tests/golden-legacy/。
       fs.rmSync(goldenDir, { recursive: true, force: true });
       fs.mkdirSync(goldenDir, { recursive: true });
-      for (const [name, buffer] of actual) { fs.mkdirSync(path.dirname(path.join(goldenDir, name)), { recursive: true }); fs.writeFileSync(path.join(goldenDir, name), buffer); }
+      for (const [name, buffer] of actual) { const target = path.join(goldenDir, safeName(name)); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, buffer); }
       const metaPath = path.join(REPO_ROOT, testCase.goldenDir, 'capture-meta.json');
       const meta = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : {};
       meta.rebaselined = { at: new Date().toISOString(), by: 'run-core-golden --update-golden', reason: options.updateReason || '', images: actual.size };
@@ -200,6 +204,9 @@ async function runCase(testCase, workDir, browser, options = {}) {
       return { id: testCase.id, status: 'updated', generated: result.generated, golden: actual.size, actual: actual.size, identical: actual.size, mismatches: [], missing: [], extra: [], consoleErrors };
     }
     const goldenNames = listImages(goldenDir);
+    // 實際輸出以 Windows 安全檔名對黃金（zip 內仍是原檔名，不影響使用者下載）
+    const actualRaw = actual;
+    actual = new Map([...actualRaw].map(([name, buffer]) => [safeName(name), buffer]));
     const actualNames = [...actual.keys()].sort();
 
     const report = { id: testCase.id, status: 'pass', generated: result.generated, golden: goldenNames.length, actual: actualNames.length, identical: 0, mismatches: [], missing: [], extra: [], consoleErrors };
@@ -270,6 +277,6 @@ async function main() {
   process.exit(reports.every((r) => r.status === 'pass' || r.status === 'updated') ? 0 : 1);
 }
 
-module.exports = { CASES, REPO_ROOT, parseArgs, prepareWorkCopy, sha256, listImages, pixelDiff, extractZip, openWithProfile };
+module.exports = { CASES, REPO_ROOT, parseArgs, prepareWorkCopy, sha256, listImages, pixelDiff, extractZip, openWithProfile, safeName };
 
 if (require.main === module) main().catch((error) => { console.error(error); process.exit(1); });

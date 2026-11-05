@@ -10083,7 +10083,8 @@
               }
             }
             // batch.outputNameSource＝recordFilenameColumn（18節 AMS V0.5）：檔名來源改為 record.__outputName → 工單「檔名」欄（去副檔名），
-            // 不問規則；batch.outputNameSanitize＝legacyUnderscore：非法字元 [\\/:?"<>|] 換 _，保留 *（黃金檔名 1029*357）。
+            // 不問規則；batch.outputNameSanitize＝legacyUnderscore：非法字元 [\\/:?"<>|] 換 _，保留 *（原工具黃金檔名 1029*357）；
+            // ＝windowsSafe（2026-11-05 使用者決定，AMS 現用）：尺寸的 * 換 x（1029x357），其他 Windows 不能用的字元換 _。
             const useFilenameColumn = flag('batch.outputNameSource', 'ruleOrRecord') === 'recordFilenameColumn';
             const requestedOutputName = useFilenameColumn
               ? String(variantRecord.__outputName || variantRecord['檔名'] || '').trim().replace(/\.(?:png|jpe?g|webp)$/i, '')
@@ -10091,9 +10092,12 @@
             const seq = (counters.get(baseName) || 0) + 1;
             counters.set(baseName, seq);
             const suffix = this.normalizeOutputSuffix(variantRecord.__outputSuffix || variantRecord._outputSuffix || '');
-            const sanitizeOutputName = (value) => (flag('batch.outputNameSanitize', 'dash') === 'legacyUnderscore'
+            const sanitizeMode = flag('batch.outputNameSanitize', 'dash');
+            const sanitizeOutputName = (value) => (sanitizeMode === 'legacyUnderscore'
               ? value.replace(/[\\/:?"<>|]/g, '_')
-              : value.replace(/[\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').trim());
+              : sanitizeMode === 'windowsSafe'
+                ? value.replace(/(\d)\s*[*＊×]\s*(\d)/g, '$1x$2').replace(/[\\/:*?"<>|]/g, '_')
+                : value.replace(/[\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').trim());
             const outputName = requestedOutputName
               ? sanitizeOutputName(requestedOutputName)
               : `${baseName}_${String(seq).padStart(2, '0')}${suffix ? `_${suffix}` : ''}`;

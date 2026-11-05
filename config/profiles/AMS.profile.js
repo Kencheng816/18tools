@@ -19,7 +19,7 @@ window.__profileRegistry["profile:AMS"] = {
     "assets.templateFolderPreferred": true,
     "batch.templateMatchMode": "placementStrict",
     "batch.outputNameSource": "recordFilenameColumn",
-    "batch.outputNameSanitize": "legacyUnderscore",
+    "batch.outputNameSanitize": "windowsSafe",
     "assets.bucketRelPathKeys": false,
     "render.rangeTypography": "colorOnly",
     "batch.smartAssetIdMode": "none",

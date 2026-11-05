@@ -13,7 +13,7 @@ const path = require('path');
 const { startStaticServer } = require('../golden-capture/lib/static-server');
 const { launchBrowser } = require('../golden-capture/lib/browser');
 const driver = require('../golden-capture/lib/tool-driver');
-const { CASES, REPO_ROOT, parseArgs, prepareWorkCopy, sha256, listImages, pixelDiff, extractZip, openWithProfile } = require('./run-core-golden');
+const { CASES, REPO_ROOT, parseArgs, prepareWorkCopy, sha256, listImages, pixelDiff, extractZip, openWithProfile, safeName } = require('./run-core-golden');
 
 const OUT_ROOT = path.join(REPO_ROOT, 'tests', 'golden-diff', 'roundtrip');
 
@@ -107,7 +107,7 @@ async function runCase(testCase, workDir, browser) {
     const goldenMismatches = [];
     for (const name of goldenNames) {
       const actualName = nameMap[name] || name;
-      const actual = zipB.get(actualName);
+      const actual = zipB.get(actualName) || [...zipB].find(([zipName]) => safeName(zipName) === actualName)?.[1]; // 黃金檔名是 Windows 安全版（* → ＊）
       if (actual && sha256(actual) === sha256(fs.readFileSync(path.join(goldenDir, name)))) goldenIdentical += 1;
       else goldenMismatches.push(name);
     }

@@ -1323,18 +1323,7 @@
     "source": "18節 04 §1.2",
     "default": "ruleOrRecord"
   },
-  {
-    "key": "batch.outputNameSanitize",
-    "type": "enum",
-    "values": [
-      "dash",
-      "legacyUnderscore"
-    ],
-    "affects": "filename",
-    "summary": "輸出檔名非法字元處理：dash＝[\\/:*?\"<>|]→-；legacyUnderscore＝[\\/:?\"<>|]→_ 且保留 *（18節 AMS）。",
-    "source": "18節 04 §1.2",
-    "default": "dash"
-  },
+  {"key": "batch.outputNameSanitize", "type": "enum", "values": ["dash", "legacyUnderscore", "windowsSafe"], "affects": "filename", "summary": "輸出檔名非法字元處理：dash＝[\\/:*?\"<>|]→-；legacyUnderscore＝[\\/:?\"<>|]→_ 且保留 *（原 18節 AMS）；windowsSafe＝尺寸的 * → x（1029x357）、其他非法字元→_（2026-11-05 AMS 現用）。", "source": "18節 04 §1.2", "default": "dash"},
   {
     "key": "assets.urlBasename",
     "type": "bool",
