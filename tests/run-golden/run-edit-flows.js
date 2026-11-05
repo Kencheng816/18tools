@@ -132,8 +132,17 @@ async function flowSingleCoupon(browser, server, workDir) {
 function writeMultiCouponWorkbook(workDir) {
   const wb = XLSX.readFile(path.join(REPO_ROOT, WORKBOOK), { cellStyles: false });
   const ws = wb.Sheets['暖身BN(311發單)'];
-  const cell = ws.Q127;
-  if (!cell || cell.v !== 'SCS_雙券') throw new Error(`黃金工單 Q127 不是 SCS_雙券（${cell?.v}），測試要更新`);
+  // HBN 區塊裡「商品圖1＝SCS_雙券」那一格（不寫死位置，工單欄位增減也找得到）
+  const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null });
+  let address = null;
+  let inHbn = false;
+  rows.forEach((row, r) => {
+    if (row[0] && String(row[0]).trim() === 'HBN') inHbn = true;
+    else if (row[0] && inHbn) inHbn = false;
+    if (inHbn && !address) { const c = row.findIndex((v) => v === 'SCS_雙券'); if (c >= 0) address = XLSX.utils.encode_cell({ r, c: c + XLSX.utils.decode_range(ws['!ref']).s.c }); }
+  });
+  const cell = address && ws[address];
+  if (!cell || cell.v !== 'SCS_雙券') throw new Error(`黃金工單 HBN 區塊找不到 商品圖1＝SCS_雙券（${address}），測試要更新`);
   cell.v = '吹風機 + SCS_雙券'; delete cell.w; delete cell.r; delete cell.h;
   const out = path.join(workDir, 'tests', 'mutation-tmp', 'edit-flows_multi_coupon.xlsx');
   fs.mkdirSync(path.dirname(out), { recursive: true });

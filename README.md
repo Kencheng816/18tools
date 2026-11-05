@@ -76,7 +76,8 @@ docs/core-diff/          步驟 2：13 工具 core 差異分析（給第二階�
   順手修到的大洞：**手動改過的東西到下載時全部跳回工單原樣**（core 下載前會重套工單：改字、換素材、合成商品都被洗掉）→ `modules/manual-override-guard.js` 把任何進 HistoryManager 的手動操作標成「畫面為準」（沿用存檔載回的 `__restoreSnapshot` 機制），沒動過的製作物不受影響。新增 `npm run test:edit-flows`（改主標進下載／單一票券合成與還原／多張含券）。
 - **2026-11-04 批次 ③「定義券面案型範圍」（進階）**：價格位置改以「券」為準——每一種券（素材檔名）定義一次價格範圍（佔券圖寬高的比例＋角度），產圖、拖動、縮放、合成都依券實際畫出來的框換算，不再靠各公版規則檔的座標（沒有定義的券照舊）。進階模式 → 調整面板商品區「定義券面案型範圍」→ 視窗放券的原圖，矩形工具框出 單券：價格範圍／雙券：上券範圍、下券範圍、上券遮罩（上券＝畫面上方疊在後面那張、下券＝畫面下方疊在前面那張；遮罩框住前面那張蓋到上券的區域，上券價格被蓋到的部分像實際疊券一樣被遮住），可拖動、拉角縮放、旋轉或直接打角度，範例價格即時預覽。「套用」存瀏覽器並立刻重貼所有用這張券的製作物；「匯出定義檔」下載 `config/coupon-price-slots.js` 放進專案一起上 GitHub。`modules/coupon-slots.js`（引擎：包 PriceCouponManager.apply／stabilize 之後套用、Renderer.drawText 做遮罩裁切）、`modules/coupon-slot-editor.js`（視窗）。edit-flows 加第 4 條。
 - 2026-11-05：自動縮小符號——價格層的「蝦幣」只在「數字%蝦幣」（18%蝦幣）時縮「%蝦幣」，「蝦幣山」「蝦幣18%」這種不縮（`modules/sp-text-shrink.js`；暖身BN 黃金 3 張重拍）。AMS 輸出檔名 `1029*357` → `1029x357`（旗標 `batch.outputNameSanitize=windowsSafe`）；黃金檔名一律 Windows 安全（`*`→`＊`）；CI 改 ubuntu-22.04＋同一組字型。
-- **待處理**：P0-3 工單編號欄位；Seller BN C2C 工單票券欄（全站_95折）由使用者改工單。
+- **2026-11-05 P0-3 檔名用工單「編號」欄**：工單每個製作物區塊表頭多了「編號」；沒有「檔名」欄的製作物，輸出檔名＝`製作內容_編號`（補兩位，`DD card_01`、`HBN_07`），一筆多張的接變體（`頭巾_01_下單去`、`SKBN APP_左_05`、`POPUP_SCS_02`），編號空白／重複退回流水號並在診斷警告；縮圖與製作物清單顯示同一個名字。`modules/record-number-naming.js`（包 parseRows／readRecordFromRow 補 record['編號']、產完後依 WorkOrderContentPlanner 改名）、planner 改讀 entry.batchRecord（A 系工單記錄掛在清單項目）。黃金輸入換成使用者的新 V5（含編號欄、Seller BN C2C 小票券已修正），暖身BN 311 黃金重拍（內容逐 byte 同前版，只有檔名與 Seller Banner_C2C_01）。
+- **待處理**：（目前沒有）。
 - **待補**：票券型錄內容仍是 25節 的（需 18節 票券清單）；正式BN C2C SKBN 的 JPG 匯出切圖（D8，黃金為 PNG 未覆蓋）；25節 的存檔／手動素材／票券三套 E2E 尚未對 18節 profile 跑。`tools/` 與第一階段回歸 `test:golden` 已於 2026-10-01 移除（原工具仍在 `#整合版本/` 原資料夾）；重抽 A 系覆寫檔時用 `LEGACY18_SOURCE_ROOT` 指向該資料夾。決策紀錄（D1–D14）在 `docs/core-diff/00-總覽.md` 表 4。
 
 ## 回歸測試

@@ -2156,9 +2156,9 @@
     }
   },
   "rebaselined": {
-    "at": "2026-11-05T04:40:14.699Z",
+    "at": "2026-11-05T07:19:49.966Z",
     "by": "run-core-golden --update-golden",
-    "reason": "2026-11-05 價格「蝦幣」只在「數字%蝦幣」時縮小；蝦幣山／蝦幣18% 不縮（DD card_17、HBN_17、POPUP_03）",
+    "reason": "2026-11-05 P0-3 檔名改用工單「編號」欄（製作內容_編號[_變體]）；工單 V5 加編號欄並修正 Seller BN C2C 小票券（全站_95折）；圖內容與前版逐 byte 相同（Seller Banner_C2C_01 除外）",
     "images": 97
   }
 }

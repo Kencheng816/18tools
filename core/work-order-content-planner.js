@@ -91,7 +91,8 @@
       const sequenceKey = `${contentName}\u0001${variant}`;
       const sequence = (sequenceByContent.get(sequenceKey) || 0) + 1;
       sequenceByContent.set(sequenceKey, sequence);
-      const number = numberFromRecord(template.batchRecord) || sequence;
+      // 18節 A 系（暖身BN／正式BN）工單記錄掛在清單項目（entry.batchRecord），不在 template 上
+      const number = numberFromRecord(template.batchRecord || entry.batchRecord) || sequence;
 
       const suffix = suffixFromOutputName(template.templateId || entry.name);
       const baseStem = [sanitizeSegment(contentName), variant, pad2(number), suffix].filter(Boolean).join('_');
