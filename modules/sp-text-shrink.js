@@ -1,6 +1,7 @@
 /* 整合版（18節）— 自動縮小 $、%、折、蝦幣、起（文字標準）
  *
  * 2026-10-06 回饋第 2 項。使用者決定：會員日系列（KOL×2／暖身BN／正式BN／MS／KV）開；$／%／折／蝦幣／起 一律 82%（只縮符號與單位字，數字不動）；
+ * 2026-11-05：「蝦幣」只在「數字%蝦幣」（18%蝦幣）時縮「%蝦幣」；價格就是「蝦幣山」「蝦幣堆」這種商品名時不縮。
  * 主標／副標／法務與價格層用同一個比例；黃金樣本改以新輸出為基準（舊的保留在 tests/golden-legacy/ 對照）。
  *
  * 【這一項會改變自動產圖的輸出】旗標 text.autoShrinkSymbols=true 的分類才生效，其餘工具零誤差不變。
@@ -40,6 +41,8 @@
       if (SMALL_SYMBOLS.has(ch) || (ch === '號' && i > 0 && isDigit(chars[i - 1]))) { sizes[i] = 'small'; continue; }
       for (const token of tokens) {
         const tokenChars = [...token];
+        // 價格層的「蝦幣」只有在「數字%蝦幣」（例如 18%蝦幣）才縮；「蝦幣山」「蝦幣堆」這種整個就是商品名的不縮（2026-11-05 使用者決定）
+        if (token === '蝦幣' && !(i > 0 && (chars[i - 1] === '%' || chars[i - 1] === '％') && i > 1 && isDigit(chars[i - 2]))) continue;
         if (tokenChars.length && tokenChars.every((tc, offset) => chars[i + offset] === tc)) {
           for (let k = 0; k < tokenChars.length; k += 1) sizes[i + k] = 'small';
           i += tokenChars.length - 1;
