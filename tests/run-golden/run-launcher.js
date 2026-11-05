@@ -101,9 +101,11 @@ async function caseSingleProfile(page, baseUrl, workDir) {
     .catch(async () => problems.push(`空狀態提示「${await page.$eval('#importEmptyHint', (el) => el.textContent)}」`));
   problems.push(...await layoutProblems(page));
   await expectAutoOpenedModal(page, problems);
-  // 關掉之後不會再自己跳出來
-  await page.click('#importCloseBtn');
-  await new Promise((resolve) => setTimeout(resolve, 1200));
+  // 關掉之後不會再自己跳出來（CI 比較慢：先等「素材載入中」進度視窗收掉，再用 DOM click，避免滑鼠點到蓋在上面的進度視窗）
+  await page.waitForFunction(() => !document.getElementById('assetLoadingOverlay')?.classList.contains('is-open'), { timeout: TIMEOUT_MS }).catch(() => {});
+  await page.evaluate(() => document.getElementById('importCloseBtn')?.click());
+  if (await page.$eval('#importModal', (el) => !el.classList.contains('hidden'))) problems.push('按 × 之後彈窗沒有關');
+  await new Promise((resolve) => setTimeout(resolve, 1500));
   if (await page.$eval('#importModal', (el) => !el.classList.contains('hidden'))) problems.push('關掉彈窗後又自己跳出來');
   return problems;
 }
