@@ -28,6 +28,7 @@ modules/adjust-panel.js  「調整」面板上半段（2026-11-02，參考 Circl
 modules/logo-editor.js  「編輯 LOGO」視窗（比照 Circle logo2-editor）：縮放／拖移／自動底色／圓角，確認烤成 PNG 放回 LOGO 層；原素材與位置存圖層 logoEdit
 modules/multi-product.js  工單商品圖欄「A + B」拆多張（旗標 batch.multiProductSplit，暖身BN）：2 張一大一小、3 張三角、其他並排，第一張用原層、其餘 __multiProductOf 複製層
 modules/product-composer.js  「編輯商品」合成視窗：底層用 vendor/circle 三支（拖曳縮放旋轉吸附多選 Ctrl+Z／貼地陰影／去背），組合預設、陰影預設開，確認烤成一張 PNG 放回第一個商品層（productCompose 可重編）；匯入產圖後 ≥2 張商品的製作物自動逐張開
+modules/tour.js  新手導覽（聚光燈＋說明卡＋假游標示範；tour/tour-sample-data.js 範例工單與素材）
 modules/coupon-slots.js  券面價格範圍引擎：定義（config/coupon-price-slots.js ＋ 瀏覽器）→ 依券實際框換算價格位置、字級自動塞進範圍、上券（後面那張）價格以遮罩裁切
 modules/coupon-slot-editor.js  進階「定義券面案型範圍」視窗：券原圖＋矩形框選（移動／縮放／旋轉）、範例價格預覽、套用／匯出定義檔
 modules/manual-override-guard.js  ①任何手動操作（進 HistoryManager）後該製作物「畫面為準」，下載／縮圖不再重套工單；②手動改過的文字／顏色／字級不被規則每次重畫蓋回（包 LayoutRuleEngine.apply）
@@ -77,6 +78,7 @@ docs/core-diff/          步驟 2：13 工具 core 差異分析（給第二階�
 - **2026-11-04 批次 ③「定義券面案型範圍」（進階）**：價格位置改以「券」為準——每一種券（素材檔名）定義一次價格範圍（佔券圖寬高的比例＋角度），產圖、拖動、縮放、合成都依券實際畫出來的框換算，不再靠各公版規則檔的座標（沒有定義的券照舊）。進階模式 → 調整面板商品區「定義券面案型範圍」→ 視窗放券的原圖，矩形工具框出 單券：價格範圍／雙券：上券範圍、下券範圍、上券遮罩（上券＝畫面上方疊在後面那張、下券＝畫面下方疊在前面那張；遮罩框住前面那張蓋到上券的區域，上券價格被蓋到的部分像實際疊券一樣被遮住），可拖動、拉角縮放、旋轉或直接打角度，範例價格即時預覽。「套用」存瀏覽器並立刻重貼所有用這張券的製作物；「匯出定義檔」下載 `config/coupon-price-slots.js` 放進專案一起上 GitHub。`modules/coupon-slots.js`（引擎：包 PriceCouponManager.apply／stabilize 之後套用、Renderer.drawText 做遮罩裁切）、`modules/coupon-slot-editor.js`（視窗）。edit-flows 加第 4 條。
 - 2026-11-05：自動縮小符號——價格層的「蝦幣」只在「數字%蝦幣」（18%蝦幣）時縮「%蝦幣」，「蝦幣山」「蝦幣18%」這種不縮（`modules/sp-text-shrink.js`；暖身BN 黃金 3 張重拍）。AMS 輸出檔名 `1029*357` → `1029x357`（旗標 `batch.outputNameSanitize=windowsSafe`）；黃金檔名一律 Windows 安全（`*`→`＊`）；CI 改 ubuntu-22.04＋同一組字型。
 - **2026-11-05 P0-3 檔名用工單「編號」欄**：工單每個製作物區塊表頭多了「編號」；沒有「檔名」欄的製作物，輸出檔名＝`製作內容_編號`（補兩位，`DD card_01`、`HBN_07`），一筆多張的接變體（`頭巾_01_下單去`、`SKBN APP_左_05`、`POPUP_SCS_02`），編號空白／重複退回流水號並在診斷警告；縮圖與製作物清單顯示同一個名字。`modules/record-number-naming.js`（包 parseRows／readRecordFromRow 補 record['編號']、產完後依 WorkOrderContentPlanner 改名）、planner 改讀 entry.batchRecord（A 系工單記錄掛在清單項目）。黃金輸入換成使用者的新 V5（含編號欄、Seller BN C2C 小票券已修正），暖身BN 311 黃金重拍（內容逐 byte 同前版，只有檔名與 Seller Banner_C2C_01）。
+- **2026-11-05 新手導覽**（照 Mall-SKBN 的 tour.js）：`modules/tour.js`＋`tour/tour-sample-data.js`（範例工單＋素材內嵌，開始導覽時才載入，`npm run build:tour-sample` 重做）。第一次開工具頁自動跑（每台瀏覽器記一次；自動化測試環境不自動跑）、頂部列「使用教學」可重看、`?tour=1` 強制、入口頁有連結。15 步：匯入工單（假游標示範拖曳）→ 製作物清單（快速檢視警告）→ 批次預覽（示範點縮圖）→ 主畫布文字（示範雙擊把 88折 打成 85折）→ 圖片素材（示範滾輪縮放、拖曳、旋轉；文字提到拉角落）→ 右鍵更換素材（示範右鍵 → 從素材庫替換 → 點一張 → 套用）→ 調整面板文案（示範打字、色票換色）→ 品牌 LOGO（沒有 LOGO 層就跳過）→ 編輯商品（「吹風機 + ELIXIR 怡麗絲爾 全新A醇」：示範陰影開關、光源左／中／右、縮放）→ 定義券面案型範圍（進階；用 SCS_雙券 示範拉上券／下券範圍，不套用）→ 進階模式（簡單帶過）→ 儲存存檔 → 下載圖片 → 結束（整頁重載清掉範例、回到匯入視窗）。`npm run test:tour` 自動走完全部步驟檢查。
 - **待處理**：（目前沒有）。
 - **待補**：票券型錄內容仍是 25節 的（需 18節 票券清單）；正式BN C2C SKBN 的 JPG 匯出切圖（D8，黃金為 PNG 未覆蓋）；25節 的存檔／手動素材／票券三套 E2E 尚未對 18節 profile 跑。`tools/` 與第一階段回歸 `test:golden` 已於 2026-10-01 移除（原工具仍在 `#整合版本/` 原資料夾）；重抽 A 系覆寫檔時用 `LEGACY18_SOURCE_ROOT` 指向該資料夾。決策紀錄（D1–D14）在 `docs/core-diff/00-總覽.md` 表 4。
 
@@ -89,6 +91,7 @@ npm run bundle:templates        # 公版 JSON 改了之後重新打包 templates
 npm run test:launcher           # 入口頁：卡片清單與連結；點卡片開工具；?group= 卡片上傳工單後依分頁選定分類（http 與 file:// 各一次；LAUNCHER_SCHEMES=http 可只跑一種）
 npm run test:click-export       # 互動回歸：A 系＋KOL 逐一點過每張縮圖再下載，確認點選不改變輸出
 npm run test:roundtrip          # 存檔往返：儲存存檔 → 新分頁載回 → 再下載，與第一次下載逐 byte 相同
+npm run test:tour               # 新手導覽：?tour=1 自動開始→逐步打亮／示範→完成後清掉範例回到匯入視窗
 npm run test:edit-flows         # 手動編輯流程：改主標要進下載；編輯商品把券縮 0.6 倍價格要跟著縮、下載看得到、還原回原狀；多張含券價格貼在券上；券面範圍定義（--only 1|2|3|4 可單跑）
 npm run test:mutation           # 工單變更耐受：每案例 原工單／A 換素材／B 下移一列／C 前兩筆對調 各跑一次（--only A|B|C），列「跟基準不一樣」的診斷；C 另比匯出圖整組是否一樣（tests/golden-diff/mutation/）
 npm run test:core-golden        # 已折入整合核心的案例（預設 GOLDEN_FONTS=local 只用內建 TTF；GOLDEN_FONTS=<放 WOFF2 的網址>/ 可驗證 WOFF2 輸出零誤差）（有意改輸出時加 --update-golden --update-reason "原因" 重拍基準）（tests/run-golden/cases-core.json）用 app.html 重跑 → 逐 byte／pixelmatch 比對；D1 的 JPG→PNG 另比不透明區

@@ -42,3 +42,8 @@ body { background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), tra
 #swUpdateToast { position: fixed; left: 50%; bottom: 20px; z-index: 100050; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 1px solid #ff7a59; border-radius: 12px; background: #151b28; color: #f8fafc; font-size: 13px; box-shadow: 0 16px 44px rgba(0, 0, 0, .4); }
 #swUpdateToast button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #ee4d2d; color: #fff; font-weight: 700; cursor: pointer; }
 #swUpdateToast .sw-toast-close { padding: 0 8px; background: transparent; color: #94a3b8; }
+
+/* 入口頁的使用教學連結 */
+.launcher-tour { margin: 10px 0 0; font-size: 13px; }
+.launcher-tour a { color: #ee4d2d; text-decoration: none; }
+.launcher-tour a:hover { text-decoration: underline; }

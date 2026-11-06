@@ -7,11 +7,13 @@
     "check": "node tests/check-tools.js",
     "bundle:templates": "node tests/tools/bundle-templates.js",
     "test:core-golden": "node tests/run-golden/run-core-golden.js",
-    "test:all": "npm run check && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip && npm run test:edit-flows",
+    "test:all": "npm run check && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip && npm run test:edit-flows && npm run test:tour",
     "test:click-export": "node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs",
     "test:roundtrip": "node tests/run-golden/run-roundtrip.js",
     "test:mutation": "node tests/run-golden/run-workbook-mutation.js",
     "test:edit-flows": "node tests/run-golden/run-edit-flows.js",
+    "test:tour": "node tests/run-golden/run-tour.js",
+    "build:tour-sample": "node tests/tools/build-tour-sample.js",
     "test:launcher": "node tests/run-golden/run-launcher.js"
   },
   "devDependencies": {

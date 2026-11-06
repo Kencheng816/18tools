@@ -49,6 +49,7 @@ jobs:
       - run: node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs
       - run: node tests/run-golden/run-roundtrip.js
       - run: node tests/run-golden/run-edit-flows.js
+      - run: node tests/run-golden/run-tour.js
       - name: 失敗時留下比對結果
         if: failure()
         uses: actions/upload-artifact@v4

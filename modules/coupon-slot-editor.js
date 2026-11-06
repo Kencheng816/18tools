@@ -147,6 +147,7 @@
     const slots = SLOTS[state.kind];
     // 範例價格（上券＝後面那張，被遮罩裁）
     slots.filter((slot) => slot.id !== 'mask' && state.defs[slot.id]).forEach((slot) => {
+      if (state.drag && slot.id === state.active) return; // 正在拉這個框：先不畫範例價格，免得跟框疊在一起看不清楚
       const rect = state.defs[slot.id];
       ctx.save();
       const maskRect = state.defs.mask || state.defs.bottom;
@@ -292,7 +293,10 @@
     whenReady();
   }
 
-  window.CouponSlotEditor = Object.freeze({ open, close, currentCoupon });
+  /** 清掉視窗裡畫的框（不動已存的定義；導覽重播示範用） */
+  function clearBoxes() { if (!state) return; state.defs = {}; state.active = SLOTS[state.kind][0].id; renderList(); draw(); }
+
+  window.CouponSlotEditor = Object.freeze({ open, close, currentCoupon, clearBoxes, isOpen: () => !!state });
   if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', main, { once: true });
   else main();
 })();
