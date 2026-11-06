@@ -268,29 +268,26 @@
     return p.then(() => { hideCursor(); return a.wait(400); });
   }
 
-  // ── 示範：定義券面案型範圍：在視窗裡拉出 上券價格範圍／下券價格範圍 兩個框（示範完不套用、關掉） ──
-  const SLOT_DEMO = { '上券價格範圍': [0.34, 0.12, 0.92, 0.40, -6], '下券價格範圍': [0.34, 0.50, 0.92, 0.80, 2] };
-  function slotCanvasPointer(type, x, y) {
-    const c = byId('couponSlotCanvas'); if (!c) return;
-    if (!c.__tourStub) { c.setPointerCapture = () => {}; c.releasePointerCapture = () => {}; c.__tourStub = true; }
-    c.dispatchEvent(new PointerEvent(type, { clientX: x, clientY: y, pointerId: 9, pointerType: 'mouse', isPrimary: true, bubbles: true, cancelable: true, button: 0, buttons: type === 'pointerup' ? 0 : 1 }));
-  }
+  // ── 示範：定義券面案型範圍 ──
+  // 每一輪：① 視窗重設（雙券、沒有框、範例價格留空＝券圖上不畫價格）② 點「上券價格範圍」→ 游標從左上角拉到右下角，框跟著長出來、填角度
+  // ③ 同樣拉「下券價格範圍」④ 停一下 → 重播（回到 ①，不會留著上一輪的框）。不按套用，不動已存的定義。
+  const SLOT_DEMO = [['top', '上券價格範圍', [0.34, 0.12, 0.92, 0.40], -6], ['bottom', '下券價格範圍', [0.34, 0.50, 0.92, 0.80], 2]];
   function animCouponSlots(a) {
-    const canvas = byId('couponSlotCanvas'); if (!canvas || !visible(canvas)) return a.wait(500);
-    window.CouponSlotEditor?.clearBoxes?.(); // 每一輪重頭拉一次
+    const Editor = window.CouponSlotEditor; const canvas = byId('couponSlotCanvas');
+    if (!Editor?.demoReset || !canvas || !visible(canvas)) return a.wait(500);
+    Editor.demoReset();
     const r = canvas.getBoundingClientRect();
     const at = (fx, fy) => ({ x: r.left + fx * r.width, y: r.top + fy * r.height });
     a.show(r.right + 40, r.top + 40);
-    let p = Promise.resolve();
-    Object.entries(SLOT_DEMO).forEach(([label, [x1, y1, x2, y2, angle]]) => {
+    let p = a.wait(500);
+    SLOT_DEMO.forEach(([slotId, label, [x1, y1, x2, y2], angle]) => {
       p = p.then(() => {
         const row = [...document.querySelectorAll('.coupon-slot-item')].find((el) => el.textContent.includes(label)); if (!row) return null;
         const c = center(row);
         return a.move(c.x, c.y, 450).then(() => { a.ripple(); row.click(); return a.wait(300); })
           .then(() => { const s = at(x1, y1); return a.move(s.x, s.y, 450); })
-          .then(() => { const s = at(x1, y1); a.ripple(); slotCanvasPointer('pointerdown', s.x, s.y); const e = at(x2, y2); return a.move(e.x, e.y, 700, (x, y) => slotCanvasPointer('pointermove', x, y)); })
-          .then(() => { const e = a.pos(); slotCanvasPointer('pointerup', e.x, e.y); return a.wait(250); })
-          .then(() => { const input = byId('couponSlotAngle'); if (input) { input.value = angle; input.dispatchEvent(new Event('input')); } return a.wait(700); });
+          .then(() => { a.ripple(); const e = at(x2, y2); return a.move(e.x, e.y, 800, (x, y) => { const fx = (x - r.left) / r.width, fy = (y - r.top) / r.height; Editor.demoSetBox(slotId, x1, y1, fx, fy, 0); }); })
+          .then(() => { Editor.demoSetBox(slotId, x1, y1, x2, y2, angle); return a.wait(900); });
       });
     });
     return p.then(() => { hideCursor(); return a.wait(1800); });

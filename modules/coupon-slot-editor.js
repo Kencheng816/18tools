@@ -143,10 +143,10 @@
     for (let y = 0; y < canvas.height; y += 16) for (let x = 0; x < canvas.width; x += 16) { ctx.fillStyle = ((x + y) / 16) % 2 ? '#2a3448' : '#1f2838'; ctx.fillRect(x, y, 16, 16); }
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     ctx.scale(scale, scale);
-    const sample = $('couponSlotSample').value || SAMPLE_PRICE;
+    const sample = $('couponSlotSample').value.trim(); // 留空＝不畫範例價格（導覽示範用）
     const slots = SLOTS[state.kind];
     // 範例價格（上券＝後面那張，被遮罩裁）
-    slots.filter((slot) => slot.id !== 'mask' && state.defs[slot.id]).forEach((slot) => {
+    slots.filter((slot) => sample && slot.id !== 'mask' && state.defs[slot.id]).forEach((slot) => {
       if (state.drag && slot.id === state.active) return; // 正在拉這個框：先不畫範例價格，免得跟框疊在一起看不清楚
       const rect = state.defs[slot.id];
       ctx.save();
@@ -293,10 +293,26 @@
     whenReady();
   }
 
-  /** 清掉視窗裡畫的框（不動已存的定義；導覽重播示範用） */
-  function clearBoxes() { if (!state) return; state.defs = {}; state.active = SLOTS[state.kind][0].id; renderList(); draw(); }
+  // ── 新手導覽用（不動已存的定義；只改視窗裡的畫面） ──
+  /** 回到乾淨狀態：雙券、沒有框、範例價格留空（券圖上就不會畫出任何價格） */
+  function demoReset() {
+    if (!state) return;
+    state.kind = 'double'; $('couponSlotKind').value = 'double';
+    state.defs = {}; state.active = SLOTS[state.kind][0].id; state.drag = null;
+    $('couponSlotSample').value = '';
+    renderList(); draw();
+  }
+  /** 直接把某個框設成 圖的比例座標（x1,y1,x2,y2 為 0～1），導覽用它一格一格把框「拉」出來 */
+  function demoSetBox(slotId, x1, y1, x2, y2, angle = 0) {
+    if (!state) return;
+    const { W, H } = state;
+    state.active = slotId;
+    state.defs[slotId] = { cx: (x1 + x2) / 2 * W, cy: (y1 + y2) / 2 * H, w: Math.max(2, Math.abs(x2 - x1) * W), h: Math.max(2, Math.abs(y2 - y1) * H), angle };
+    $('couponSlotAngle').value = angle;
+    renderList(); draw();
+  }
 
-  window.CouponSlotEditor = Object.freeze({ open, close, currentCoupon, clearBoxes, isOpen: () => !!state });
+  window.CouponSlotEditor = Object.freeze({ open, close, currentCoupon, demoReset, demoSetBox, isOpen: () => !!state });
   if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', main, { once: true });
   else main();
 })();
