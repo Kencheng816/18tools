@@ -5,9 +5,10 @@
   "description": "18節生成工具（整合版）— 13 個產圖工具合為單一入口；純靜態網頁，無建置步驟。package.json 只用於回歸測試相依。",
   "scripts": {
     "check": "node tests/check-tools.js",
+    "test:copy-lint": "node tests/run-copy-lint.js",
     "bundle:templates": "node tests/tools/bundle-templates.js",
     "test:core-golden": "node tests/run-golden/run-core-golden.js",
-    "test:all": "npm run check && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip && npm run test:edit-flows && npm run test:tour",
+    "test:all": "npm run check && npm run test:copy-lint && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip && npm run test:edit-flows && npm run test:tour",
     "test:click-export": "node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs",
     "test:roundtrip": "node tests/run-golden/run-roundtrip.js",
     "test:mutation": "node tests/run-golden/run-workbook-mutation.js",

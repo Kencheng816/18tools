@@ -559,9 +559,15 @@
     document.removeEventListener('keydown', onKey, true);
     if (root) root.style.display = 'none';
     try { localStorage.setItem(TOUR_KEY, '1'); } catch (_) { /* 隱私模式 */ }
-    // 範例資料清掉、回到乾淨的匯入視窗：整頁重新載入（去掉 ?tour）
+    // （二校二修補充 3）範例資料清掉、回到初始狀態＝回入口頁（index.html，卡片清單）；整頁離開，所有狀態一次乾淨
+    window.location.replace(homeUrl());
+  }
+  /** 入口頁網址：跟頂部列「← 回首頁」同一個目標（app.html 旁的 index.html），沒有那顆連結就退回同頁重載。 */
+  function homeUrl() {
+    const link = document.querySelector('.topbar-home');
+    if (link?.getAttribute('href')) return new URL(link.getAttribute('href'), window.location.href).toString();
     const url = new URL(window.location.href); url.searchParams.delete('tour');
-    window.location.replace(url.toString());
+    return url.toString();
   }
 
   // ══════════════ 「使用教學」按鈕＋第一次自動開始 ══════════════

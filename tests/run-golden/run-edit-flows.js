@@ -269,7 +269,143 @@ const FLOWS = [
   { id: '1+2', name: '正式BN HBN_02：改主標進下載／單一票券合成 0.6 倍價格跟著縮／還原回原狀', run: flowSingleCoupon },
   { id: '3', name: '暖身BN HBN_06：「吹風機 + SCS_雙券」價格貼在券上／合成跟著券／還原', run: flowMultiCoupon },
   { id: '4', name: '正式BN HBN_02：進階「定義券面案型範圍」框選 → 價格落在框裡、同券全部重貼、上券遮罩、合成跟著券、清除', run: flowCouponSlots },
+  { id: '5', name: 'OM banner6 資料夾曝品：產圖後自動開合成視窗（一個資料夾一次）→ 確認後烤圖套到同資料夾所有版位、刷新不拆回、還原', run: flowOmFolderCompose },
+  { id: '6', name: '跨夜 主持人：兩位都進「主持人構圖」視窗 → 確認後各自寫回自己的圖層、其他版位依預設框等比連動；主畫布拖曳也連動；還原公版預設', run: flowCrossnightHosts },
 ];
+
+// ── 6：跨夜 主持人構圖＋跨版位連動 ──
+async function flowCrossnightHosts(browser, server, workDir) {
+  const problems = [];
+  const { page, errors } = await openCase(browser, server, workDir, '跨夜', '418跨夜_線上宣傳圖', 'tests/golden-inputs/跨夜/跨夜直播美術工單_Ken.xlsx');
+  try {
+    const hostsOf = () => page.evaluate(() => window.AppState.templates.map((item, index) => {
+      const t = item.data;
+      const pick = (k) => { const l = t.layers[k]; return l && l.hidden !== true && l.assetFilename ? { x: l.x, y: l.y, width: l.width, height: l.height, rotation: l.rotation || 0 } : null; };
+      return { index, name: item.name, templateId: t.canvas.templateId, A: pick('主持人_A'), B: pick('主持人_B'), defaults: t.__crossnightHostDefault || null };
+    }));
+    const before = await hostsOf();
+    const twoHosts = before.filter((item) => item.A && item.B);
+    if (twoHosts.length < 2) { problems.push(`需要至少 2 張有兩位主持人的製作物，實際 ${twoHosts.length}`); return problems; }
+    if (twoHosts.some((item) => !item.defaults?.['主持人_A'] || !item.defaults?.['主持人_B'])) problems.push('規則檔沒有記下主持人預設框（__crossnightHostDefault）');
+    const sourceIndex = twoHosts[0].index;
+    await page.evaluate((i) => document.querySelectorAll('.batch-thumb')[i]?.click(), sourceIndex);
+    await sleep(800);
+    const isHost = await page.evaluate(() => window.ProductComposer.isHostTemplate(window.AppState.template));
+    if (!isHost) problems.push('這張沒有被認成主持人模式');
+
+    // 開視窗：兩位主持人都要在清單裡
+    await page.evaluate(() => window.ProductComposer.open());
+    await page.waitForFunction(() => { const m = document.getElementById('productComposerModal'); return !!m && !m.classList.contains('hidden'); }, { timeout: 30000 });
+    await sleep(1200);
+    const ui = await page.evaluate(() => ({ items: document.querySelectorAll('#composerItems .composer-item').length, title: document.querySelector('#productComposerModal .composer-head strong').textContent, presets: [...document.querySelectorAll('#composerPreset option')].map((o) => o.value) }));
+    if (ui.items !== 2) problems.push(`視窗素材清單 ${ui.items} 位主持人（應 2）`);
+    if (ui.title !== '主持人構圖') problems.push(`視窗標題是「${ui.title}」`);
+    if (!ui.presets.includes('hostDefault')) problems.push(`構圖選項沒有公版預設：${ui.presets.join(',')}`);
+    // 把主持人 B（item1）放大 1.3 倍並往右移 40px（合成畫布像素）
+    await page.evaluate(() => window.ProductComposer.setItemTransform('item1', { scaleMul: 1.3, dx: 40, dy: 0 }));
+    await sleep(600);
+    await page.evaluate(() => document.getElementById('composerApply').click());
+    await page.waitForFunction(() => document.getElementById('productComposerModal')?.classList.contains('hidden'), { timeout: 60000 });
+    await sleep(1500);
+    const after = await hostsOf();
+    const src = after[sourceIndex]; const srcBefore = before[sourceIndex];
+    if (!src.B || !near(src.B.width / srcBefore.B.width, 1.3, 0.05)) problems.push(`來源主持人_B 寬度 ${srcBefore.B?.width} → ${src.B?.width}，應約 1.3 倍`);
+    if (!src.A || !near(src.A.width, srcBefore.A.width, 2)) problems.push(`來源主持人_A 不該變：${srcBefore.A?.width} → ${src.A?.width}`);
+    // 其他兩位主持人的版位：B 也要等比放大 1.3 倍、A 不動
+    twoHosts.filter((item) => item.index !== sourceIndex).forEach((item) => {
+      const now = after[item.index];
+      if (!now.B || !near(now.B.width / item.B.width, 1.3, 0.05)) problems.push(`${item.name}：主持人_B 寬度 ${item.B.width} → ${now.B?.width}，應約 1.3 倍（跨版位連動）`);
+      if (!now.A || !near(now.A.width, item.A.width, 2)) problems.push(`${item.name}：主持人_A 不該變 ${item.A.width} → ${now.A?.width}`);
+    });
+    // 主畫布拖曳（AssetSyncHub）：主持人_A 往下移 30 → 其他版位 A 依預設框高度比例移動
+    await page.evaluate(() => {
+      const t = window.AppState.template; const layer = t.layers['主持人_A'];
+      window.AssetSyncHub.begin(t, '主持人_A');
+      window.Geometry.applyBox('主持人_A', layer, { x: layer.x, y: layer.y + 30, width: layer.width, height: layer.height });
+      window.AssetSyncHub.update(t, '主持人_A'); window.AssetSyncHub.finish(t, '主持人_A');
+    });
+    await sleep(500);
+    const dragged = await hostsOf();
+    twoHosts.filter((item) => item.index !== sourceIndex).forEach((item) => {
+      const now = dragged[item.index]; const prev = after[item.index];
+      const expected = 30 * (item.defaults['主持人_A'].height / before[sourceIndex].defaults['主持人_A'].height);
+      if (!now.A || !near(now.A.y - prev.A.y, expected, 2)) problems.push(`${item.name}：拖曳後主持人_A y 位移 ${now.A ? (now.A.y - prev.A.y).toFixed(1) : '—'}，應約 ${expected.toFixed(1)}`);
+    });
+    // 還原公版預設 → 來源與其他版位都回到預設框
+    await restore(page);
+    const restored = await hostsOf();
+    twoHosts.forEach((item) => {
+      const now = restored[item.index]; const d = item.defaults;
+      ['主持人_A', '主持人_B'].forEach((k) => { const box = now[k === '主持人_A' ? 'A' : 'B']; if (!box || !near(box.x, d[k].x, 1) || !near(box.width, d[k].width, 1)) problems.push(`${item.name}：還原後 ${k} ${JSON.stringify(box)} ≠ 預設 ${JSON.stringify(d[k])}`); });
+    });
+  } finally { await page.close(); }
+  if (errors.length) problems.push(`頁面錯誤：${errors.slice(0, 3).join(' | ')}`);
+  return problems;
+}
+
+// ── 5：OM_w1 資料夾模式（banner5／banner6「右邊網址」）──
+async function flowOmFolderCompose(browser, server, workDir) {
+  const problems = [];
+  const { page, errors } = await openCase(browser, server, workDir, 'OM_w1', '外廣_Wave1', 'tests/golden-inputs/OM_w1/2026.4.18 會員日_Timeline&入稿表.xlsx');
+  try {
+    const summary = () => page.evaluate(() => window.AppState.templates.map((item, index) => {
+      const t = item.data; const rec = t.batchRecord || {};
+      const products = Object.entries(t.layers).filter(([k, l]) => l.type === 'image' && (k === 'product' || /^P_\d{2}$/.test(k))).map(([k, l]) => ({ key: k, asset: l.assetFilename, x: l.x, y: l.y, width: l.width, height: l.height, composed: !!l.productCompose }));
+      const guide = window.BatchManager.getProductPlacementGuideBox?.(t);
+      return { index, name: item.name, folder: rec.__productFolder || '', templateId: t.canvas.templateId, products, guide: guide ? { x: guide.x, y: guide.y, width: guide.width, height: guide.height } : null };
+    }));
+    const before = await summary();
+    const folderItems = before.filter((item) => item.folder);
+    if (!folderItems.length) { problems.push('沒有資料夾模式的製作物'); return problems; }
+    // 產圖後 importflow:generated 會自動開視窗：等它開（或手動開第一張）
+    const pending = await page.evaluate(() => window.ProductComposer.pendingIndexes());
+    const folders = [...new Set(folderItems.map((item) => item.folder))];
+    if (pending.length !== folders.length) problems.push(`待合成佇列應為每個資料夾一張（${folders.length}），實際 ${pending.length}：${JSON.stringify(pending)}`);
+    const opened = await page.evaluate(() => { const modal = document.getElementById('productComposerModal'); return !!modal && !modal.classList.contains('hidden'); });
+    // 黃金 driver 直接呼叫 generateFromSelectedSheet，不經 ImportFlow（沒有 importflow:generated 事件）→ 手動照佇列開
+    if (!opened) { await page.evaluate(() => window.ProductComposer.openNext(window.ProductComposer.pendingIndexes())); }
+    await page.waitForFunction(() => { const modal = document.getElementById('productComposerModal'); return !!modal && !modal.classList.contains('hidden'); }, { timeout: 30000 });
+    await sleep(1500);
+    const items = await page.evaluate(() => document.querySelectorAll('#composerItems .composer-item').length);
+    const sourceIndex = await page.evaluate(() => window.AppState.activeIndex);
+    const source = before[sourceIndex];
+    if (items !== source.products.length) problems.push(`視窗素材清單 ${items} 張，該製作物有 ${source.products.length} 張曝品`);
+    await page.evaluate(() => document.getElementById('composerApply').click());
+    await page.waitForFunction(() => document.getElementById('productComposerModal')?.classList.contains('hidden') || document.getElementById('composerQueueHint')?.textContent !== '', { timeout: 60000 });
+    await sleep(2500);
+    // 佇列：第二個資料夾會接著開 → 先關掉，只驗第一個資料夾
+    await page.evaluate(() => window.ProductComposer.close(true));
+    await sleep(500);
+    const after = await summary();
+    after.filter((item) => item.folder === source.folder).forEach((item) => {
+      if (item.products.length !== 1) problems.push(`${item.name}：合成後應只剩 1 個商品層，實際 ${item.products.map((p) => p.key).join('、')}`);
+      const p = item.products[0];
+      if (!p?.composed) problems.push(`${item.name}：商品層沒有 productCompose`);
+      if (!/_compose\.png$/.test(p?.asset || '')) problems.push(`${item.name}：商品素材是 ${p?.asset}`);
+      if (item.index !== sourceIndex && item.guide && p) {
+        const tol = 2;
+        if (p.x < item.guide.x - tol || p.y < item.guide.y - tol || p.x + p.width > item.guide.x + item.guide.width + tol || p.y + p.height > item.guide.y + item.guide.height + tol) problems.push(`${item.name}：合成圖超出 P_範圍（圖 ${Math.round(p.x)},${Math.round(p.y)} ${Math.round(p.width)}×${Math.round(p.height)}；範圍 ${Math.round(item.guide.x)},${Math.round(item.guide.y)} ${Math.round(item.guide.width)}×${Math.round(item.guide.height)}）`);
+      }
+    });
+    // 預覽刷新不得拆回多張
+    await page.evaluate(() => window.BatchManager.refreshGeneratedTemplatesFromBatchRecords());
+    await sleep(500);
+    const refreshed = await summary();
+    refreshed.filter((item) => item.folder === source.folder).forEach((item) => {
+      if (item.products.length !== 1 || !/_compose\.png$/.test(item.products[0]?.asset || '')) problems.push(`${item.name}：刷新後被拆回 ${item.products.map((p) => `${p.key}=${p.asset}`).join('、')}`);
+    });
+    // 還原（來源那張）
+    await page.evaluate((i) => document.querySelectorAll('.batch-thumb')[i]?.click(), sourceIndex);
+    await sleep(800);
+    await restore(page);
+    const restored = await summary();
+    const src = restored[sourceIndex];
+    if (src.products.length !== source.products.length) problems.push(`還原後商品層 ${src.products.map((p) => p.key).join('、')}，原本 ${source.products.map((p) => p.key).join('、')}`);
+    if (src.products.some((p) => p.composed || /_compose\.png$/.test(p.asset))) problems.push('還原後仍是合成圖');
+  } finally { await page.close(); }
+  if (errors.length) problems.push(`頁面錯誤：${errors.slice(0, 3).join(' | ')}`);
+  return problems;
+}
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));

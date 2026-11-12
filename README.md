@@ -79,6 +79,18 @@ docs/core-diff/          步驟 2：13 工具 core 差異分析（給第二階�
 - 2026-11-05：自動縮小符號——價格層的「蝦幣」只在「數字%蝦幣」（18%蝦幣）時縮「%蝦幣」，「蝦幣山」「蝦幣18%」這種不縮（`modules/sp-text-shrink.js`；暖身BN 黃金 3 張重拍）。AMS 輸出檔名 `1029*357` → `1029x357`（旗標 `batch.outputNameSanitize=windowsSafe`）；黃金檔名一律 Windows 安全（`*`→`＊`）；CI 改 ubuntu-22.04＋同一組字型。
 - **2026-11-05 P0-3 檔名用工單「編號」欄**：工單每個製作物區塊表頭多了「編號」；沒有「檔名」欄的製作物，輸出檔名＝`製作內容_編號`（補兩位，`DD card_01`、`HBN_07`），一筆多張的接變體（`頭巾_01_下單去`、`SKBN APP_左_05`、`POPUP_SCS_02`），編號空白／重複退回流水號並在診斷警告；縮圖與製作物清單顯示同一個名字。`modules/record-number-naming.js`（包 parseRows／readRecordFromRow 補 record['編號']、產完後依 WorkOrderContentPlanner 改名）、planner 改讀 entry.batchRecord（A 系工單記錄掛在清單項目）。黃金輸入換成使用者的新 V5（含編號欄、Seller BN C2C 小票券已修正），暖身BN 311 黃金重拍（內容逐 byte 同前版，只有檔名與 Seller Banner_C2C_01）。
 - **2026-11-05 新手導覽**（照 Mall-SKBN 的 tour.js）：`modules/tour.js`＋`tour/tour-sample-data.js`（範例工單＋素材內嵌，開始導覽時才載入，`npm run build:tour-sample` 重做）。第一次開工具頁自動跑（每台瀏覽器記一次；自動化測試環境不自動跑）、頂部列「使用教學」可重看、`?tour=1` 強制、入口頁有連結。15 步：匯入工單（假游標示範拖曳）→ 製作物清單（快速檢視警告）→ 批次預覽（示範點縮圖）→ 主畫布文字（示範雙擊把 88折 打成 85折）→ 圖片素材（示範滾輪縮放、拖曳、旋轉；文字提到拉角落）→ 右鍵更換素材（示範右鍵 → 從素材庫替換 → 點一張 → 套用）→ 調整面板文案（示範打字、色票換色）→ 品牌 LOGO（沒有 LOGO 層就跳過）→ 編輯商品（「吹風機 + ELIXIR 怡麗絲爾 全新A醇」：示範陰影開關、光源左／中／右、縮放）→ 定義券面案型範圍（進階；用 SCS_雙券 示範拉上券／下券範圍，不套用）→ 進階模式（簡單帶過）→ 儲存存檔 → 下載圖片 → 結束（整頁重載清掉範例、回到匯入視窗）。`npm run test:tour` 自動走完全部步驟檢查。
+- **2026-11-11 二校二修 V2**（反饋表 18節 Sheet A14 以下 5 筆＋追加 4 項）：
+  ① OM 資料夾曝品（工單「右邊網址」）：產圖後自動開合成視窗（同一個資料夾只開一次），確認後烤成一張圖 contain 進每個用這個資料夾的版位的 P_範圍（`ProductComposer.applyToFolderSiblings`）；預覽刷新看到 `productCompose` 不再拆回多張（core `prepareDynamicProductLayers`）；「還原自動排版」只重做曝品那一段。沒合成前的自動排格也改成避開被公版精準座標鎖住的那一張（`smart-asset-manager.kv.js largestFreeStrip`），直式不再疊圖；OM_w1 黃金重拍（舊的在 `tests/golden-legacy/外廣OM_wave1/`）。
+  ② LineOA 商品上傳格比套品範圍內縮短邊 5%（遮罩不變），商品圖不再頂到白卡邊。③ 診斷新類別「還沒上傳圖」（橘）：列出每張還空著的 KV／商品上傳格，上傳後自動消失（局部刷新縮圖也會重算）。④ LineOA 品名 5 字換行（中文 1、英數符號 0.5；最多 2 行，第 2 行塞不下等比縮字；切在詞中間且前面有空格就退到空格）。LineOA 黃金重拍。
+  ⑤ 跨夜主持人：同一顆「編輯」按鈕在跨夜開「主持人構圖」視窗（參考 BN 編輯器 Shopeelivev3 的構圖預設）——主持人_A／_B 都進視窗，組合「公版預設／平均並排／一大一小」，確認後各自寫回自己的圖層（不烤成一張），去背／換圖走手動替換；「還原公版預設」回到各版位套完工單的位置。跨版位連動改成「不同版型也連動」（旗標 `sync.crossLayoutHosts`，只有跨夜開）：以各版位套完工單的主持人預設框（規則檔記在 `template.__crossnightHostDefault`）為基準，底部中心當錨點、位移用預設框高度換算、大小用寬度比例；主畫布拖曳與視窗確認都走 `asset-link-sync`。
+  追加：「有新版本」提示——`sw.js` 改比實際內容（不比標頭），快取升 v2；按「重新整理」後兩分鐘內同一批檔案不再跳。「重置」與導覽結束都回入口頁（index.html）。畫布點到文字層，左側調整面板對應欄位變橘發亮並捲到看得見的位置。
+  測試：edit-flows 加 5（OM 資料夾合成）、6（跨夜主持人構圖＋連動）；run-tour 改驗回入口頁；黃金更新時掛載不給刪檔改為覆寫同名檔（會提示）；工作目錄同步加 `tour/`。
+- **2026-11-12 文案規則第一期**（GD「警語智慧偵測」規則：jimmywu-commits/shopee／警語智慧偵測）：規則資料 `config/copy-rules.js`、檢查 `modules/copy-lint.js`、單元測試 `npm run test:copy-lint`。
+  自動改字只有「用字替換」（撒→灑）：匯入工單時改工單文字（含規則檔拆出的 __copyLines 等，素材／檔名／主持人欄位不動），面板與畫布打字即時改；跨夜 418 黃金重拍（AR_02 狂撒→狂灑，舊的在 `tests/golden-legacy/跨夜直播/`）。
+  只進診斷（不改字）：禁用語 限搶／限量搶購／手刀搶購（紅）；字數 主標 8／副標 7／警語 14（中文 1、其他含全形標點 0.5）；主副標標點（放行 1,000 逗號、8.5折 小數點、$、%，整合版另放行 M/D 日期與 HH:MM 時間及日期後那一個空格）與中文旁空格；數字缺 $／千分位的建議寫法；警語日期區間不是「M/D - M/D」；主副標有蝦幣但警語沒補 需領券／滿$／最高…蝦幣。價格層、品名、主持人名稱不檢查。
+  不做：日期自動補「一日限定」、小字砍字、蝦幣勾選面板。
+- **2026-11-12 文案規則第二期（全部工具開自動校正）**：`CopyLint.autoCorrect(text, kind)`——主標／副標：補 $＋千分位（有價格字或已有 $ 才補 $；接 蝦幣／%／折 只補千分位；接 月／日／個／件… 不動；「數字元」視為金額改成「$數字」，100元 → $100）、刪中文旁空格（M/D 日期、HH:MM 時間後那一個空格保留）；警語：補 $＋千分位、日期區間統一「M/D - M/D」；其他文案只做用字替換。套用點：匯入工單（依工單欄位名分主標／副標／警語，品名／CTA／主持人不套）、面板欄位離開時、畫布雙擊改字按 Enter／點外面確認時（包 TextEditor.commit；都依圖層分類）。黃金只有 正式BN 319 四張變（最高折$4000 → $4,000，舊的在 `tests/golden-legacy/正式BN_copy-rules/`），其餘 17 套逐 byte 不變。
+- **2026-11-12 手動改主標／副標 → 品牌 LOGO 變體跟著切**（`modules/brand-variant-live.js`）：面板或畫布把主標改成「4/18 VIP專屬」「蝦皮直營…」時，重跑該公版的 afterApplyRecordToTemplate＋LayoutRuleEngine（先把新文字寫回工單欄位與隱藏的 title／subtitle；在 VIP／直營三段式裡改左右段會先拼回整句，段裡自己打了另一個關鍵字就換組），LOGO 組依關鍵字換、整組重新置中；其他手動改過字的圖層重跑前後保住。只對有 蝦皮VIP_LOGO／蝦皮直營_LOGO 圖層的製作物動作，自動產圖與黃金不受影響。三段式裡把右段清空（左段沒關鍵字）＝回到一般主標。**連動預設**：畫面上有 VIP／蝦皮直營 LOGO 的製作物，跨版位連動預設斷開（產圖完與手動切換後都會套；回到一般主標再自動恢復），LOGO 位置不會推給同版型的別張；使用者自己按過連動開關的那張不再自動改。
 - **待處理**：（目前沒有）。
 - **待補**：票券型錄內容仍是 25節 的（需 18節 票券清單）；正式BN C2C SKBN 的 JPG 匯出切圖（D8，黃金為 PNG 未覆蓋）；25節 的存檔／手動素材／票券三套 E2E 尚未對 18節 profile 跑。`tools/` 與第一階段回歸 `test:golden` 已於 2026-10-01 移除（原工具仍在 `#整合版本/` 原資料夾）；重抽 A 系覆寫檔時用 `LEGACY18_SOURCE_ROOT` 指向該資料夾。決策紀錄（D1–D14）在 `docs/core-diff/00-總覽.md` 表 4。
 
@@ -87,12 +99,13 @@ docs/core-diff/          步驟 2：13 工具 core 差異分析（給第二階�
 npm install                     # 只裝測試相依（工具本身是純靜態網頁，不需建置）
 export NODE_PATH=$PWD/node_modules GOLDEN_WORK_DIR=/tmp/golden-work   # 工作目錄須為純 ASCII 路徑
 npm run check                   # 不開瀏覽器：卡片登錄／字型／黃金案例設定／公版 bundle 同步
+npm run test:copy-lint          # 不開瀏覽器：文案規則（撒→灑、字元算法、禁用語／字數／標點／數字／日期／蝦幣）
 npm run bundle:templates        # 公版 JSON 改了之後重新打包 templates/<id>/_bundle.js
 npm run test:launcher           # 入口頁：卡片清單與連結；點卡片開工具；?group= 卡片上傳工單後依分頁選定分類（http 與 file:// 各一次；LAUNCHER_SCHEMES=http 可只跑一種）
 npm run test:click-export       # 互動回歸：A 系＋KOL 逐一點過每張縮圖再下載，確認點選不改變輸出
 npm run test:roundtrip          # 存檔往返：儲存存檔 → 新分頁載回 → 再下載，與第一次下載逐 byte 相同
-npm run test:tour               # 新手導覽：?tour=1 自動開始→逐步打亮／示範→完成後清掉範例回到匯入視窗
-npm run test:edit-flows         # 手動編輯流程：改主標要進下載；編輯商品把券縮 0.6 倍價格要跟著縮、下載看得到、還原回原狀；多張含券價格貼在券上；券面範圍定義（--only 1|2|3|4 可單跑）
+npm run test:tour               # 新手導覽：?tour=1 自動開始→逐步打亮／示範→完成後回入口頁
+npm run test:edit-flows         # 手動編輯流程：改主標要進下載；編輯商品把券縮 0.6 倍價格要跟著縮、下載看得到、還原回原狀；多張含券價格貼在券上；券面範圍定義；OM 資料夾曝品合成；跨夜主持人構圖＋連動（--only 1|2|3|4|5|6 可單跑）
 npm run test:mutation           # 工單變更耐受：每案例 原工單／A 換素材／B 下移一列／C 前兩筆對調 各跑一次（--only A|B|C），列「跟基準不一樣」的診斷；C 另比匯出圖整組是否一樣（tests/golden-diff/mutation/）
 npm run test:core-golden        # 已折入整合核心的案例（預設 GOLDEN_FONTS=local 只用內建 TTF；GOLDEN_FONTS=<放 WOFF2 的網址>/ 可驗證 WOFF2 輸出零誤差）（有意改輸出時加 --update-golden --update-reason "原因" 重拍基準）（tests/run-golden/cases-core.json）用 app.html 重跑 → 逐 byte／pixelmatch 比對；D1 的 JPG→PNG 另比不透明區
 ```

@@ -1323,7 +1323,19 @@
     "source": "18節 04 §1.2",
     "default": "ruleOrRecord"
   },
-  {"key": "batch.outputNameSanitize", "type": "enum", "values": ["dash", "legacyUnderscore", "windowsSafe"], "affects": "filename", "summary": "輸出檔名非法字元處理：dash＝[\\/:*?\"<>|]→-；legacyUnderscore＝[\\/:?\"<>|]→_ 且保留 *（原 18節 AMS）；windowsSafe＝尺寸的 * → x（1029x357）、其他非法字元→_（2026-11-05 AMS 現用）。", "source": "18節 04 §1.2", "default": "dash"},
+  {
+    "key": "batch.outputNameSanitize",
+    "type": "enum",
+    "values": [
+      "dash",
+      "legacyUnderscore",
+      "windowsSafe"
+    ],
+    "affects": "filename",
+    "summary": "輸出檔名非法字元處理：dash＝[\\/:*?\"<>|]→-；legacyUnderscore＝[\\/:?\"<>|]→_ 且保留 *（原 18節 AMS）；windowsSafe＝尺寸的 * → x（1029x357）、其他非法字元→_（2026-11-05 AMS 現用）。",
+    "source": "18節 04 §1.2",
+    "default": "dash"
+  },
   {
     "key": "assets.urlBasename",
     "type": "bool",
@@ -1522,7 +1534,9 @@
     "affects": "pixel",
     "summary": "參考用圖層名稱關鍵字（modules/layer-hygiene.js）：名稱含這些字的圖層 hidden＋locked＋__internal（畫布可用「規範」開關疊圖、輸出不畫、圖層清單不列）。預設 ['規範']；暖身BN 加 '範圍'（公版整併後 P_範圍 會被畫成實心框）。B 系的 P_範圍 是商品位置框、core 自己處理，不可加。",
     "source": "18節 封測 2026-10-30 第 2 題",
-    "default": ["規範"]
+    "default": [
+      "規範"
+    ]
   },
   {
     "key": "text.normalizeRawTracking",
@@ -1567,5 +1581,13 @@
     "summary": "下載圖片的 zip 是否附上 診斷報告.txt（DiagnosticsReport 四級分類；該工具原本已產診斷報告時不重複）。2026-10-07 回饋 3。",
     "source": "整合版 ExportBundleExtras",
     "default": true
+  },
+  {
+    "key": "sync.crossLayoutHosts",
+    "type": "bool",
+    "affects": "interaction",
+    "summary": "（二校二修 #5）跨夜主持人跨版位連動：主持人_A／_B 不分版型（HBN／MSBN／DD…）一起連動，依各版位套完工單的預設框（template.__crossnightHostDefault）等比換算位置與大小（底部中心為錨點）；合成視窗的主持人構圖套用後也走同一條。只有跨夜開。",
+    "source": "18節 二校二修 V2 2026-11-11",
+    "default": false
   }
 ]

@@ -1,0 +1,235 @@
+{
+  "tool": "外廣OM_wave1",
+  "sheetName": "外廣_Wave1",
+  "project": "",
+  "capturedAt": "2026-09-16T08:38:02.848Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "loadedRuleFiles": [
+      "rules/om-wave1-subtitle_rules.js"
+    ],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 17,
+    "assetCount": 38,
+    "sheetNames": [
+      "18會員日_檔期資訊",
+      "素材規格表",
+      "Timeline",
+      "Creative Review",
+      "外廣_Wave1",
+      "外廣_Wave2(急件)",
+      "LineOA_wave1",
+      "外廣_加發_For MAU"
+    ]
+  },
+  "generated": 65,
+  "exported": 65,
+  "unmatched": [],
+  "alerts": [],
+  "hostReviewAutoConfirmed": 0,
+  "diagnostics": {
+    "sheetName": "外廣_Wave1",
+    "anchorCount": 2,
+    "parsedBlockCount": 65,
+    "recordCount": 65,
+    "sourceTemplateNames": [
+      "DPA Frame",
+      "LinePoint_960x540",
+      "Rtbhouse_300x250",
+      "Rtbhouse_300x600",
+      "Rtbhouse_320x480",
+      "Rtbhouse_320x50",
+      "Rtbhouse_360x640",
+      "Rtbhouse_480x320",
+      "Rtbhouse_728x90",
+      "Template_1200x1200",
+      "Template_1200x628",
+      "Template_600x400",
+      "UAC-Pmax-LineLAP_960x1200",
+      "line point_512x512",
+      "line point_960x540",
+      "pixnet_260x480",
+      "pixnet_672x560"
+    ],
+    "warnings": [],
+    "skippedRows": [
+      {
+        "row": 14,
+        "name": "VideoElements",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 15,
+        "name": "VideoElements",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 16,
+        "name": "VideoElements",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 17,
+        "name": "VideoElements",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 18,
+        "name": "VideoElements",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 19,
+        "name": "VideoElements",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 96,
+        "name": "VideoElements_Frame",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 97,
+        "name": "VideoElements_Frame",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 98,
+        "name": "VideoElements_Frame",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 99,
+        "name": "VideoElements_Frame",
+        "reason": "依規則略過不製作媒體"
+      },
+      {
+        "row": 100,
+        "name": "VideoElements_Frame",
+        "reason": "依規則略過不製作媒體"
+      }
+    ],
+    "generatedCount": 65,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:33043/assets/%E5%85%B1%E7%94%A8%E7%B4%A0%E6%9D%90/DPA%20Frame_%E7%9B%B4%E5%BC%8F_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/%E5%85%B1%E7%94%A8%E7%B4%A0%E6%9D%90/DPA%20Frame_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/%E5%85%B1%E7%94%A8%E7%B4%A0%E6%9D%90/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_%E7%9B%B4%E5%BC%8F_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_%E7%9B%B4%E5%BC%8F_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_%E7%9B%B4%E5%BC%8F_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_%E7%9B%B4%E5%BC%8F_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_18%E8%99%9F%E6%9C%83%E5%93%A1%E6%97%A5_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/%E5%85%B1%E7%94%A8%E7%B4%A0%E6%9D%90/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/DPA%20Frame_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:33043/assets/DPA%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "2026.4.18 會員日_Timeline&入稿表.xlsx",
+      "sha256": "70093a8ef3e13bd28b639ecf28ea96d6f58856045ea73db0354d8ec7e760afec"
+    },
+    "templates": {
+      "DPA Frame.json": "4186a83a5194c46dfb572ab0615c009d87bb6d57840e992fdfa526ac39da228d",
+      "LinePoint_960x540.json": "d4ddba8c246578d5c157a01b1294a3a9b480675339766d9c12c8ff22b3508771",
+      "Rtbhouse_300x250.json": "69cd54a7b109275705e77c1ac6c2d0c9c50412de8a8ef6ae5edde45477c1d3ed",
+      "Rtbhouse_300x600.json": "0b37bf355cbacac7805e9d8eecc0b59ea93e9c89448fa7004437eb8fdf7d1879",
+      "Rtbhouse_320x480.json": "bac54ad83eddf3e09892b312839ae0091352170c67d12336c2be546bea2f12b1",
+      "Rtbhouse_320x50.json": "07d6a93830445a7e2de8a640802f4b91c852dc8f4180b45b6ac227fd5651f191",
+      "Rtbhouse_360x640.json": "0a7da97f14e1cd8ae489b86898c19ff5eed45c85e7f5898e312b9a0a1693a443",
+      "Rtbhouse_480x320.json": "5bde3748202fca00bc6932337301d809fdd4bd121faa353f13205b4a957112be",
+      "Rtbhouse_728x90.json": "a1cf48f16bd5e3da89c93c5668021ba1920b548bcf89162aa5ddf2517e86122f",
+      "Template_1200x1200.json": "c3e1707d08a1e7180e7299a3ca7c1dbfb1f68372aed1d695f79a04b0301469f7",
+      "Template_1200x628.json": "5b6e61d1484da675d89705ce083e1f691ed33eac1e1e6f9b82e1bdbee007c0af",
+      "Template_600x400.json": "9564ebd43e1fefc09767126cae137966fe550b8eb08500885666954af1810a17",
+      "UAC-Pmax-LineLAP_960x1200.json": "aeb8d45ddb6c8085d9e82c75e3aaf77ab7103f5d3b2c490a0247813e2c826bbf",
+      "line point_512x512.json": "81b82b115733dc7cf0ce3810adde9e3d4a04996df3fa48752304d718391461b3",
+      "line point_960x540.json": "054cc5438587f96951f49bc8ba2d3ae9806c356c035225cc7d2f5f548d5cd2d2",
+      "pixnet_260x480.json": "71f877cc3a916bf33634dd4d8f6e4c7942386543d8b557f76cde84fe4397b8e3",
+      "pixnet_672x560.json": "fab106e1acab141e3a400ab1887379ed2101ee989bfaf5466d8015ac17c3eb43"
+    },
+    "assets": {
+      "18號會員日_LOGO_白.svg": "7db6dc7cf9b5f2df35802e9ebfa655ab0ebe3e94bea929e979a1c18e643baf72",
+      "DPA Frame/DPA Frame_KV_BG.png": "c767f96e7a6ecbbb469a39f6d5fdf7d2b737159a350c05fa4b706145e933b7ef",
+      "Line Point/AD.png": "9d561bfe1732db0b13914ccea12f7a5fe1b4faf3d8dea97a17e91b1da4647f25",
+      "Line Point/line point_512x512_KV_BG.png": "e3c01ee104060f4b436cec4f9a60d141dc9089b6213401f52e109ac8850474a5",
+      "Line Point/line point_960x540_KV_BG.png": "1832fd9e09cca68e42e195e462ac85e3243c8ad205c6cc3acd8581749e861a8a",
+      "Pixnet/pixnet_260x480_KV_BG.png": "0d3bbb13af71ceca355af48f288efff824dd24ad01d2501318fada04d4812434",
+      "Pixnet/pixnet_672x560_KV_BG.png": "d6692c730916db8937482d4c7b02fa7c1bb34b5edfe9eba140f2332432dd172d",
+      "README.md": "43a0cbaf271a3859685005e1d4b3ac7758f88ed4497e8cb030dfcb3ed87e529e",
+      "Rtbhouse/Rtbhouse_300x250_KV_BG.png": "c9bcc8552f31cc18b8451fd90d835a0a401a0bef54f2cd3a2e830c1c91d8762f",
+      "Rtbhouse/Rtbhouse_300x600_KV_BG.png": "7cad68fb3cdf86d6d506ae4b2a83690316a07085729899bcb973af50acee4d33",
+      "Rtbhouse/Rtbhouse_320x480_KV_BG.png": "3948173df20397b64211dffb9dc07cc0df30ccd7b2522945eb7c813497653a27",
+      "Rtbhouse/Rtbhouse_320x50_KV_BG.png": "55bef8d8aa5226cf276a03e953e16892c63ee4013dc0a2fc20879a8fd8a2570f",
+      "Rtbhouse/Rtbhouse_360x640_KV_BG.png": "d529ba6fbdbcf58a78639be32f022aa920e8fb3e23e97fa4e9ba8ecfecce9071",
+      "Rtbhouse/Rtbhouse_480x320_KV_BG.png": "6dda271fea86da314978f2443812563437d92adc0e20fe6b8222a4fd95d532b2",
+      "Rtbhouse/Rtbhouse_728x90_KV_BG.png": "38c0cf77a8dd37309402506e402377acb0e7c01d840e28b49bfbaeeab6d2412e",
+      "SCS_雙券.png": "bccdfa6af92a96237b3c874188c0c609583cb3e3b08290e7a10e96d753cad0b7",
+      "Template/Template_1200x1200_KV_BG.png": "33da94c23e8db0bcd1ddd6d4f6b42282b7151474da19f3d96d36f5244c00f61e",
+      "Template/Template_1200x628_KV_BG.png": "5d66b59469c0f7f9d00ec848124691532f3b216fbd1bfd73f38ed842b2643606",
+      "Template/Template_600x400_KV_BG.png": "eace29fb3c8191eccd4c33c89d5537405a5015edc0397687eb37905b141b120d",
+      "Template/UAC-Pmax-LineLAP_960x1200_KV_BG.png": "2051733cc9a0a3d3611550f523b99195cb5266d93dfff607c786004aeb94e970",
+      "UAC-Pmax-LineLAP/UAC-Pmax-LineLAP_1200x1200_KV_BG.png": "33da94c23e8db0bcd1ddd6d4f6b42282b7151474da19f3d96d36f5244c00f61e",
+      "UAC-Pmax-LineLAP/UAC-Pmax-LineLAP_1200x628_KV_BG.png": "5d66b59469c0f7f9d00ec848124691532f3b216fbd1bfd73f38ed842b2643606",
+      "UAC-Pmax-LineLAP/UAC-Pmax-LineLAP_600x400_KV_BG.png": "eace29fb3c8191eccd4c33c89d5537405a5015edc0397687eb37905b141b120d",
+      "UAC-Pmax-LineLAP/UAC-Pmax-LineLAP_960x1200_KV_BG.png": "2051733cc9a0a3d3611550f523b99195cb5266d93dfff607c786004aeb94e970",
+      "VIP_單券_折扣.png": "d473e8fcb98de6a6fa747a8f36a3d39c3eba1d0a80c0c7cc0a505a5865e9f01b",
+      "banner5/P-Dyson吹風機.png": "e8b213bc2f3c4f21ce5f51d8dd8c4955c6e3fe2ec01b94521d0222e9e8d8ef0c",
+      "banner5/P-VIVO手機.png": "4128775fa6efc2e4472cc7b03dac21c52f97c16dd78d78e9944bd904e4c1271a",
+      "banner6/P-ELIXIR-Photoroom.png": "2d0e0d65bd228f90e80011ca7f07054c19e41e55569081f8b4903602b96bb9cd",
+      "banner6/transparent-Photoroom.png": "e51e9c77b9398c6400f968e59a89ccc0114c13baa14f7359219ce08a42489e80",
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "信用卡加全站券.png": "6321160b572db4604616a25d8b571127df53553a3c804a79ad98fa529f12f4fa",
+      "免運車.png": "9ea95c3811e1653231f597390124c0c7a607c9b393d5312548c00584d35440d7",
+      "全站券_雙券.png": "b1addc67fdcc6e0bb89665e8029d8bba79d8d957f1080884b7a5e10b7c3c768e",
+      "直式_18號會員日_LOGO_白.svg": "1d5664a9b83114707be95e00596a226524ab75949ba2b718364dabde1e303018",
+      "直式_蝦皮購物_LOGO_白.svg": "5cd19a1427d18e84e598b6448a80c535a08372cbd455069633512a40a3953eff",
+      "蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "蝦皮直營_LOGO.svg": "eaff266247fb75c0647ba241562de6226922f8a2a04d33c15dfce11f206dfcee",
+      "蝦皮購物18號會員日_LOGO_白.svg": "3a11d17e16efb9fe7527c2ee50e2b8f1fd4a7a806f6eabcf66c6b9d82c40baa0",
+      "蝦皮購物_LOGO_白.svg": "2d940580d5a5d640766e3f67aee7a1b39f24df9d8956690a50daa5f865edccea"
+    }
+  }
+}

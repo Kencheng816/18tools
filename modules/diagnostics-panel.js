@@ -288,6 +288,20 @@
       }
       return result;
     };
+    // （二校二修 #3）手動上傳／清除素材只會局部刷新縮圖，不會重跑 renderBatchUI：這裡也包一層，「還沒上傳圖」才會即時消失／出現。
+    if (typeof BatchManager.refreshThumbsForIndexes === 'function') {
+      const originalRefresh = BatchManager.refreshThumbsForIndexes;
+      BatchManager.refreshThumbsForIndexes = async function refreshThumbsThenDiagnostics(...args) {
+        const result = await originalRefresh.apply(this, args);
+        try {
+          renderSummary(document.getElementById('unmatchedBox'));
+          if (state.drawer && !state.drawer.classList.contains('hidden')) renderDrawer();
+        } catch (error) {
+          console.warn('[diagnostics-panel] 重畫失敗', error);
+        }
+        return result;
+      };
+    }
     document.getElementById('unmatchedBox')?.addEventListener('click', onSummaryClick);
   }
 

@@ -180,9 +180,11 @@
       window.LogoEditor?.pickLogoKey?.(template);
       $('itemProductSection').classList.toggle('hidden', !products.length);
       renderComposeStatus(template);
+      highlightSelected();
       return;
     }
     renderComposeStatus(template);
+    highlightSelected();
     // 同一張：只同步沒有在打字的欄位（畫布上直接改字、復原等）
     document.querySelectorAll('#itemTextFields .item-text-field').forEach((row) => {
       const input = row.querySelector('textarea'); const layer = template.layers[row.dataset.layerKey];
@@ -194,13 +196,37 @@
     });
   }
 
+  /** （二校二修補充 4）畫布上點到哪一個文字層，左側對應的那格就亮起來並捲到看得見的地方，提示「可以在這裡改」。 */
+  let lastHighlighted = '';
+  function highlightSelected() {
+    const { AppState } = core();
+    const selected = Array.isArray(AppState?.selectedLayers) && AppState.selectedLayers.length === 1 ? String(AppState.selectedLayers[0]) : '';
+    let target = null;
+    document.querySelectorAll('#itemTextFields .item-text-field').forEach((row) => {
+      const hit = !!selected && row.dataset.layerKey === selected;
+      row.classList.toggle('is-selected', hit);
+      if (hit) target = row;
+    });
+    if (target && selected !== lastHighlighted && document.activeElement !== target.querySelector('textarea')) {
+      try { target.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (_) { /* 舊瀏覽器 */ }
+    }
+    lastHighlighted = selected;
+  }
+
   /** 商品區：合成過 → 顯示「已合成（組合）」、按鈕改「重新調整」、多一顆「還原自動排版」。 */
   function renderComposeStatus(template) {
     const status = window.ProductComposer?.composeStatus?.(template) || null;
+    // （二校二修 #5）跨夜主持人：同一顆按鈕開「主持人構圖」視窗，文案換成主持人的
+    const isHost = !!window.ProductComposer?.isHostTemplate?.(template);
     const line = $('composeStatus'); const button = $('editProductBtn'); const restore = $('restoreProductBtn');
-    if (line) { line.classList.toggle('hidden', !status); if (status) line.textContent = `已合成：${status.items} 張・${status.presetLabel}（可重新調整，或還原成自動排版）`; }
-    if (button) button.textContent = status ? '重新調整' : '編輯商品';
-    if (restore) restore.classList.toggle('hidden', !status);
+    const title = $('itemProductSection')?.querySelector('.adjust-section-title');
+    if (title) title.textContent = isHost ? '主持人' : '商品';
+    if (line) {
+      line.classList.toggle('hidden', !status);
+      if (status) line.textContent = isHost ? `已套用構圖：${status.presetLabel}（可重新調整，或還原成公版預設）` : `已合成：${status.items} 張・${status.presetLabel}（可重新調整，或還原成自動排版）`;
+    }
+    if (button) button.textContent = status ? '重新調整' : (isHost ? '主持人構圖' : '編輯商品');
+    if (restore) { restore.classList.toggle('hidden', !status); restore.textContent = isHost ? '還原公版預設' : '還原自動排版'; }
   }
 
   function wrap(target, method, after) {

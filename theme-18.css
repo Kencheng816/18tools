@@ -344,6 +344,9 @@ body:not(.is-advanced) #unmatchedBox, body:not(.is-advanced) #diagDrawer { displ
 .item-text-count{ color:var(--muted); font-variant-numeric:tabular-nums; }
 .item-text-input{ width:100%; min-height:30px; resize:none; overflow:hidden; line-height:1.4; font-size:12px; padding:6px 8px; border:1px solid var(--line); border-radius:var(--r-sm); background:rgba(255,255,255,.04); color:var(--text); font-family:inherit; }
 .item-text-input:focus{ outline:none; border-color:var(--accent-line); background:rgba(255,255,255,.07); }
+/* 二校二修補充 4：畫布上點到的文字層，左側對應欄位發亮（欄名變橘、輸入框亮邊） */
+.item-text-field.is-selected .item-text-head > span:first-child{ color:var(--accent, #ee4d2d); font-weight:700; }
+.item-text-field.is-selected .item-text-input{ border-color:var(--accent, #ee4d2d); box-shadow:0 0 0 2px rgba(238,77,45,.28); background:rgba(238,77,45,.08); }
 .adjust-wide-btn{ width:100%; min-height:36px; justify-content:center; }
 .adjust-wide-btn:disabled{ opacity:.45; cursor:not-allowed; }
 body.is-advanced section.panel.adv-only{ display:block !important; }

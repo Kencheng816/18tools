@@ -41,7 +41,8 @@ window.__profileRegistry["profile:跨夜"] = {
     "export.compressMode": "kLimit",
     "export.skipMissingAssets": true,
     "export.diagnostics": "mirror",
-    "export.diagnosticsTitle": "18節跨夜直播宣傳圖"
+    "export.diagnosticsTitle": "18節跨夜直播宣傳圖",
+    "sync.crossLayoutHosts": true
   },
   "_inapplicable": [
     "assets.moduleCommonFolder",

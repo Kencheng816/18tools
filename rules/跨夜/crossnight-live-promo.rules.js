@@ -640,6 +640,15 @@
       setImageLayer(template, '主持人_B', hostAssetFilename(names[1]), '主持人圖素');
     }
 
+    // （二校二修 #5）記下「這個版位套完工單後」主持人的預設框：跨版位連動（modules/asset-link-sync.js）與
+    // 合成視窗的「公版預設」構圖都以它為基準——使用者在某張把主持人放大 1.2 倍、往右移，其他版位就依各自預設框等比換算。
+    if (!preserveGeometry) {
+      const snapshot = (layer) => (layer && layer.hidden !== true ? {
+        x: Number(layer.x || 0), y: Number(layer.y || 0), width: Number(layer.width || 0), height: Number(layer.height || 0),
+      } : null);
+      template.__crossnightHostDefault = { '主持人_A': snapshot(hostA), '主持人_B': snapshot(hostB) };
+    }
+
     const hostLabel = names.join('、');
     setTextLayer(template, '主持人名稱', hostLabel, { preserveManualText });
     const hostTitle = getLayer(template, '主持');

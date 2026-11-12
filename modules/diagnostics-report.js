@@ -87,6 +87,18 @@
     });
   }
 
+  /** （二校二修 #3）上傳格（LineOA 的 KV 格／商品格、POPUP 格…）還是空的：圖會出，但那一格會是「+上傳」的空位。
+   *  上傳後 layer.assetFilename 有值，下一次重畫診斷就自動消失。 */
+  function collectEmptyUploadSlots(collector, entries) {
+    entries.forEach(({ item, index }) => {
+      const empty = Object.entries(item.data?.layers || {})
+        .filter(([, layer]) => layer && layer.type === 'image' && layer.__uploadSlot === true && !layer.hidden && !clean(layer.assetFilename))
+        .map(([key, layer]) => clean(layer.psdName || layer.name || key));
+      if (!empty.length) return;
+      collector.add('important', '還沒上傳圖', item.name, `${empty.join('、')}：這幾格還是空的，請點畫布上的「+上傳」補圖`, index);
+    });
+  }
+
   function collectPriceIssues(collector, entries) {
     entries.forEach(({ item, index }) => {
       const template = item.data || {};
@@ -117,6 +129,17 @@
           }
         } catch (_) { /* 量測失敗就不報 */ }
       });
+    });
+  }
+
+  /** （2026-11-12 文案規則第一期）禁用語／字數／標點／數字格式／警語日期／蝦幣條件：規則在 config/copy-rules.js，檢查在 modules/copy-lint.js。 */
+  function collectCopyLint(collector, entries) {
+    const lint = window.CopyLint?.lintTemplate;
+    if (typeof lint !== 'function') return;
+    entries.forEach(({ item, index }) => {
+      let issues = [];
+      try { issues = lint(item.data) || []; } catch (_) { return; }
+      issues.forEach((issue) => collector.add(issue.tier === 'critical' ? 'critical' : 'important', issue.kind, item.name, issue.detail, index));
     });
   }
 
@@ -171,8 +194,10 @@
     const entries = templateEntries(AppState);
     collectUnmatched(collector, AppState);
     collectAssetDiagnostics(collector, entries);
+    collectEmptyUploadSlots(collector, entries);
     collectPriceIssues(collector, entries);
     collectTextOverflow(collector, entries, Renderer);
+    collectCopyLint(collector, entries);
     collectSkippedRows(collector, AppState);
     collectDuplicateNames(collector, entries);
     collectInfo(collector, AppState, entries);

@@ -152,5 +152,11 @@
       "首頁A1 Floating icon/CTA_X.png": "fce1f1b82687d4e4217df5ab60c32efdbb35563424e1e9492c82dd269215b31f",
       "首頁A1 Floating icon/首頁A1 Floating icon_KV_BG.png": "20ef3aac5e857bcbdd6cd5b8446f4b8fa23864cb0ac8585c13001f47f41ad080"
     }
+  },
+  "rebaselined": {
+    "at": "2026-11-12T04:02:38.917Z",
+    "by": "run-core-golden --update-golden",
+    "reason": "文案規則第一期：撒→灑（AR_02 狂撒優惠券 → 狂灑優惠券）",
+    "images": 21
   }
 }

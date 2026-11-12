@@ -41,21 +41,42 @@
   const fileToDataUrl = (file) => new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(reader.error); reader.readAsDataURL(file); });
   function imageToDataUrl(img) { const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight; c.getContext('2d').drawImage(img, 0, 0); return c.toDataURL('image/png'); }
 
+  /** （二校二修 #1）OM 資料夾模式：工單「右邊網址」→ 整個資料夾的圖都是曝品（core 動態建 P_02／P_03…）。 */
+  const folderOf = (template) => String(template?.batchRecord?.__productFolder || '').trim();
+  const isDynamicProductKey = (key) => /^P_\d{2}$/.test(String(key || ''));
+
   function productKeys(template) {
     const { MultiProduct } = core();
     const base = MultiProduct?.productLayerKeys?.(template) || [];
     const key = base[0];
     if (!key) return [];
     const clones = Object.keys(template.layers).filter((k) => template.layers[k]?.__multiProductOf === key);
-    return [key, ...clones];
+    // 資料夾模式的 P_02／P_03… 跟「A + B」的複製層一樣都是這張的曝品，一起進視窗
+    const dynamic = Object.keys(template.layers)
+      .filter((k) => k !== key && isDynamicProductKey(k) && template.layers[k]?.type === 'image' && String(template.layers[k].assetFilename || '').trim())
+      .sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+    return [key, ...clones, ...dynamic];
   }
+
+  // ── （二校二修 #5）跨夜主持人模式：主持人_A／_B 一起進視窗擺構圖，確認後各自寫回自己的圖層（不烤成一張），再跨版位連動 ──
+  // 構圖做法比照 BN 編輯器（tsec-psd.github.io/Shopeelivev3）的「構圖預設」：依人數給預設位置、使用者可拖曳微調；
+  // 這裡的「公版預設」＝各版位 PSD 原本的主持人位置（規則檔套完工單記在 template.__crossnightHostDefault）。
+  const HOST_KEYS = ['主持人_A', '主持人_B'];
+  const HOST_PRESET_LABELS = { hostDefault: '公版預設', row: '平均並排', pair: '一大一小' };
+  function hostKeys(template) {
+    if (!template?.__crossnightHostDefault) return [];
+    return HOST_KEYS.filter((k) => { const l = template.layers?.[k]; return l?.type === 'image' && l.hidden !== true && String(l.assetFilename || '').trim(); });
+  }
+  const isHostMode = () => state?.mode === 'host';
 
   function productBox(template, key) {
     const { BatchManager } = core();
     const saved = template.__multiProduct?.[key]?.box;
     if (saved) return saved;
+    // 資料夾模式：擺品範圍＝公版的 P_範圍（P 層本身可能已被精準座標 preset 縮成單一商品的小框，不能當範圍）
+    const guide = folderOf(template) ? BatchManager.getProductPlacementGuideBox?.(template) : null;
     const rule = BatchManager.resolveTemplateProductImageRule?.(template);
-    return core().MultiProduct.normalizeBox(rule?.productImageBox || BatchManager.getProductImageBoxFromLayer(template.layers[key])) || { x: 0, y: 0, width: template.canvas.width, height: template.canvas.height };
+    return core().MultiProduct.normalizeBox(guide || rule?.productImageBox || BatchManager.getProductImageBoxFromLayer(template.layers[key])) || { x: 0, y: 0, width: template.canvas.width, height: template.canvas.height };
   }
 
   /** 公版背景（商品圖層先藏起來）畫成一張圖，當視窗底圖＋陰影取色用。 */
@@ -170,11 +191,29 @@
   function renderPresetSelect() {
     const select = $('composerPreset');
     const n = state.items.length;
-    const options = n <= 1 ? ['row'] : n === 2 ? ['pair', 'row'] : ['triangle', 'row'];
-    select.innerHTML = options.map((p) => `<option value="${p}">${PRESET_LABELS[p]}</option>`).join('');
+    const options = isHostMode()
+      ? (n <= 1 ? ['hostDefault'] : ['hostDefault', 'row', 'pair'])
+      : (n <= 1 ? ['row'] : n === 2 ? ['pair', 'row'] : ['triangle', 'row']);
+    const labels = isHostMode() ? HOST_PRESET_LABELS : PRESET_LABELS;
+    select.innerHTML = options.map((p) => `<option value="${p}">${labels[p]}</option>`).join('');
     if (!options.includes(state.preset)) state.preset = options[0];
     select.value = state.preset;
-    select.disabled = n <= 1;
+    select.disabled = options.length <= 1;
+  }
+
+  /** 主持人模式：公版預設構圖 → 各版位套完工單時主持人的框（底部中心錨點，跟 receiver 的 transform 一致）。 */
+  function hostDefaultTransform(item) {
+    const box = state.template.__crossnightHostDefault?.[item.key];
+    if (!box) return null;
+    const k = state.scale;
+    return { x: (box.x + box.width / 2) * k, y: (box.y + box.height) * k, w0: box.width * k, h0: box.height * k, scaleMul: 1, rot: 0 };
+  }
+  /** 主持人模式：目前畫布上的框（重開視窗時顯示使用者上次調好的位置）。 */
+  function hostCurrentTransform(item) {
+    const layer = state.template.layers[item.key];
+    const k = state.scale;
+    const width = Number(layer.width || 0); const height = Number(layer.height || 0);
+    return { x: (Number(layer.x || 0) + width / 2) * k, y: (Number(layer.y || 0) + height) * k, w0: width * k, h0: height * k, scaleMul: 1, rot: Number(layer.rotation || 0) };
   }
 
   // ── 素材 ──
@@ -191,9 +230,10 @@
     const { MultiProduct } = core();
     const box = state.box;
     const scaled = { x: box.x * state.scale, y: box.y * state.scale, width: box.width * state.scale, height: box.height * state.scale };
-    const slots = MultiProduct.layoutSlots(scaled, state.items.length, state.preset);
+    const slots = MultiProduct.layoutSlots(scaled, state.items.length, state.preset === 'hostDefault' ? 'row' : state.preset);
     state.items.forEach((item, index) => {
-      const transform = (!reset && item.saved) ? item.saved : slotTransform(item, slots[index]);
+      const transform = (!reset && item.saved) ? item.saved
+        : (isHostMode() && state.preset === 'hostDefault' && hostDefaultTransform(item)) || slotTransform(item, slots[index]);
       if (reset) { receiver.handleMessage({ type: 'LC_REMOVE_SLOT', slotId: item.id }); }
       receiver.handleMessage({ type: 'LC_UPSERT_SLOT', slotId: item.id, slotType: 'product', dataUrl: item.src, transform }, redraw);
     });
@@ -242,23 +282,43 @@
     const { AppState, BatchManager } = core();
     const template = AppState?.template;
     if (!template?.layers) { alert('先選一張製作物'); return; }
-    const keys = productKeys(template);
+    const hosts = hostKeys(template);
+    const mode = hosts.length ? 'host' : 'product';
+    const keys = mode === 'host' ? hosts : productKeys(template);
     if (!keys.length) { alert('這張公版沒有商品圖層'); return; }
     try { await ensureVendor(); } catch (error) { alert(error.message); return; }
     ensureModal();
 
     const key = keys[0];
     const base = template.layers[key];
-    const saved = base.productCompose;
+    const saved = mode === 'host' ? null : base.productCompose;
     const canvasW = template.canvas.width; const canvasH = template.canvas.height;
     const scale = Math.min(2, SCALE_MAX_EDGE / Math.max(canvasW, canvasH));
     const names = template.__multiProduct?.[key]?.parts || [];
 
     let items;
-    if (saved?.items?.length) {
+    if (mode === 'host') {
+      // 主持人：每張一個素材、記住自己的圖層 key；初始位置＝目前畫布上的位置（第一次＝公版預設）
+      if (keys.some((k) => !AppState.images?.[k]?.naturalWidth)) {
+        try { await window.TemplateLoader?.loadImagesForActiveTemplate?.({ project: AppState.templates?.[AppState.activeIndex]?.project }); } catch (_) { /* 走下面的提示 */ }
+      }
+      items = [];
+      for (let i = 0; i < keys.length; i += 1) {
+        const img = AppState.images?.[keys[i]];
+        if (!img?.naturalWidth) continue;
+        const src = imageToDataUrl(img);
+        const stem = String(template.layers[keys[i]].assetFilename || '').split(/[\\/]/).pop().replace(/^\d{10,}_/, '').replace(/\.[^.]+$/, '');
+        items.push({ id: `item${i}`, key: keys[i], name: stem || keys[i], src, originalSrc: src, img: await loadImage(src), saved: null });
+      }
+      if (!items.length) { alert('主持人圖還沒載入，請稍候再試'); return; }
+    } else if (saved?.items?.length) {
       items = await Promise.all(saved.items.map(async (it, i) => ({ id: `item${i}`, name: it.name, src: it.src, img: await loadImage(it.src), saved: it.transform ? scaleTransform(it.transform, scale / (saved.scale || 1)) : null })));
     } else {
       items = [];
+      // 剛切到這張時圖片可能還在載（佇列自動開、或連點很快）：先等這張的圖載好再抓，不要直接報「還沒載入」
+      if (keys.some((k) => !AppState.images?.[k]?.naturalWidth)) {
+        try { await window.TemplateLoader?.loadImagesForActiveTemplate?.({ project: AppState.templates?.[AppState.activeIndex]?.project }); } catch (_) { /* 載不到就走下面的提示 */ }
+      }
       for (let i = 0; i < keys.length; i += 1) {
         const img = AppState.images?.[keys[i]];
         if (!img?.naturalWidth) continue;
@@ -270,18 +330,29 @@
       if (!items.length) { alert('商品圖還沒載入，請稍候再試'); return; }
     }
 
+    const hostCompose = mode === 'host' ? template.__hostCompose : null;
     state = {
-      template, key, keys, items, scale,
-      box: productBox(template, key),
-      preset: saved?.preset || template.__multiProduct?.[key]?.preset || core().MultiProduct.defaultPreset(items.length),
-      shadow: saved ? saved.shadow !== false : true,
+      template, key, keys, items, scale, mode,
+      box: mode === 'host'
+        ? (core().MultiProduct.normalizeBox(BatchManager.getProductPlacementGuideBox?.(template)) || { x: 0, y: 0, width: canvasW, height: canvasH })
+        : productBox(template, key),
+      preset: mode === 'host' ? (hostCompose?.preset || 'hostDefault') : (saved?.preset || template.__multiProduct?.[key]?.preset || core().MultiProduct.defaultPreset(items.length)),
+      shadow: mode === 'host' ? false : (saved ? saved.shadow !== false : true),
       angle: saved?.angle || 'left',
       bg: null,
       queue: options.queue || null,
       order: null,
     };
-    const ids = new Set(items.map((it) => it.id));
-    state.order = Array.isArray(saved?.order) && saved.order.length === items.length && saved.order.every((id) => ids.has(id)) ? [...saved.order] : defaultOrder(items);
+    if (mode === 'host') {
+      // 初始位置＝目前畫布上的位置（第一次開＝公版預設；之後開＝上次調好的）
+      items.forEach((item) => { item.saved = hostCurrentTransform(item); });
+      // 疊放順序照目前 renderOrder（後畫的在上面；清單是上面＝前面）
+      const order = Array.isArray(template.renderOrder) ? template.renderOrder : Object.keys(template.layers);
+      state.order = [...items].sort((a, b) => order.indexOf(b.key) - order.indexOf(a.key)).map((it) => it.id);
+    } else {
+      const ids = new Set(items.map((it) => it.id));
+      state.order = Array.isArray(saved?.order) && saved.order.length === items.length && saved.order.every((id) => ids.has(id)) ? [...saved.order] : defaultOrder(items);
+    }
     state.bg = renderBackground(template, keys);
 
     const canvas = $('composerCanvas');
@@ -293,6 +364,13 @@
 
     $('composerItemName').textContent = AppState.templates?.[AppState.activeIndex]?.name || template.templateId || '';
     $('composerShadow').checked = state.shadow;
+    // 主持人模式：不烤圖，陰影由規則檔的 dropShadow 負責 → 藏掉陰影／光源；標題與說明也換成主持人的
+    $('composerShadow').closest('.composer-row')?.classList.toggle('hidden', isHostMode());
+    $('composerAngle').closest('.composer-row')?.classList.toggle('hidden', isHostMode());
+    $('productComposerModal').querySelector('.composer-head strong').textContent = isHostMode() ? '主持人構圖' : '編輯商品';
+    $('productComposerModal').querySelector('.composer-hint').textContent = isHostMode()
+      ? '拖曳移動；拉角落縮放；選取單一素材時上方有旋轉把手；多選（Shift／Ctrl 點選）可整組拖曳／縮放；Ctrl+Z 復原。確認後每位主持人各自寫回自己的圖層，並依比例同步到其他版位。'
+      : '拖曳移動；拉角落縮放；選取單一素材時上方有旋轉把手（靠近 0°/45°/90° 會自動吸附；雙擊歸零）；拖到畫布正中間會自動吸附；多選（Shift／Ctrl 點選）可整組拖曳／縮放；Ctrl+Z 復原。確認後會烤成一張圖放回商品圖層。';
     renderPresetSelect(); renderAngleButtons(); renderItemList();
     const hint = $('composerQueueHint'); const skip = $('composerSkip');
     hint.classList.toggle('hidden', !state.queue?.length); skip.classList.toggle('hidden', !state.queue);
@@ -373,8 +451,50 @@
   const capturePriceRel = (template, box) => core().MultiProduct.capturePriceRel(template, box);
   const applyPriceRel = (template, key, rel, box) => core().MultiProduct.applyPriceRel(template, key, rel, box);
 
+  /** 主持人模式的確認：每位主持人的位置／大小／旋轉各自寫回圖層；去背／換圖過的素材替換；疊放順序；再跨版位連動。 */
+  async function applyHosts() {
+    const { template, scale, items } = state;
+    const { ManualAssetControls, BatchManager, HistoryManager, Geometry, AppState } = core();
+    HistoryManager?.push?.('host-compose');
+    const boxes = {};
+    for (const item of items) {
+      const layer = template.layers[item.key];
+      const raw = receiver.getSlotRaw(item.id);
+      const box = slotBoxOf(item.id, scale);
+      if (!layer || !raw || !box) continue;
+      Geometry.applyBox(item.key, layer, box, { template, notifyPrice: false });
+      layer.rotation = Number(raw.rot || 0);
+      boxes[item.key] = box;
+      if (item.src !== item.originalSrc) {
+        // 去背／換圖：走手動替換（fitToImage 會把新圖等比塞進剛寫回的框）
+        const blob = await (await fetch(item.src)).blob();
+        const file = new File([blob], `${item.key}_${item.name}.png`.replace(/[\\/:*?"<>|]+/g, '_'), { type: 'image/png' });
+        await ManualAssetControls?.replaceLayerAsset?.(item.key, layer, file, template, { priceSync: false });
+      }
+    }
+    // 疊放順序：清單上面＝前面 → renderOrder 後面
+    if (Array.isArray(template.renderOrder)) {
+      const byId = Object.fromEntries(items.map((it) => [it.id, it.key]));
+      const hostOrder = [...state.order].reverse().map((id) => byId[id]).filter(Boolean); // 後畫的在上
+      const first = Math.min(...hostOrder.map((k) => template.renderOrder.indexOf(k)).filter((i) => i >= 0));
+      if (Number.isFinite(first)) {
+        template.renderOrder = template.renderOrder.filter((k) => !hostOrder.includes(k));
+        template.renderOrder.splice(first, 0, ...hostOrder);
+      }
+    }
+    template.__hostCompose = { preset: state.preset, order: [...state.order], boxes, at: Date.now() };
+    // 跨版位連動：每位主持人走 AssetSyncHub（asset-link-sync 的跨版型主持人邏輯）
+    const hub = window.AssetSyncHub;
+    items.forEach((item) => { hub?.begin?.(template, item.key); hub?.update?.(template, item.key); hub?.finish?.(template, item.key); });
+    core().Renderer?.render?.(); window.LayerManager?.render?.(); window.Inspector?.render?.();
+    if (AppState.activeIndex >= 0) { BatchManager?.markThumbsStale?.([AppState.activeIndex]); BatchManager?.refreshThumbsForIndexes?.([AppState.activeIndex]); }
+    window.showToast?.('主持人構圖已套用');
+    close(false);
+  }
+
   async function apply() {
     if (!state) return;
+    if (isHostMode()) { await applyHosts(); return; }
     const { template, key, keys, scale, items } = state;
     const { ManualAssetControls, BatchManager, HistoryManager, Geometry } = core();
     // 價格相對「券」的比例：基準是券目前的框（沒合成過＝自動排版那一層；合成過＝上次合成時記下的券框）
@@ -425,7 +545,8 @@
       const priced = applyPriceRel(template, key, priceRel, couponBox);
       window.CouponSlots?.applyToTemplate?.(template); // 有券面定義的券以定義為準
       if (priced) { core().Renderer?.render?.(); if (core().AppState.activeIndex >= 0) { BatchManager?.markThumbsStale?.([core().AppState.activeIndex]); BatchManager?.refreshThumbsForIndexes?.([core().AppState.activeIndex]); } }
-      window.showToast?.(priced ? '商品已合成套用，價格已依券的位置貼回' : '商品已合成套用');
+      const siblings = await applyToFolderSiblings(template, file, compose);
+      window.showToast?.(`${priced ? '商品已合成套用，價格已依券的位置貼回' : '商品已合成套用'}${siblings ? `，並套到同資料夾的另外 ${siblings} 個版位` : ''}`);
     }
     else { layer.productCompose = previousCompose; if (template.__multiProduct?.[key]) template.__multiProduct[key].composed = !!previousCompose; alert('套用失敗：商品圖層不能手動替換'); }
     window.Inspector?.render?.();
@@ -448,6 +569,19 @@
   async function restoreAuto() {
     const { AppState, BatchManager, HistoryManager, Renderer, LayerManager, Inspector, MultiProduct } = core();
     const template = AppState?.template;
+    const hosts = hostKeys(template);
+    if (hosts.length) {
+      // 主持人模式：回到公版預設框，並同步到其他版位
+      HistoryManager?.push?.('host-compose-restore');
+      hosts.forEach((k) => { const box = template.__crossnightHostDefault?.[k]; const layer = template.layers[k]; if (box && layer) { core().Geometry.applyBox(k, layer, box, { template, notifyPrice: false }); layer.rotation = 0; } });
+      delete template.__hostCompose;
+      const hub = window.AssetSyncHub;
+      hosts.forEach((k) => { hub?.begin?.(template, k); hub?.update?.(template, k); hub?.finish?.(template, k); });
+      Renderer?.render?.(); LayerManager?.render?.(); Inspector?.render?.();
+      if (AppState.activeIndex >= 0) { BatchManager?.markThumbsStale?.([AppState.activeIndex]); BatchManager?.refreshThumbsForIndexes?.([AppState.activeIndex]); }
+      window.showToast?.('主持人已回到公版預設位置');
+      return true;
+    }
     const keys = productKeys(template);
     const key = keys[0];
     const layer = template?.layers?.[key];
@@ -456,7 +590,18 @@
     HistoryManager?.push?.('product-compose-restore');
     if (template.__manualAssetOverrides) delete template.__manualAssetOverrides[key];
     delete layer.__manualAsset; delete layer.__assetCleared; delete layer.__manualGeometry; delete layer.productCompose;
-    if (!MultiProduct.relayout(template, key)) {
+    if (folderOf(template)) {
+      // 資料夾模式：只重做「曝品」這段（不重套整張工單，手動改過的字不會被洗掉）：
+      // 回到合成前的框 → core 依資料夾建回 P_02… → 公版精準座標 preset → 網格排版（SmartAssetManager 看 __needsProductGridLayout）
+      ['widthLimitPolicy', 'productImageSizingRule'].forEach((k) => { delete layer[k]; });
+      Object.assign(layer, compose.original?.geometry || {});
+      layer.assetFilename = '';
+      const record = template.batchRecord || {};
+      const diagnostics = Array.isArray(template.batchDiagnostics) ? template.batchDiagnostics : (template.batchDiagnostics = []);
+      BatchManager.prepareDynamicProductLayers(template, record, diagnostics);
+      BatchManager.applyTemplateRuleHook?.('afterApplyRecordToTemplate', template, record, diagnostics, {});
+      window.SmartAssetManager?.applyTemplate?.(template);
+    } else if (!MultiProduct.relayout(template, key)) {
       const first = template.__multiProduct?.[key]?.parts?.[0];
       if (first) { const match = BatchManager.findAssetFilename(first, { prefix: BatchManager.getTemplateAssetPrefix?.(template) || '' }); layer.assetFilename = match.found ? match.filename : ''; }
       else if (compose.original) {
@@ -480,6 +625,10 @@
 
   /** 給調整面板：目前製作物的合成狀態（null＝沒合成過） */
   function composeStatus(template) {
+    if (hostKeys(template).length) {
+      const hostCompose = template.__hostCompose;
+      return hostCompose ? { preset: hostCompose.preset, presetLabel: HOST_PRESET_LABELS[hostCompose.preset] || hostCompose.preset, items: Object.keys(hostCompose.boxes || {}).length } : null;
+    }
     const key = productKeys(template)[0];
     const compose = key ? template?.layers?.[key]?.productCompose : null;
     return compose ? { preset: compose.preset, presetLabel: PRESET_LABELS[compose.preset] || compose.preset, items: compose.items?.length || 0 } : null;
@@ -489,9 +638,52 @@
 
   function pendingIndexes() {
     const { AppState } = core();
+    const seenFolders = new Set();
     return (AppState?.templates || []).map((item, index) => ({ item, index }))
-      .filter(({ item }) => Object.values(item?.data?.__multiProduct || {}).some((m) => (m.parts?.length || 0) >= 2 && !m.composed))
+      .filter(({ item }) => {
+        const template = item?.data;
+        if (Object.values(template?.__multiProduct || {}).some((m) => (m.parts?.length || 0) >= 2 && !m.composed)) return true;
+        // 資料夾模式：同一個資料夾只開一次（第一張），確認後會套到其餘版位
+        const folder = folderOf(template);
+        if (!folder || seenFolders.has(folder)) return false;
+        const keys = productKeys(template);
+        if (keys.length < 2 || template.layers[keys[0]]?.productCompose) return false;
+        seenFolders.add(folder);
+        return true;
+      })
       .map(({ index }) => index);
+  }
+
+  // ── （二校二修 #1）資料夾模式：同一個素材資料夾只合成一次，烤好的圖貼到所有用這個資料夾的版位 ──
+  // 每個版位各自把合成圖 contain 進自己的 P_範圍（置中、不超出）；P_02… 移除、P 層記同一份 productCompose，
+  // 之後預覽刷新（core prepareDynamicProductLayers）看到 productCompose 就不會再拆回多張。
+  async function applyToFolderSiblings(source, file, compose) {
+    const folder = folderOf(source);
+    if (!folder) return 0;
+    const { AppState, BatchManager } = core();
+    const ManualAssetUpload = window.ManualAssetUpload;
+    if (!ManualAssetUpload?.applyFile) return 0;
+    let count = 0;
+    for (const entry of AppState.templates || []) {
+      const template = entry?.data;
+      if (!template?.layers || template === source || folderOf(template) !== folder) continue;
+      const keys = productKeys(template);
+      const key = keys[0];
+      const layer = key ? template.layers[key] : null;
+      if (!layer || layer.productCompose) continue;
+      const extra = keys.slice(1);
+      extra.forEach((k) => { delete template.layers[k]; });
+      if (Array.isArray(template.renderOrder)) template.renderOrder = template.renderOrder.filter((k) => !extra.includes(k));
+      // 精準座標 preset 的鎖定要解開，框改成這個版位的 P_範圍，再由 applyFile（fitToImage）把合成圖 contain 進去
+      ['lockToEditedJson', 'positioningMode', 'preserveExactSize', 'skipAutoScale', 'followProduct', 'disableAnchorSync', 'widthLimitPolicy', 'productImageSizingRule'].forEach((k) => { delete layer[k]; });
+      const guide = BatchManager.getProductPlacementGuideBox?.(template) || BatchManager.getProductImageBoxFromLayer(layer);
+      if (guide) BatchManager.applyProductImageBox(layer, { ...guide, sizingMode: 'containByPBox' });
+      layer.hidden = false; layer.visible = true;
+      layer.productCompose = { ...compose, fromFolderSource: true };
+      const ok = await ManualAssetUpload.applyFile(key, layer, file, { template, manualGeometry: false, fitToImage: true, syncGroup: false });
+      if (ok) count += 1; else delete layer.productCompose;
+    }
+    return count;
   }
 
   async function openNext(queue) {
@@ -506,7 +698,10 @@
   function bind() {
     const button = $('editProductBtn');
     if (button) { button.disabled = false; button.title = '拖曳／縮放／旋轉／去背，加陰影，確認後烤成一張圖放回商品圖層'; button.addEventListener('click', () => open()); }
-    $('restoreProductBtn')?.addEventListener('click', () => { if (confirm('放棄這張的合成結果，回到自動排版？')) restoreAuto(); });
+    $('restoreProductBtn')?.addEventListener('click', () => {
+      const message = hostKeys(core().AppState?.template).length ? '放棄這張的主持人構圖，回到公版預設位置（其他版位會跟著同步）？' : '放棄這張的合成結果，回到自動排版？';
+      if (confirm(message)) restoreAuto();
+    });
     document.addEventListener('importflow:generated', () => { const queue = pendingIndexes(); if (queue.length) openNext(queue); });
   }
 
@@ -515,7 +710,7 @@
     whenReady();
   }
 
-  window.ProductComposer = Object.freeze({ open, close, restoreAuto, composeStatus, pendingIndexes, openNext, setItemTransform, debugOrder: () => receiver?.getEnabledOrder?.(), debugStates: () => receiver?.getOrderedStates?.() });
+  window.ProductComposer = Object.freeze({ open, close, restoreAuto, composeStatus, pendingIndexes, openNext, setItemTransform, isHostTemplate: (template) => hostKeys(template).length > 0, debugOrder: () => receiver?.getEnabledOrder?.(), debugStates: () => receiver?.getOrderedStates?.() });
   if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', main, { once: true });
   else main();
 })();

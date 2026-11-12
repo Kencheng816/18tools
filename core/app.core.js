@@ -11179,6 +11179,12 @@
       }
 
       const [baseKey, baseLayer] = baseEntry;
+      // （二校二修 #1）資料夾曝品已在合成視窗烤成一張圖（modules/product-composer.js）：
+      // 烤好的圖已替換到 P 層、P_02… 已移除，預覽刷新不得再依資料夾重建 P_02、也不得把 P 的素材換回資料夾第一張。
+      if (baseLayer.productCompose) {
+        diagnostics.push({ field: '商品圖1', status: 'ok', value: folder, filename: baseLayer.assetFilename, target: `${baseKey}（已合成）` });
+        return [baseLayer];
+      }
       const keepKeys = new Set([baseKey]);
       const layers = [baseLayer];
       let needsProductGridLayout = false;
@@ -13301,6 +13307,12 @@
       }
 
       const [baseKey, baseLayer] = baseEntry;
+      // （二校二修 #1）資料夾曝品已在合成視窗烤成一張圖（modules/product-composer.js）：
+      // 烤好的圖已替換到 P 層、P_02… 已移除，預覽刷新不得再依資料夾重建 P_02、也不得把 P 的素材換回資料夾第一張。
+      if (baseLayer.productCompose) {
+        diagnostics.push({ field: '商品圖1', status: 'ok', value: folder, filename: baseLayer.assetFilename, target: `${baseKey}（已合成）` });
+        return [baseLayer];
+      }
       const keepKeys = new Set([baseKey]);
       const layers = [baseLayer];
       let needsProductGridLayout = false;

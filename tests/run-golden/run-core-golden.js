@@ -29,7 +29,7 @@ const driver = require('../golden-capture/lib/tool-driver');
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const CASES = JSON.parse(fs.readFileSync(path.join(__dirname, 'cases-core.json'), 'utf8')).cases;
 const DIFF_ROOT = path.join(REPO_ROOT, 'tests', 'golden-diff');
-const SYNC_DIRS = ['core', 'renderers', 'modules', 'smart-assets', 'vendor', 'fonts', 'config', 'rules', 'templates', 'assets', 'launcher', 'tests/golden-inputs'];
+const SYNC_DIRS = ['core', 'renderers', 'modules', 'smart-assets', 'vendor', 'fonts', 'config', 'rules', 'templates', 'assets', 'launcher', 'tour', 'tests/golden-inputs'];
 const SYNC_FILES = ['index.html', 'app.html', 'style.css', 'theme-18.css'];
 
 function parseArgs(argv) {
@@ -194,7 +194,9 @@ async function runCase(testCase, workDir, browser, options = {}) {
     const goldenDir = path.join(REPO_ROOT, testCase.goldenDir, 'images');
     if (options.updateGolden) {
       // --update-golden：有意改變輸出時（例如 2026-10-06 自動縮小符號）以整合版目前輸出為新基準；舊基準請先複製到 tests/golden-legacy/。
-      fs.rmSync(goldenDir, { recursive: true, force: true });
+      // 有些掛載（沙箱裡的雲端／網路磁碟）不給刪檔：刪不掉就直接覆寫同名檔，並提醒可能留下舊檔。
+      try { fs.rmSync(goldenDir, { recursive: true, force: true }); }
+      catch (error) { console.warn(`  （無法清空 ${goldenDir}：${error.code || error.message}，改為覆寫同名檔；若製作物集合有變，請手動刪除多出來的舊檔）`); }
       fs.mkdirSync(goldenDir, { recursive: true });
       for (const [name, buffer] of actual) { const target = path.join(goldenDir, safeName(name)); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, buffer); }
       const metaPath = path.join(REPO_ROOT, testCase.goldenDir, 'capture-meta.json');

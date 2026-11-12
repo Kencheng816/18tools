@@ -62,22 +62,51 @@
       return String(template?.canvas?.templateId || template?.source?.psdName || template?.batchSourceName || template?.templateId || '').trim().toLowerCase();
     },
 
+    // （二校二修 #5，sync.crossLayoutHosts）跨夜主持人：不同版型也連動。基準是各版位套完工單的主持人預設框
+    // （規則檔寫在 template.__crossnightHostDefault[key]），把來源的「相對預設框的位移／縮放」換算到目標版位自己的預設框上。
+    isCrossLayoutHost(key, layer, template) {
+      if (flag('sync.crossLayoutHosts', false) !== true) return false;
+      return !!(template?.__crossnightHostDefault?.[key] && layer?.type === 'image');
+    },
+    hostDefaultBox(key, template) {
+      const box = template?.__crossnightHostDefault?.[key];
+      return box && box.width > 0 && box.height > 0 ? box : null;
+    },
+
     usages(materialKey, source) {
       const { LinkSync } = core();
       const result = [];
       if (!materialKey) return result;
       const sourceLayout = this.layoutKey(source.template);
+      const crossLayoutHost = this.isCrossLayoutHost(source.key, source.layer, source.template) && !!this.hostDefaultBox(source.key, source.template);
       this.templates().forEach(({ index, template }) => {
         if (template !== source.template && LinkSync && !LinkSync.isEnabled(template)) return;
-        if (template !== source.template && (!sourceLayout || this.layoutKey(template) !== sourceLayout)) return; // 不同版型不連動
+        const sameLayout = !!sourceLayout && this.layoutKey(template) === sourceLayout;
+        if (template !== source.template && !sameLayout && !crossLayoutHost) return; // 不同版型不連動（跨夜主持人除外）
         Object.entries(template.layers).forEach(([key, layer]) => {
           if (template === source.template && key === source.key) return;
           if (!this.isEligible(key, layer, template) || layer.locked) return;
           if (this.materialKey(layer) !== materialKey) return;
-          result.push({ index, template, key, layer });
+          const crossLayout = template !== source.template && !sameLayout;
+          // 跨版型只連「同一個主持人層」（主持人_A ↔ 主持人_A），且目標也要有預設框
+          if (crossLayout && (key !== source.key || !this.hostDefaultBox(key, template))) return;
+          result.push({ index, template, key, layer, crossLayout });
         });
       });
       return result;
+    },
+
+    /** 跨版型主持人：以「底部中心」為錨點，位移用預設框高度當單位、大小用寬度比例，套到目標版位的預設框。 */
+    crossLayoutHostBox(sourceDefault, current, targetDefault) {
+      const scale = current.width / Math.max(1, sourceDefault.width);
+      const unit = Math.max(1, sourceDefault.height);
+      const dxRatio = ((current.x + current.width / 2) - (sourceDefault.x + sourceDefault.width / 2)) / unit;
+      const dyRatio = ((current.y + current.height) - (sourceDefault.y + sourceDefault.height)) / unit;
+      const width = targetDefault.width * scale;
+      const height = targetDefault.height * scale;
+      const centerX = targetDefault.x + targetDefault.width / 2 + dxRatio * targetDefault.height;
+      const bottom = targetDefault.y + targetDefault.height + dyRatio * targetDefault.height;
+      return { x: centerX - width / 2, y: bottom - height, width, height };
     },
 
     box(key, layer, template) {
@@ -116,14 +145,23 @@
       let count = 0;
       session.targets.forEach((target) => {
         const sameSize = target.start.canvas.width === current.canvas.width && target.start.canvas.height === current.canvas.height;
-        const next = sameSize
-          ? { x: current.x, y: current.y, width: current.width, height: current.height }
-          : {
-            x: target.start.x + dx * (target.start.canvas.width / current.canvas.width),
-            y: target.start.y + dy * (target.start.canvas.height / current.canvas.height),
-            width: target.start.width * scaleW,
-            height: target.start.height * scaleH,
-          };
+        let next;
+        if (target.crossLayout) {
+          // 跨夜主持人跨版型：用圖層欄位（跟規則檔記的預設框同一套座標），不用渲染框
+          const sourceDefault = this.hostDefaultBox(key, template);
+          const targetDefault = this.hostDefaultBox(target.key, target.template);
+          if (!sourceDefault || !targetDefault) return;
+          next = this.crossLayoutHostBox(sourceDefault, { x: Number(layer.x || 0), y: Number(layer.y || 0), width: Number(layer.width || 0), height: Number(layer.height || 0) }, targetDefault);
+        } else {
+          next = sameSize
+            ? { x: current.x, y: current.y, width: current.width, height: current.height }
+            : {
+              x: target.start.x + dx * (target.start.canvas.width / current.canvas.width),
+              y: target.start.y + dy * (target.start.canvas.height / current.canvas.height),
+              width: target.start.width * scaleW,
+              height: target.start.height * scaleH,
+            };
+        }
         Geometry.applyBox(target.key, target.layer, next, { template: target.template, notifyPrice: false });
         target.layer.rotation = current.rotation;
         if (target.group) window.ProductGroupSync.applyGroup(target.group, this.box(target.key, target.layer, target.template));

@@ -11,7 +11,7 @@
  */
 'use strict';
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2'; // v2：差異改比實際內容（二校二修補充 1）
 const CACHES = { fonts: `18tool-fonts-${CACHE_VERSION}`, html: `18tool-html-${CACHE_VERSION}`, static: `18tool-static-${CACHE_VERSION}` };
 const FONT_HOSTS = ['raw.githubusercontent.com'];
 const STATIC_EXT = /\.(js|css|json|png|jpe?g|webp|gif|svg|ico)$/i;
@@ -59,14 +59,23 @@ async function networkFirst(cacheName, request) {
   }
 }
 
-/** 內容是否不同：先比 ETag／Last-Modified，沒有就比長度。 */
-function differs(cached, fresh) {
+/** 內容是否不同：ETag／Last-Modified 一樣就當沒變；其餘一律比「實際內容」（逐 byte），
+ *  不再只比長度或標頭——（二校二修補充 1）標頭會因 CDN／壓縮方式不同而變，內容沒變也一直跳「有新版本」。 */
+async function differs(cached, fresh) {
   const pick = (response, name) => response.headers.get(name) || '';
   const etagA = pick(cached, 'etag'); const etagB = pick(fresh, 'etag');
-  if (etagA && etagB) return etagA !== etagB;
+  if (etagA && etagB && etagA === etagB) return false;
   const lmA = pick(cached, 'last-modified'); const lmB = pick(fresh, 'last-modified');
-  if (lmA && lmB) return lmA !== lmB;
-  return pick(cached, 'content-length') !== pick(fresh, 'content-length');
+  if (lmA && lmB && lmA === lmB) return false;
+  try {
+    const [a, b] = await Promise.all([cached.clone().arrayBuffer(), fresh.clone().arrayBuffer()]);
+    if (a.byteLength !== b.byteLength) return true;
+    const va = new Uint8Array(a); const vb = new Uint8Array(b);
+    for (let i = 0; i < va.length; i += 1) if (va[i] !== vb[i]) return true;
+    return false;
+  } catch (_error) {
+    return false; // 讀不到內容就不打擾使用者
+  }
 }
 
 async function notifyClients(url) {
@@ -79,8 +88,9 @@ async function staleWhileRevalidate(cacheName, request) {
   const hit = await cache.match(request);
   const refresh = fetch(request).then(async (response) => {
     if (!response.ok) return response;
-    if (hit && differs(hit, response)) notifyClients(request.url);
+    const changed = hit ? await differs(hit, response) : false;
     await cache.put(request, response.clone());
+    if (changed) notifyClients(request.url);
     return response;
   }).catch(() => null);
   if (hit) { refresh.catch(() => {}); return hit; }

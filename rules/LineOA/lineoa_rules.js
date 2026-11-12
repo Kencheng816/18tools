@@ -379,6 +379,14 @@
   // ── 商品套圖上傳格（01_LineOA_Template_push）──────────────
   // 套品範圍不輸出成實際線條/色塊，只作為商品顯示範圍（遮罩）使用；
   // 超過範圍的部分由 maskLayerName 自動裁切。
+  // （二校二修 #2）商品槽比套品範圍往內縮一圈留白（短邊的 5%），商品圖才不會頂到白卡邊緣；
+  // 遮罩仍是整個套品範圍（使用者自己放大超過留白時照舊裁切）。
+  const PRODUCT_SLOT_INSET_RATIO = 0.05;
+  function insetBox(box, ratio) {
+    const inset = Math.round(Math.min(Number(box.width || 0), Number(box.height || 0)) * ratio);
+    return { x: box.x + inset, y: box.y + inset, width: Math.max(1, box.width - inset * 2), height: Math.max(1, box.height - inset * 2) };
+  }
+
   function applySlotGeometryFromBox(layer, box) {
     if (!layer || !box) return;
     layer.x = box.x;
@@ -433,7 +441,7 @@
         template.layers[slot.key] = layer;
       }
       if (options.resetGeometry || !Number.isFinite(Number(layer.centerX))) {
-        applySlotGeometryFromBox(layer, layerBox(mask));
+        applySlotGeometryFromBox(layer, insetBox(layerBox(mask), PRODUCT_SLOT_INSET_RATIO));
         layer.sizingMode = 'containByPBox';
       }
 
@@ -606,6 +614,40 @@
   }
 
   // ── 套版 ───────────────────────────────────────────────
+  // （二校二修 #4）品名換行：中文 1 字元、英數符號 0.5 字元，每行 5 字元就換行；最多 2 行，
+  // 第 2 行還放不下就等比縮字（以公版原字級為基準，重套工單不會越縮越小）。工單自己有斷行的照工單。
+  const PRODUCT_NAME_LAYER_PATTERN = /^商品_\d{2}_品名$/;
+  const PRODUCT_NAME_UNITS_PER_LINE = 5;
+  const charUnits = (ch) => (/[⺀-鿿豈-﫿＀-￯]/.test(ch) ? 1 : 0.5);
+  const textUnits = (text) => [...String(text || '')].reduce((sum, ch) => sum + charUnits(ch), 0);
+  function wrapProductName(raw) {
+    const text = String(raw || '').trim();
+    if (!text || text.includes('\n')) return { text, scale: 1 };
+    const chars = [...text.replace(/\s+/g, ' ')];
+    let units = 0;
+    let cut = chars.length;
+    for (let i = 0; i < chars.length; i += 1) {
+      const next = units + charUnits(chars[i]);
+      if (next > PRODUCT_NAME_UNITS_PER_LINE) { cut = i; break; }
+      units = next;
+    }
+    if (cut >= chars.length) return { text: chars.join(''), scale: 1 };
+    // 切點落在詞中間、而第 1 行裡有空格（例：「萬歲牌 堅果日記」）→ 退到空格處換行，不把「堅果」拆成兩行
+    const lastSpace = chars.slice(0, cut).lastIndexOf(' ');
+    if (chars[cut] !== ' ' && lastSpace > 0) cut = lastSpace;
+    const line1 = chars.slice(0, cut).join('').trim();
+    const line2 = chars.slice(cut).join('').trim();
+    const line2Units = textUnits(line2);
+    return { text: `${line1}\n${line2}`, scale: line2Units > PRODUCT_NAME_UNITS_PER_LINE ? PRODUCT_NAME_UNITS_PER_LINE / line2Units : 1 };
+  }
+  function applyProductNameWrap(layer) {
+    const wrapped = wrapProductName(layer.text);
+    if (!Number.isFinite(Number(layer.__lineoaBaseFontSize))) layer.__lineoaBaseFontSize = Number(layer.fontSizePx) || 24;
+    layer.text = wrapped.text;
+    layer.fontSizePx = Math.round(layer.__lineoaBaseFontSize * wrapped.scale * 100) / 100;
+    if (wrapped.scale < 1) layer.lineHeight = Math.round(layer.fontSizePx * 1.1 * 100) / 100;
+  }
+
   function applyTextLayer(template, layerName, value, diagnostics, field = layerName) {
     const layer = findLayer(template, layerName);
     if (!layer || layer.type !== 'text') {
@@ -618,6 +660,7 @@
       return true;
     }
     layer.text = String(value).trim();
+    if (PRODUCT_NAME_LAYER_PATTERN.test(String(layerName))) applyProductNameWrap(layer);
     layer.hidden = false;
     // 多行文案（需求：工單斷行 → 自動兩行）：PSD 匯出的 lineHeight 來自單行文字，
     // 常小於字級（例：主案型 fs=80、lineHeight=58）→ 兩行會互相重疊。
@@ -1214,7 +1257,8 @@
       width: Math.max(1, Number(template?.canvas?.width || 1)),
       height: Math.max(1, Number(template?.canvas?.height || 1)),
     };
-    applySlotGeometryFromBox(layer, box);
+    const isProductSlot = PRODUCT_SLOTS.some((item) => item.key === slotKey);
+    applySlotGeometryFromBox(layer, isProductSlot && source ? insetBox(box, PRODUCT_SLOT_INSET_RATIO) : box);
 
     // KV：BG 底色還原成吸色前的原色。
     if (kvSlot) {

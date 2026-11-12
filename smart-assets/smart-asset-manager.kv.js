@@ -228,20 +228,47 @@
   // 只在「第一次生成、還沒有人手動調整過」時當初始位置用——如果某張圖之前已經在素材中心／
   // 主畫布調整過並同步存進 registry，patchLoader 之後呼叫 applyPlacementConfig 時會用儲存的
   // 位置覆蓋掉這裡算出的網格位置，網格排版不會蓋掉使用者已經調整過的結果。
+  // （二校二修 #1）公版 preset 只鎖住部分商品圖（例：OM 直式 preset 只有第 1 張）時，
+  // 其餘圖層不能再拿整個 P_範圍 排格、疊到被鎖住的那張上面；改用「扣掉鎖定圖層後，剩下最寬的一段」當排格範圍。
+  function largestFreeStrip(reference, occupiedBoxes) {
+    const left = reference.x;
+    const right = reference.x + reference.width;
+    const intervals = occupiedBoxes
+      .map((box) => [Math.max(left, number(box.x)), Math.min(right, number(box.x) + number(box.width))])
+      .filter(([start, end]) => end > start)
+      .sort((a, b) => a[0] - b[0]);
+    let best = { start: left, width: 0 };
+    let cursor = left;
+    intervals.forEach(([start, end]) => {
+      if (start - cursor > best.width) best = { start: cursor, width: start - cursor };
+      cursor = Math.max(cursor, end);
+    });
+    if (right - cursor > best.width) best = { start: cursor, width: right - cursor };
+    // 剩下的空間太窄（不到參考框 1/5）就退回整個參考框，至少圖不會縮到看不見
+    if (best.width < reference.width / 5) return reference;
+    return { ...reference, x: best.start, width: best.width };
+  }
+
   function layoutProductGrid(template, options = {}) {
     const entries = productEntries(template);
     if (entries.length < 2) return; // 只有一張圖，維持模板/工單原本的位置，不需要排版
-    const reference = referenceBox(template);
-    const count = entries.length;
+    // 公版 preset 已鎖定的圖層是最終初始值；網格只負責尚未配置的新動態圖層。
+    const isLocked = ([, layer]) => options.preservePresetGeometry && layer.lockToEditedJson === true;
+    const locked = entries.filter(isLocked);
+    const pending = entries.filter((entry) => !isLocked(entry));
+    if (!pending.length) return;
+    const whole = referenceBox(template);
+    const reference = locked.length
+      ? largestFreeStrip(whole, locked.map(([key, layer]) => window.Geometry.getLayerBox(key, layer)))
+      : whole;
+    const count = pending.length;
     const columns = Math.ceil(Math.sqrt(count));
     const rows = Math.ceil(count / columns);
     const cellWidth = reference.width / columns;
     const cellHeight = reference.height / rows;
     const gutter = 0.08; // 格子內縮比例，避免圖片緊貼彼此
 
-    entries.forEach(([key, layer], index) => {
-      // 公版 preset 已鎖定的圖層是最終初始值；網格只負責尚未配置的新動態圖層。
-      if (options.preservePresetGeometry && layer.lockToEditedJson === true) return;
+    pending.forEach(([key, layer], index) => {
       const row = Math.floor(index / columns);
       const itemsInThisRow = row === rows - 1 ? (count - row * columns) : columns;
       // 最後一列如果排不滿，讓這一列整體置中，視覺上比左靠齊好看。
@@ -294,6 +321,10 @@
       // 首次生成時公版 JSON 的精確 preset 優先於瀏覽器之前保存的智慧素材 registry。
       // 使用者在素材中心明確按「套用」時會帶 allowPresetOverride=true，仍可主動覆寫。
       if (preservePresetGeometry && layer.lockToEditedJson === true) return;
+      // （二校二修 #1）合成視窗烤好的商品圖（layer.productCompose）是最終結果：框由手動替換流程記在 override 裡，
+      // 不再正規化、也不吃 registry 錨點。這裡的 getLayerBox 用的是「目前主畫布」的圖片快取，替別張製作物刷縮圖時
+      // 會拿錯張圖的長寬比把框算歪（曾把 contain 進 P_範圍 的合成圖縮成幾十 px）。
+      if (layer.productCompose) return;
       // 不管有沒有存過錨點，都先把縮放模式正規化成 containByPBox（用「目前」的框，不改變
       // 位置/尺寸本身）——widthBased 這類模式畫面上的高度只看圖片原始比例、不理會使用者
       // 調整的框，不先正規化的話，第一次用滑鼠縮放就會出現「高度沒反應」的問題。

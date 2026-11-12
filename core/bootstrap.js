@@ -209,10 +209,13 @@
     manager.handleExcelFile = watched;
   }
 
-  /** 回饋 4：「重置專案」＝整頁重新載入回到「1. 開始」（不帶 ?profile；群組頁保留 ?group），所有狀態一次乾淨；分類切換本來就得重載。 */
+  /** 回饋 4：「重置專案」＝整頁離開、所有狀態一次乾淨；（二校二修補充 2）重置完直接回入口頁（index.html 卡片清單），
+   *  跟頂部列「← 回首頁」同一個目標；找不到那顆連結才退回原本的同頁重載。 */
   function bindResetProject() {
     $('resetProjectBtn')?.addEventListener('click', () => {
-      if (!confirm('確定要重置專案嗎？\n\n目前的分類、工單、公版、素材、預覽與手動調整都會清掉，回到「1. 開始」。\n（要保留成果請先「儲存存檔」。）')) return;
+      if (!confirm('確定要重置專案嗎？\n\n目前的分類、工單、公版、素材、預覽與手動調整都會清掉，回到入口頁。\n（要保留成果請先「儲存存檔」。）')) return;
+      const home = document.querySelector('.topbar-home')?.getAttribute('href');
+      if (home) { window.location.replace(new URL(home, window.location.href).toString()); return; }
       const url = new URL(window.location.href);
       url.search = state.group ? `?group=${encodeURIComponent(state.group.id)}` : '';
       window.location.replace(url.toString());
