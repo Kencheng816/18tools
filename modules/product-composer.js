@@ -291,6 +291,10 @@
 
     const key = keys[0];
     const base = template.layers[key];
+    // 合成過之後又手動清除／換圖／素材庫替換：商品層的素材已不是烤出來的那張（檔名不是 *_compose.png）→ 上次的合成紀錄作廢，
+    // 用目前畫面上的素材重新開始，不然視窗會把工單原本的商品再端出來、確認後蓋掉使用者換好的圖。
+    const composedAssetStale = base.productCompose && !/_compose\.png$/i.test(String(base.assetFilename || ''));
+    if (composedAssetStale) { delete base.productCompose; if (template.__multiProduct?.[key]) delete template.__multiProduct[key].composed; }
     const saved = mode === 'host' ? null : base.productCompose;
     const canvasW = template.canvas.width; const canvasH = template.canvas.height;
     const scale = Math.min(2, SCALE_MAX_EDGE / Math.max(canvasW, canvasH));
@@ -336,7 +340,8 @@
       box: mode === 'host'
         ? (core().MultiProduct.normalizeBox(BatchManager.getProductPlacementGuideBox?.(template)) || { x: 0, y: 0, width: canvasW, height: canvasH })
         : productBox(template, key),
-      preset: mode === 'host' ? (hostCompose?.preset || 'hostDefault') : (saved?.preset || template.__multiProduct?.[key]?.preset || core().MultiProduct.defaultPreset(items.length)),
+      // 資料夾模式（OM）預設「平均並排」：商品置中在 P_範圍 裡，不像「一大一小」偏左
+      preset: mode === 'host' ? (hostCompose?.preset || 'hostDefault') : (saved?.preset || template.__multiProduct?.[key]?.preset || (folderOf(template) ? 'row' : core().MultiProduct.defaultPreset(items.length))),
       shadow: mode === 'host' ? false : (saved ? saved.shadow !== false : true),
       angle: saved?.angle || 'left',
       bg: null,
@@ -657,12 +662,33 @@
   // ── （二校二修 #1）資料夾模式：同一個素材資料夾只合成一次，烤好的圖貼到所有用這個資料夾的版位 ──
   // 每個版位各自把合成圖 contain 進自己的 P_範圍（置中、不超出）；P_02… 移除、P 層記同一份 productCompose，
   // 之後預覽刷新（core prepareDynamicProductLayers）看到 productCompose 就不會再拆回多張。
+  /** 合成圖在來源版位 P_範圍 裡的相對位置（底部中心為錨點、以 P_範圍高度為單位），換算到目標版位的 P_範圍：
+   *  大小依兩個 P_範圍 的高度比縮放（商品看起來跟合成視窗裡一樣大小比例），放不下目標 P_範圍 的寬度才再縮；最後整個框夾在 P_範圍 內。 */
+  function mapBoxBetweenGuides(box, sourceGuide, targetGuide) {
+    const unit = Math.max(1, sourceGuide.height);
+    let scale = targetGuide.height / unit;
+    let width = box.width * scale; let height = box.height * scale;
+    if (width > targetGuide.width) { const k = targetGuide.width / width; width *= k; height *= k; scale *= k; }
+    const dxRatio = ((box.x + box.width / 2) - (sourceGuide.x + sourceGuide.width / 2)) / unit;
+    const dyRatio = ((box.y + box.height) - (sourceGuide.y + sourceGuide.height)) / unit;
+    let centerX = targetGuide.x + targetGuide.width / 2 + dxRatio * targetGuide.height;
+    let bottom = targetGuide.y + targetGuide.height + dyRatio * targetGuide.height;
+    // 夾在 P_範圍 內（合成時商品本來就排在 P 框裡，換算後若因比例差而超出，就往內推）
+    centerX = Math.min(Math.max(centerX, targetGuide.x + width / 2), targetGuide.x + targetGuide.width - width / 2);
+    bottom = Math.min(Math.max(bottom, targetGuide.y + height), targetGuide.y + targetGuide.height);
+    return { x: centerX - width / 2, y: bottom - height, width, height, centerX, centerY: bottom - height / 2 };
+  }
+
   async function applyToFolderSiblings(source, file, compose) {
     const folder = folderOf(source);
     if (!folder) return 0;
-    const { AppState, BatchManager } = core();
+    const { AppState, BatchManager, Geometry } = core();
     const ManualAssetUpload = window.ManualAssetUpload;
     if (!ManualAssetUpload?.applyFile) return 0;
+    // 來源：合成圖現在的框＋它的 P_範圍（沒有 P_範圍 的公版退回 contain 置中）
+    const sourceKey = productKeys(source)[0];
+    const sourceBox = sourceKey ? Geometry.getLayerBox(sourceKey, source.layers[sourceKey]) : null;
+    const sourceGuide = BatchManager.getProductPlacementGuideBox?.(source);
     let count = 0;
     for (const entry of AppState.templates || []) {
       const template = entry?.data;
@@ -677,7 +703,9 @@
       // 精準座標 preset 的鎖定要解開，框改成這個版位的 P_範圍，再由 applyFile（fitToImage）把合成圖 contain 進去
       ['lockToEditedJson', 'positioningMode', 'preserveExactSize', 'skipAutoScale', 'followProduct', 'disableAnchorSync', 'widthLimitPolicy', 'productImageSizingRule'].forEach((k) => { delete layer[k]; });
       const guide = BatchManager.getProductPlacementGuideBox?.(template) || BatchManager.getProductImageBoxFromLayer(layer);
-      if (guide) BatchManager.applyProductImageBox(layer, { ...guide, sizingMode: 'containByPBox' });
+      // 兩邊都有 P_範圍 → 照合成視窗裡相對 P_範圍 的位置／大小換算（不再只是 contain 置中，商品不會跑位）
+      const target = guide && sourceGuide && sourceBox?.width > 0 ? mapBoxBetweenGuides(sourceBox, sourceGuide, guide) : guide;
+      if (target) BatchManager.applyProductImageBox(layer, { ...target, targetWidth: target.width, targetHeight: target.height, maxTargetHeight: target.height, sizingMode: 'containByPBox' });
       layer.hidden = false; layer.visible = true;
       layer.productCompose = { ...compose, fromFolderSource: true };
       const ok = await ManualAssetUpload.applyFile(key, layer, file, { template, manualGeometry: false, fitToImage: true, syncGroup: false });

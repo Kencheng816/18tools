@@ -95,7 +95,8 @@
         .filter(([, layer]) => layer && layer.type === 'image' && layer.__uploadSlot === true && !layer.hidden && !clean(layer.assetFilename))
         .map(([key, layer]) => clean(layer.psdName || layer.name || key));
       if (!empty.length) return;
-      collector.add('important', '還沒上傳圖', item.name, `${empty.join('、')}：這幾格還是空的，請點畫布上的「+上傳」補圖`, index);
+      // 2026-11-13 使用者決定：缺圖就是有問題的版位（紅），基礎模式也要列出來提醒補圖（diagnostics-panel 的缺圖提醒）
+      collector.add('critical', '還沒上傳圖', item.name, `${empty.join('、')}：這幾格還是空的，請點畫布上的「+上傳」補圖`, index);
     });
   }
 

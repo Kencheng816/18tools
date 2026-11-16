@@ -73,6 +73,8 @@
   // 工單「圖層名：值」可辨識的欄位標籤（資訊_01_文案01、活動_01_主案型、商品_01_品名 …）。
   // V0.1（18節）：除「前綴_編號_欄位」外，另支援 07 系公版的無前綴標籤白名單。
   const FIELD_LABEL = /^(?:(?:資訊|活動|商品)_\d{2}_[^\s:：()（）]{1,20}|主標題|副標題|左上角黃標|法務小字)$/;
+  // 公版本身已做好的案型：工單有填、公版沒有同名圖層時不報「公版沒有這個圖層」（2026-11-13，0418推文3 的左上角黃標）
+  const BUILT_INTO_TEMPLATE_FIELDS = new Set(['左上角黃標']);
 
   const KV_SLOTS = Object.freeze([
     { key: '__lineoa_kv_upload_1', placeholder: '套KV', bg: '活動_01_BG', wireframe: '活動_01_線框', psdName: '載入KV圖片_01' },
@@ -617,6 +619,9 @@
   // （二校二修 #4）品名換行：中文 1 字元、英數符號 0.5 字元，每行 5 字元就換行；最多 2 行，
   // 第 2 行還放不下就等比縮字（以公版原字級為基準，重套工單不會越縮越小）。工單自己有斷行的照工單。
   const PRODUCT_NAME_LAYER_PATTERN = /^商品_\d{2}_品名$/;
+  // 2026-11-13 使用者決定：只有商品在品名左邊的選單公版（07_RM、09_RM）才需要 5 字換行，其餘公版品名不換行。
+  const PRODUCT_NAME_WRAP_TEMPLATE_IDS = new Set(['07_LineOA_Template_RM', '09_LineOA_Template_RM']);
+  const templateIdOf = (template) => String(template?.canvas?.templateId || template?.templateId || '').replace(/\.psd$/i, '');
   const PRODUCT_NAME_UNITS_PER_LINE = 5;
   const charUnits = (ch) => (/[⺀-鿿豈-﫿＀-￯]/.test(ch) ? 1 : 0.5);
   const textUnits = (text) => [...String(text || '')].reduce((sum, ch) => sum + charUnits(ch), 0);
@@ -660,7 +665,7 @@
       return true;
     }
     layer.text = String(value).trim();
-    if (PRODUCT_NAME_LAYER_PATTERN.test(String(layerName))) applyProductNameWrap(layer);
+    if (PRODUCT_NAME_LAYER_PATTERN.test(String(layerName)) && PRODUCT_NAME_WRAP_TEMPLATE_IDS.has(templateIdOf(template))) applyProductNameWrap(layer);
     layer.hidden = false;
     // 多行文案（需求：工單斷行 → 自動兩行）：PSD 匯出的 lineHeight 來自單行文字，
     // 常小於字級（例：主案型 fs=80、lineHeight=58）→ 兩行會互相重疊。
@@ -1011,6 +1016,8 @@
       const layer = findLayer(template, field);
       if (layer?.type === 'text') applyTextLayer(template, field, value, diagnostics, field);
       else if (layer?.type === 'image') applyImageLayer(template, field, value, diagnostics, field);
+      // 2026-11-13 使用者決定：「左上角黃標」案型已經做在公版裡（07_push 等），公版沒有這個圖層時不算問題、只記資訊
+      else if (BUILT_INTO_TEMPLATE_FIELDS.has(field)) diagnostics?.push({ field, status: 'ok', value, target: '此公版已內建這個案型，工單值略過' });
       else diagnostics?.push({ field, status: 'missing-layer', value, target: '此公版無同名圖層' });
     });
   }

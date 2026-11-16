@@ -49,6 +49,8 @@ expect('100元 → $100（元不排除）', CopyLint.suggestNumberFormat('4/18 �
 expect('滿1000元 → 滿$1,000', CopyLint.suggestNumberFormat('滿1000元享9折'), '滿$1,000享9折');
 expect('iPhone15／11.11／9/9 不動', CopyLint.suggestNumberFormat('iPhone15 11.11 9/9'), 'iPhone15 11.11 9/9');
 expect('18%蝦幣 不加 $', CopyLint.suggestNumberFormat('VIP獨享18%蝦幣'), 'VIP獨享18%蝦幣');
+expect('滿$999折$100 的 $ 要留著（2026-11-13 修）', CopyLint.suggestNumberFormat('滿$999折$100'), '滿$999折$100');
+expect('滿1500折150 兩個都補 $', CopyLint.suggestNumberFormat('全站滿1500折150'), '全站滿$1,500折$150');
 expect('4/18 00:00 不動', CopyLint.suggestNumberFormat('4/18 00:00灑Line好友優惠券'), '4/18 00:00灑Line好友優惠券');
 
 // 警語日期區間

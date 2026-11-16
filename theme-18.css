@@ -417,3 +417,14 @@ body.is-advanced section.panel.adv-only{ display:block !important; }
 .coupon-slot-actions{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 .coupon-slot-actions .secondary-btn, .coupon-slot-actions .primary-btn{ margin:0; min-height:36px; }
 #defineCouponSlotBtn.has-def{ border-color:var(--accent-line); }
+
+/* 2026-11-13 基礎模式缺圖提醒（製作物清單下方；進階模式的診斷面板另有完整版） */
+.missing-upload-box { margin-top: var(--space-1); padding: var(--space-1); border: 1px solid rgba(229, 72, 77, .55); border-radius: var(--r-sm); background: rgba(229, 72, 77, .10); }
+.missing-upload-box.hidden { display: none; }
+.missing-upload-head { color: #ff8a80; font-size: var(--fs-m); font-weight: 700; line-height: 1.5; margin-bottom: var(--space-1); }
+.missing-upload-row { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 8px; min-height: var(--control-h); padding: var(--space-1) 10px; border: 1px solid transparent; border-radius: var(--r-sm); background: rgba(255,255,255,.04); color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.missing-upload-row + .missing-upload-row { margin-top: 4px; }
+.missing-upload-row:hover { background: rgba(229, 72, 77, .18); border-color: rgba(229, 72, 77, .5); }
+.missing-upload-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.missing-upload-slots { color: var(--text-2); font-size: var(--fs-s); white-space: nowrap; }
+

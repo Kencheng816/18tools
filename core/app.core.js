@@ -2525,6 +2525,11 @@
         : this.groupUsages(template, key, layer);
 
       targets.forEach(({ template: targetTemplate, key: targetKey, layer: targetLayer }) => {
+        // 2026-11-13：換了素材就要把上一張「實際命中的路徑」清掉——畫面為準（__restoreSnapshot）的製作物載圖時會先用
+        // __resolvedAssetPath 找回舊檔，不清的話清除後再上傳／素材庫替換，畫面還是工單原本那張（LineOA 推文商品格回報）。
+        delete targetLayer.__resolvedAssetFolder;
+        delete targetLayer.__resolvedAssetFilename;
+        delete targetLayer.__resolvedAssetPath;
         targetLayer.assetFilename = lookupName;
         targetLayer.assetCandidates = [];
         targetLayer.assetProject = bucketName;
@@ -2581,6 +2586,9 @@
         : this.groupUsages(template, key, layer);
 
       targets.forEach(({ template: targetTemplate, key: targetKey, layer: targetLayer }) => {
+        delete targetLayer.__resolvedAssetFolder;
+        delete targetLayer.__resolvedAssetFilename;
+        delete targetLayer.__resolvedAssetPath;
         targetLayer.assetFilename = '';
         targetLayer.assetCandidates = [];
         targetLayer.__manualAsset = false;

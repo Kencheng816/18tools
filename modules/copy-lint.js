@@ -62,7 +62,8 @@
   function suggestNumberFormat(text) {
     const r = rules();
     const prefix = r.pricePrefixes || '滿|折|省|最高';
-    const units = r.noDollarUnits || '蝦幣|%|折';
+    // 「折」後面接數字或 $（滿1500折150、滿$999折$100）是下一段的開頭，不是這個數字的單位（2026-11-13 自 25節 回修）
+    const units = (r.noDollarUnits || '蝦幣|%|折').replace(/折(?!\()/g, '折(?![\\d$])');
     const skipAfter = new RegExp(`^(${r.skipAfterUnits || '月|日|號|個|件|組|人|次|款|色|天|週|年'})`);
     const re = new RegExp(`(${prefix})?(\\$)?(\\d[\\d,]*)(${units})?`, 'g');
     // 「數字元」＝金額：先換成「$數字」，再走下面的千分位（100元 → $100、滿1000元 → 滿$1,000）
@@ -78,7 +79,7 @@
       if (/[A-Za-z.\/:]/.test(before) || (!unit && /[A-Za-z.\/:]/.test(after))) return match;
       if (!unit && skipAfter.test(full.slice(offset + match.length))) return match;
       const formatted = Number(digitsClean).toLocaleString('en-US');
-      if (unit) return pre + formatted + unit;
+      if (unit) return `${pre}${dollar || ''}${formatted}${unit}`;
       if (dollar || pre) return `${pre}$${formatted}`;
       return match;
     });

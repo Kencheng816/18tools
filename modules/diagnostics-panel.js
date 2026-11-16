@@ -104,11 +104,40 @@
 
   // ── 左欄摘要 ──
 
+  // ── 基礎模式的缺圖提醒（2026-11-13）：診斷面板是進階功能，但「還沒上傳圖」要在基礎模式就看到 ──
+  // 放在製作物清單下方：列出每個缺圖的版位與是哪幾格，點一下跳到那張；上傳補齊後自動消失。
+  function renderMissingUploads(entries) {
+    const anchor = document.getElementById('unmatchedBox');
+    if (!anchor?.parentNode) return;
+    let box = document.getElementById('missingUploadBox');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'missingUploadBox';
+      box.className = 'missing-upload-box hidden';
+      box.addEventListener('click', (event) => {
+        const row = event.target.closest('[data-index]');
+        if (row) core().BatchManager?.selectGenerated?.(Number(row.dataset.index));
+      });
+      anchor.parentNode.insertBefore(box, anchor);
+    }
+    const items = entries.filter((entry) => entry.kind === '還沒上傳圖' && entry.templateIndex >= 0);
+    if (!items.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+    box.classList.remove('hidden');
+    box.innerHTML = `
+      <div class="missing-upload-head">⚠ ${items.length} 個版位還沒上傳圖，請補圖</div>
+      ${items.map((entry) => `
+        <button type="button" class="missing-upload-row" data-index="${entry.templateIndex}" title="跳到這張">
+          <span class="missing-upload-name">${escapeHtml(entry.title)}</span>
+          <span class="missing-upload-slots">${escapeHtml(String(entry.detail).split('：')[0])}</span>
+        </button>`).join('')}`;
+  }
+
   function renderSummary(box) {
     const { DiagnosticsReport } = core();
     if (!DiagnosticsReport || !box) return;
     state.report = DiagnosticsReport.collect();
     const entries = flatEntries(state.report);
+    renderMissingUploads(entries);
     if (!entries.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
 
     const rows = SECTIONS.map((section) => {
