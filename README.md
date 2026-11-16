@@ -95,6 +95,8 @@ docs/core-diff/          步驟 2：13 工具 core 差異分析（給第二階�
 - **2026-11-13 清除後換圖又跳回工單的圖**（LineOA 推文商品格：Delete → 素材庫替換）：手動改過的製作物載圖時會先用圖層上記的 `__resolvedAssetPath`（上一張實際命中的路徑）找檔，`ManualAssetUpload.applyFile／clearAsset` 換素材時沒清掉它，所以檔名換了、畫出來還是舊圖。已在兩處清掉 `__resolvedAsset*`。另：合成過的商品再清除／換圖後，合成視窗改用目前畫面上的圖（不再端出上次合成時的原始商品）。
 - 2026-11-13 LineOA「左上角黃標」案型已做在公版裡：工單有填、公版沒有同名圖層時記資訊、不再報「公版沒有這個圖層」（`BUILT_INTO_TEMPLATE_FIELDS`）。
 - 2026-11-13 缺圖＝有問題的版位：「還沒上傳圖」改紅點；基礎模式在製作物清單下方多一塊「N 個版位還沒上傳圖，請補圖」（每張列出是哪幾格，點一下跳過去；補齊自動消失，`diagnostics-panel.js renderMissingUploads`），不用開進階才看得到。
+- **2026-11-16 18節／25節 一眼辨識**：左上角蝦皮 icon 改成版本數字徽章「18」（同 32px、主色底白字；入口頁標題旁 40px 同一顆）；主色 18節 #EE4D2D／25節 #D0011B（25節 theme-25／launcher 的 #ee4d2d 全換）；分頁標籤 favicon＝主色底數字、標題「18節｜生成工具」；工具頁與入口頁最外圍一圈淡主色暈光（`body::after`，不擋滑鼠）。
+- 2026-11-16 照 25節搬：`modules/loading-snake.js`（素材載入 >30 張出「等待時玩一下（貪食蛇）」）＋core `nextFrame()`（6 處 rAF 改走它，背景分頁產圖不停）；`npm run test:loading-game` 進 test:all。
 - **待處理**：（目前沒有）。
 - **待補**：票券型錄內容仍是 25節 的（需 18節 票券清單）；正式BN C2C SKBN 的 JPG 匯出切圖（D8，黃金為 PNG 未覆蓋）；25節 的存檔／手動素材／票券三套 E2E 尚未對 18節 profile 跑。`tools/` 與第一階段回歸 `test:golden` 已於 2026-10-01 移除（原工具仍在 `#整合版本/` 原資料夾）；重抽 A 系覆寫檔時用 `LEGACY18_SOURCE_ROOT` 指向該資料夾。決策紀錄（D1–D14）在 `docs/core-diff/00-總覽.md` 表 4。
 

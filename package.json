@@ -8,14 +8,15 @@
     "test:copy-lint": "node tests/run-copy-lint.js",
     "bundle:templates": "node tests/tools/bundle-templates.js",
     "test:core-golden": "node tests/run-golden/run-core-golden.js",
-    "test:all": "npm run check && npm run test:copy-lint && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip && npm run test:edit-flows && npm run test:tour",
+    "test:all": "npm run check && npm run test:copy-lint && npm run test:launcher && npm run test:core-golden && npm run test:click-export && npm run test:roundtrip && npm run test:edit-flows && npm run test:tour && npm run test:loading-game",
     "test:click-export": "node tests/run-golden/run-core-golden.js --profiles 暖身BN,正式BN,MS,KV,KOL_第一單 --click-thumbs",
     "test:roundtrip": "node tests/run-golden/run-roundtrip.js",
     "test:mutation": "node tests/run-golden/run-workbook-mutation.js",
     "test:edit-flows": "node tests/run-golden/run-edit-flows.js",
     "test:tour": "node tests/run-golden/run-tour.js",
     "build:tour-sample": "node tests/tools/build-tour-sample.js",
-    "test:launcher": "node tests/run-golden/run-launcher.js"
+    "test:launcher": "node tests/run-golden/run-launcher.js",
+    "test:loading-game": "node tests/run-golden/run-loading-game.js"
   },
   "devDependencies": {
     "@sparticuz/chromium": "152.0.0",

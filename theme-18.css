@@ -428,3 +428,6 @@ body.is-advanced section.panel.adv-only{ display:block !important; }
 .missing-upload-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .missing-upload-slots { color: var(--text-2); font-size: var(--fs-s); white-space: nowrap; }
 
+/* 2026-11-16：工具頁最外圍一圈主色暈光（淡、不擋滑鼠），跟入口頁一樣 */
+body::after { content: ''; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; box-shadow: inset 0 0 56px rgba(238, 77, 45, .20); }
+
